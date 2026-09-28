@@ -38,12 +38,11 @@ export const ScrollOverlay: React.FC = () => {
             O Corpo como Caminho para a Consciência
           </h2>
           <p className="text-body font-semibold text-base md:text-lg mt-6" style={{ color: '#28616a' }}>
-            Porque o corpo não é o destino final.<br/>
-            É o lugar concreto onde a consciência começa, se perde, se reencontra e aprende a viver.
+            O corpo não é o destino final.<br/>
+            É o lugar onde a consciência começa e se reencontra.
           </p>
-          <p className="text-body text-sm md:text-base mt-6 text-center" style={{ color: '#5f7477', lineHeight: '1.8' }}>
-            O corpo é o território vivo onde história, organismo, relação e consciência se encontram.<br/><br/>
-            O trabalho corporal busca ampliar a percepção e a flexibilidade para encarnar novas escolhas de vida, sem buscar causas automáticas ou interpretações universais.
+          <p className="text-body text-sm md:text-base mt-4 text-center max-w-2xl" style={{ color: '#5f7477', lineHeight: '1.8' }}>
+            O trabalho corporal busca reconectar você à sua percepção, oferecendo flexibilidade para encarnar novas escolhas de vida, sem a necessidade de interpretações prontas ou regras universais.
           </p>
         </div>
       </section>
@@ -60,8 +59,16 @@ export const ScrollOverlay: React.FC = () => {
         <div className="glass-card pointer-events-auto w-full max-w-3xl p-6 md:p-10 flex flex-col items-center text-center">
           <span className="text-label uppercase tracking-widest text-[#d7b36c] font-bold text-xs mb-2">A Síntese</span>
           
-          <div className="text-body font-semibold text-sm md:text-base mt-4 text-[#28616a] leading-relaxed">
-            <p>O organismo reage • A sensação informa • A consciência percebe • A regulação permite permanecer • O símbolo amplia • A história contextualiza • A autoridade escolhe • A ação encarna</p>
+          {/* Lista dividida em 2 colunas para organização visual */}
+          <div className="grid grid-cols-2 gap-x-4 md:gap-x-12 gap-y-3 text-body font-semibold text-xs md:text-sm mt-6 mb-4 text-[#28616a] text-left mx-auto w-full max-w-lg">
+            <span>• O organismo reage</span>
+            <span>• O símbolo amplia</span>
+            <span>• A sensação informa</span>
+            <span>• A história contextualiza</span>
+            <span>• A consciência percebe</span>
+            <span>• A autoridade escolhe</span>
+            <span>• A regulação permanece</span>
+            <span>• A ação encarna</span>
           </div>
 
           <div className="text-body text-sm md:text-base mt-6 text-[#5f7477]">
