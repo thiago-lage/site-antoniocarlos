@@ -10,7 +10,7 @@ export const SideNavigation: React.FC = () => {
     return () => window.removeEventListener('scroll', update);
   }, []);
 
-  const labels = ['Início', 'Promessa', 'Método', 'Trajetória', 'Síntese', 'Contato'];
+  const labels = ['Início', 'Promessa', 'Método', 'Trajetória', 'Síntese', 'Princípio', 'Contato'];
 
   return (
     <nav className="fixed right-4 md:right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col items-center gap-3 select-none">
