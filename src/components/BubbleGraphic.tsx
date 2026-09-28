@@ -90,35 +90,74 @@ const vertexShader = `
 const fragmentShader = `
   uniform float uTime;
   uniform float uOpacity;
-  
+  uniform float uColorT; // 0=vermelho, 0.5=azul, 1.0=verde-paleta
+
   varying vec2 vUv;
   varying vec3 vWorldPosition;
   varying vec3 vNormal;
 
+  vec3 lerpColor(vec3 a, vec3 b, float t) {
+    return a + (b - a) * clamp(t, 0.0, 1.0);
+  }
+
   void main() {
-    // ─── NEW PALETTE (Teal, Ivory, Gold) ───
-    vec3 cBase = vec3(0.086, 0.247, 0.286); // #163f49 (deep-teal)
-    vec3 cMid = vec3(0.325, 0.718, 0.682);  // #53b7ae (aqua)
-    vec3 cGlow = vec3(0.843, 0.702, 0.424); // #d7b36c (warm gold)
-    vec3 cHighlight = vec3(0.984, 0.969, 0.929); // #fbf7ed (soft ivory)
+    // ─── Paleta de Luz & Marca ───
+    vec3 siteGold  = vec3(0.843, 0.702, 0.424); // #d7b36c
+    vec3 siteIvory = vec3(0.984, 0.969, 0.929); // #fbf7ed
+    vec3 siteAqua  = vec3(0.325, 0.718, 0.682); // #53b7ae
+    vec3 siteTeal  = vec3(0.086, 0.247, 0.286); // #163f49
+
+    // ─── FASE 1: Vermelho/Laranja/Magenta (Corpo Temido - Motion Graphic) ───
+    vec3 redCore   = vec3(0.95, 0.22, 0.18); // vermelho vivo quente
+    vec3 redShadow = vec3(0.48, 0.07, 0.45); // magenta profundo na sombra
+    vec3 redLight  = vec3(1.0, 0.58, 0.22);  // âmbar/laranja luminoso
+
+    // ─── FASE 2: Azul/Índigo/Ciano (Corpo Regulado) ───
+    vec3 blueCore   = vec3(0.12, 0.42, 0.92); // azul elétrico
+    vec3 blueShadow = vec3(0.24, 0.08, 0.55); // violeta/índigo
+    vec3 blueLight  = vec3(0.25, 0.82, 0.98); // ciano radiante
+
+    // ─── FASE 3: Verde/Aqua/Dourado (Corpo Habitado) ───
+    vec3 greenCore   = siteAqua;
+    vec3 greenShadow = siteTeal;
+    vec3 greenLight  = siteGold;
+
+    // Interpolação cromática conforme uColorT (0 → 0.5 → 1.0)
+    vec3 cCore, cShadow, cLight;
+    if (uColorT < 0.5) {
+      float t = uColorT * 2.0;
+      cCore   = lerpColor(redCore, blueCore, t);
+      cShadow = lerpColor(redShadow, blueShadow, t);
+      cLight  = lerpColor(redLight, blueLight, t);
+    } else {
+      float t = (uColorT - 0.5) * 2.0;
+      cCore   = lerpColor(blueCore, greenCore, t);
+      cShadow = lerpColor(blueShadow, greenShadow, t);
+      cLight  = lerpColor(blueLight, greenLight, t);
+    }
 
     vec3 viewDirection = normalize(cameraPosition - vWorldPosition);
     float fresnel = dot(viewDirection, normalize(vNormal));
     fresnel = clamp(1.0 - fresnel, 0.0, 1.0);
-    
-    // Smooth transition across the surface
-    vec3 color = mix(cBase, cMid, vUv.x * 1.5);
-    
-    // Inner bubble transparency / golden iridescent edge
-    float edgeGlow = pow(fresnel, 2.8);
-    color = mix(color, cGlow, edgeGlow * 0.85);
-    
-    // Add subtle bright highlight at the very extreme edges
-    float extremeEdge = pow(fresnel, 4.5);
-    color = mix(color, cHighlight, extremeEdge);
 
-    // Keep center highly transparent, edges more opaque
-    float alpha = mix(0.15, 0.75, fresnel) * uOpacity;
+    // Efeito esférico 3D com iluminação assimétrica (Motion Graphic)
+    float lightFactor = dot(normalize(vNormal), normalize(vec3(-0.6, 0.7, 0.8)));
+    lightFactor = lightFactor * 0.5 + 0.5;
+
+    // Mistura de cor base: sombra profunda até núcleo iluminado
+    vec3 color = lerpColor(cShadow, cCore, lightFactor);
+    color = lerpColor(color, cLight, pow(lightFactor, 2.5) * 0.7);
+
+    // Glow e fresnel volumétrico
+    float rim = pow(fresnel, 2.8);
+    color = lerpColor(color, cLight * 1.15, rim * 0.65);
+
+    // Destaque perolado na borda extrema
+    float edge = pow(fresnel, 4.5);
+    color = lerpColor(color, siteIvory, edge * 0.85);
+
+    // Opacidade: presença sólida e luminosa no centro com borda difusa
+    float alpha = mix(0.45, 0.88, fresnel) * uOpacity;
 
     gl_FragColor = vec4(color, alpha);
   }
@@ -154,81 +193,79 @@ export const BubbleGraphic: React.FC = () => {
   useFrame((state) => {
     const t = state.clock.elapsedTime;
     const scene = scrollState.currentScene;
-    
-    // Targets
-    let targetScaleX = 1.0;
-    let targetScaleY = 1.0;
-    let targetScaleZ = 1.0;
-    let targetDistort = 0.08;
-    let targetSpeed = 0.1;
-    let targetStripe = 0.0;
+    const p4 = Math.max(0, Math.min(1, scrollState.scene4Progress)); // 0→1
+
+    // ── Defaults ──
+    let targetScaleX = 0.01, targetScaleY = 0.01, targetScaleZ = 0.01;
+    let targetDistort = 0.08, targetSpeed = 0.1, targetStripe = 0.0;
     let targetOpacitySplit = 0.0;
-    
     let tX1 = 0, tY1 = 0;
     let tX2 = 0, tY2 = 0;
     let tX3 = 0, tY3 = 0;
 
     if (scene === 1) {
-      // Scene 1: Oculto/Neutro (hero agora tem background estático opaco)
-      targetScaleX = 3.5; targetScaleY = 3.5; targetScaleZ = 3.5;
-      tX1 = 0; tY1 = 0;
+      targetScaleX = targetScaleY = targetScaleZ = 3.5;
       targetDistort = 0.08; targetSpeed = 0.1;
     } else if (scene === 2) {
-      // Scene 2: Flutua para canto inferior esquerdo
-      targetScaleX = 3.0; targetScaleY = 3.0; targetScaleZ = 3.0;
+      targetScaleX = targetScaleY = targetScaleZ = 3.0;
       tX1 = -1.8; tY1 = -1.0;
       targetDistort = 0.1; targetSpeed = 0.1;
     } else if (scene === 3) {
-      // Scene 3: Flutua para canto superior direito
-      targetScaleX = 3.0; targetScaleY = 3.0; targetScaleZ = 3.0;
+      targetScaleX = targetScaleY = targetScaleZ = 3.0;
       tX1 = 1.8; tY1 = 1.0;
       targetDistort = 0.1;
     } else if (scene === 4) {
-      // Scene 4: Neutro oculto (coberto pela Trajetória)
-      targetScaleX = 1.0; targetScaleY = 1.0; targetScaleZ = 1.0;
-      tX1 = 0; tY1 = 0;
+      // ── Scene 4: Bubble emocional centrada e presente atrás dos cards ──
+      tX1 = 0;
+      tY1 = 0;
+
+      // Tamanho: presente e visível desde o 1º card (2.2) até o último (3.2), pulsando continuamente
+      const baseScale = 2.2 + p4 * 1.0;
+      const pulse = Math.sin(t * 2.2) * 0.12;
+      targetScaleX = targetScaleY = targetScaleZ = baseScale + pulse;
+
+      targetDistort = 0.08 + p4 * 0.06;
+      targetSpeed = 0.1;
+
+      // Cor: vermelho vivo/magenta (0) → azul elétrico (0.5) → verde/aqua (1.0)
+      material1.uniforms.uOpacity.value = 1.0;
+      material1.uniforms.uColorT.value = THREE.MathUtils.lerp(
+        material1.uniforms.uColorT.value, p4, 0.08
+      );
     } else {
-      // Scene 5: Divide em 3 moleculas (Síntese)
-      targetScaleX = 2.0; targetScaleY = 2.0; targetScaleZ = 2.0;
+      // Scene 5: divide em 3 moléculas
+      targetScaleX = targetScaleY = targetScaleZ = 2.0;
       targetOpacitySplit = 1.0;
-      
-      let splitDist = 2.8 + Math.sin(t * 0.5) * 0.5; 
+      const splitDist = 2.8 + Math.sin(t * 0.5) * 0.5;
       tX1 = 0; tY1 = splitDist;
       tX2 = -splitDist * 0.866; tY2 = -splitDist * 0.5;
       tX3 = splitDist * 0.866;  tY3 = -splitDist * 0.5;
     }
 
-    // Apply uniforms to Main Mesh
+    // ── Aplica uniforms ──
     material1.uniforms.uTime.value = t;
     material1.uniforms.uDistortAmount.value = THREE.MathUtils.lerp(material1.uniforms.uDistortAmount.value, targetDistort, 0.05);
-    material1.uniforms.uDistortSpeed.value = THREE.MathUtils.lerp(material1.uniforms.uDistortSpeed.value, targetSpeed, 0.05);
+    material1.uniforms.uDistortSpeed.value  = THREE.MathUtils.lerp(material1.uniforms.uDistortSpeed.value,  targetSpeed,   0.05);
     material1.uniforms.uStripeIntensity.value = THREE.MathUtils.lerp(material1.uniforms.uStripeIntensity.value, targetStripe, 0.05);
-    
-    // Pulse logic
-    let pulse = Math.sin(t * 1.5) * 0.05;
-    
-    mesh1Ref.current!.scale.x = THREE.MathUtils.lerp(mesh1Ref.current!.scale.x, targetScaleX + pulse, 0.05);
-    mesh1Ref.current!.scale.y = THREE.MathUtils.lerp(mesh1Ref.current!.scale.y, targetScaleY + pulse, 0.05);
-    mesh1Ref.current!.scale.z = THREE.MathUtils.lerp(mesh1Ref.current!.scale.z, targetScaleZ + pulse, 0.05);
-    
-    mesh1Ref.current!.position.x = THREE.MathUtils.lerp(mesh1Ref.current!.position.x, tX1, 0.03);
-    mesh1Ref.current!.position.y = THREE.MathUtils.lerp(mesh1Ref.current!.position.y, tY1, 0.03);
 
-    // Apply to Split Meshes
+    mesh1Ref.current!.scale.x = THREE.MathUtils.lerp(mesh1Ref.current!.scale.x, targetScaleX, 0.04);
+    mesh1Ref.current!.scale.y = THREE.MathUtils.lerp(mesh1Ref.current!.scale.y, targetScaleY, 0.04);
+    mesh1Ref.current!.scale.z = THREE.MathUtils.lerp(mesh1Ref.current!.scale.z, targetScaleZ, 0.04);
+    mesh1Ref.current!.position.x = THREE.MathUtils.lerp(mesh1Ref.current!.position.x, tX1, 0.035);
+    mesh1Ref.current!.position.y = THREE.MathUtils.lerp(mesh1Ref.current!.position.y, tY1, 0.035);
+
     [material2, material3].forEach(mat => {
       mat.uniforms.uTime.value = t;
       mat.uniforms.uDistortAmount.value = material1.uniforms.uDistortAmount.value;
-      mat.uniforms.uDistortSpeed.value = material1.uniforms.uDistortSpeed.value;
+      mat.uniforms.uDistortSpeed.value  = material1.uniforms.uDistortSpeed.value;
       mat.uniforms.uStripeIntensity.value = material1.uniforms.uStripeIntensity.value;
       mat.uniforms.uOpacity.value = THREE.MathUtils.lerp(mat.uniforms.uOpacity.value, targetOpacitySplit, 0.05);
     });
 
     mesh2Ref.current!.scale.copy(mesh1Ref.current!.scale);
     mesh3Ref.current!.scale.copy(mesh1Ref.current!.scale);
-
     mesh2Ref.current!.position.x = THREE.MathUtils.lerp(mesh2Ref.current!.position.x, tX2, 0.03);
     mesh2Ref.current!.position.y = THREE.MathUtils.lerp(mesh2Ref.current!.position.y, tY2, 0.03);
-    
     mesh3Ref.current!.position.x = THREE.MathUtils.lerp(mesh3Ref.current!.position.x, tX3, 0.03);
     mesh3Ref.current!.position.y = THREE.MathUtils.lerp(mesh3Ref.current!.position.y, tY3, 0.03);
   });

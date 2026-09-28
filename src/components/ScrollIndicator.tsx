@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { scrollToScene, getCurrentSceneIndex, SCENES } from '../scrollUtils';
+import { scrollToScene, getCurrentSceneIndex, getSceneScrollTop, SCENES } from '../scrollUtils';
 
 export const ScrollIndicator: React.FC = () => {
   const [atBottom, setAtBottom] = useState(false);
@@ -41,8 +41,8 @@ export const ScrollIndicator: React.FC = () => {
     };
 
     window.addEventListener('scroll', checkScroll, { passive: true });
-    window.addEventListener('mousemove', resetIdle, { passive: true });
-    window.addEventListener('touchstart', resetIdle, { passive: true });
+    // window.addEventListener('mousemove', resetIdle, { passive: true });
+    // window.addEventListener('touchstart', resetIdle, { passive: true });
     
     // Initial check
     checkScroll();
@@ -53,38 +53,65 @@ export const ScrollIndicator: React.FC = () => {
       resetIdle();
       if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
         e.preventDefault();
-        const idx = getCurrentSceneIndex();
+        
+        const ST = (window as any).ScrollTrigger;
+        const currentY = window.scrollY;
+        const stPin = ST ? ST.getById('scene-4-pin') : null;
 
-        if (idx === 3) {
-          // Custom scrub logic for Scene 4 (Trajetória)
-          const scene5 = document.getElementById('scene-5');
-          const scene4 = document.getElementById('scene-4');
-          if (scene5 && scene4) {
-            const maxScroll = scene5.getBoundingClientRect().top + window.scrollY;
-            const minScroll = scene4.getBoundingClientRect().top + window.scrollY;
-            
-            if (e.key === 'ArrowDown') {
-              if (window.scrollY < maxScroll - window.innerHeight * 0.8) {
-                const nextScroll = window.scrollY + window.innerWidth * 0.4;
-                if ((window as any).lenis) (window as any).lenis.scrollTo(nextScroll, { duration: 1.2 });
-                else window.scrollTo({ top: nextScroll, behavior: 'smooth' });
-                return;
-              }
-            } else { // ArrowUp
-              if (window.scrollY > minScroll + 10) {
-                const prevScroll = window.scrollY - window.innerWidth * 0.4;
-                if ((window as any).lenis) (window as any).lenis.scrollTo(prevScroll, { duration: 1.2 });
-                else window.scrollTo({ top: prevScroll, behavior: 'smooth' });
-                return;
+        // Se estiver dentro da animação horizontal da Trajetória (Scene 4)
+        if (stPin && currentY >= stPin.start - 20 && currentY < stPin.end - 40) {
+          const step = (stPin.end - stPin.start) / 8; // 8 passos para os 9 cards
+          
+          if (e.key === 'ArrowDown') {
+            const nextCardY = currentY + step;
+            // Se passar do último card ("CORPO HABITADO"), força ir direto para a cena 5 (A Síntese)
+            if (nextCardY >= stPin.end - step * 0.4) {
+              scrollToScene(4); // Cena 5 (A Síntese) - 100% no topo, sem faixa!
+            } else {
+              if ((window as any).lenis) {
+                (window as any).lenis.scrollTo(nextCardY, { duration: 1.0 });
+              } else {
+                window.scrollTo({ top: nextCardY, behavior: 'smooth' });
               }
             }
+            return;
+          } else { // ArrowUp
+            const prevCardY = currentY - step;
+            // Se voltar antes do primeiro card ("CORPO TEMIDO"), vai direto para a cena 3 (Método Autoral)
+            if (prevCardY <= stPin.start + step * 0.4) {
+              scrollToScene(2); // Cena 3 (Método Autoral)
+            } else {
+              if ((window as any).lenis) {
+                (window as any).lenis.scrollTo(prevCardY, { duration: 1.0 });
+              } else {
+                window.scrollTo({ top: prevCardY, behavior: 'smooth' });
+              }
+            }
+            return;
           }
         }
 
+        // Navegação direta entre as demais seções (forçando ir 100% no topo exato)
         if (e.key === 'ArrowDown') {
-          scrollToScene(Math.min(idx + 1, SCENES.length - 1));
-        } else {
-          scrollToScene(Math.max(idx - 1, 0));
+          let nextIdx = SCENES.length - 1;
+          for (let i = 0; i < SCENES.length; i++) {
+            const sceneTop = getSceneScrollTop(i);
+            if (sceneTop > currentY + 40) {
+              nextIdx = i;
+              break;
+            }
+          }
+          scrollToScene(nextIdx);
+        } else { // ArrowUp
+          let prevIdx = 0;
+          for (let i = SCENES.length - 1; i >= 0; i--) {
+            const sceneTop = getSceneScrollTop(i);
+            if (sceneTop < currentY - 40) {
+              prevIdx = i;
+              break;
+            }
+          }
+          scrollToScene(prevIdx);
         }
       }
     };
@@ -93,47 +120,39 @@ export const ScrollIndicator: React.FC = () => {
     return () => {
       clearTimeout(timeout);
       window.removeEventListener('scroll', checkScroll);
-      window.removeEventListener('mousemove', resetIdle);
-      window.removeEventListener('touchstart', resetIdle);
       window.removeEventListener('keydown', onKey);
     };
   }, []);
 
   const handleClickDown = () => {
-    const idx = getCurrentSceneIndex();
-    
-    // Scene 4 (Trajetória) is a horizontal scrolljack. 
-    // Jumping directly to Scene 5 skips the timeline.
-    if (idx === 3) {
-      const scene5 = document.getElementById('scene-5');
-      const scene4 = document.getElementById('scene-4');
-      if (scene5 && scene4) {
-        // Absolute position of where Scene 5 begins
-        const maxScroll = scene5.getBoundingClientRect().top + window.scrollY;
-        const minScroll = scene4.getBoundingClientRect().top + window.scrollY;
-        
-        // If at the end of timeline, jump back to start
-        if (isAtTimelineEnd) {
-          if ((window as any).lenis) (window as any).lenis.scrollTo(minScroll, { duration: 1.5 });
-          else window.scrollTo({ top: minScroll, behavior: 'smooth' });
-          return;
-        }
+    const ST = (window as any).ScrollTrigger;
+    const currentY = window.scrollY;
+    const stPin = ST ? ST.getById('scene-4-pin') : null;
 
-        // If we are more than one viewport away from Scene 5, 
-        // we are still scrubbing the horizontal timeline. Scroll down incrementally.
-        if (window.scrollY < maxScroll - window.innerHeight * 0.8) {
-          const nextScroll = window.scrollY + window.innerWidth * 0.4; // Scroll by about 40vw to match cards
-          if ((window as any).lenis) {
-            (window as any).lenis.scrollTo(nextScroll, { duration: 1.2 });
-          } else {
-            window.scrollTo({ top: nextScroll, behavior: 'smooth' });
-          }
-          return;
+    if (stPin && currentY >= stPin.start - 20 && currentY < stPin.end - 40) {
+      const step = (stPin.end - stPin.start) / 8;
+      const nextCardY = currentY + step;
+      if (nextCardY >= stPin.end - step * 0.4) {
+        scrollToScene(4); // Força ir direto para Scene 5
+      } else {
+        if ((window as any).lenis) {
+          (window as any).lenis.scrollTo(nextCardY, { duration: 1.0 });
+        } else {
+          window.scrollTo({ top: nextCardY, behavior: 'smooth' });
         }
       }
+      return;
     }
-    
-    scrollToScene(Math.min(idx + 1, SCENES.length - 1));
+
+    let nextIdx = SCENES.length - 1;
+    for (let i = 0; i < SCENES.length; i++) {
+      const sceneTop = getSceneScrollTop(i);
+      if (sceneTop > currentY + 40) {
+        nextIdx = i;
+        break;
+      }
+    }
+    scrollToScene(nextIdx);
   };
 
   const isVisible = isIdle && !atBottom;
@@ -142,13 +161,13 @@ export const ScrollIndicator: React.FC = () => {
 
   return (
     <div
-      className="fixed bottom-2 md:bottom-4 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center gap-1 transition-opacity duration-1000"
-      style={{ opacity: isVisible ? 1 : 0, pointerEvents: 'auto' }}
+      className="hidden md:flex fixed bottom-8 right-8 z-50 w-14 items-center justify-center flex-col transition-opacity duration-1000"
+      style={{ opacity: isVisible ? 1 : 0, pointerEvents: isVisible ? 'auto' : 'none' }}
     >
       <button
         id="scroll-indicator-btn"
         onClick={handleClickDown}
-        className="w-12 h-12 flex items-center justify-center transition-colors bg-transparent border-none outline-none cursor-pointer animate-bounce"
+        className="w-14 h-14 flex items-center justify-center transition-all duration-300 bg-transparent border-none outline-none cursor-pointer animate-bounce"
         style={{ color: '#EED7A0' }}
         onMouseEnter={e => (e.currentTarget.style.color = '#fbf7ed')}
         onMouseLeave={e => (e.currentTarget.style.color = '#EED7A0')}

@@ -11,9 +11,9 @@ export const ScrollOverlay: React.FC = () => {
 
       {/* SCENE 2: Promessa */}
       <section
-        className="scene min-h-screen w-full flex flex-col justify-center items-center pl-6 pr-12 sm:px-12 md:px-16 lg:px-24"
+        className="scene min-h-screen w-full flex flex-col justify-center items-center pl-6 pr-12 sm:px-12 md:px-16 lg:px-24 bg-cover bg-center bg-no-repeat"
         id="scene-2"
-        style={{ background: 'linear-gradient(160deg, #f8f4ec 0%, #eef6f5 60%, #f3e7d1 100%)' }}
+        style={{ backgroundImage: 'url(/background2.png)' }}
       >
         <div className="glass-card pointer-events-auto w-full max-w-xl p-6 md:p-10 flex flex-col items-center text-center">
           <span className="text-label">A Promessa</span>
@@ -28,9 +28,9 @@ export const ScrollOverlay: React.FC = () => {
 
       {/* SCENE 3: Método */}
       <section
-        className="scene min-h-screen w-full flex flex-col justify-center items-center pl-6 pr-12 sm:px-12 md:px-16 lg:px-24"
+        className="scene min-h-screen w-full flex flex-col justify-center items-center pl-6 pr-12 sm:px-12 md:px-16 lg:px-24 bg-cover bg-center bg-no-repeat"
         id="scene-3"
-        style={{ background: 'linear-gradient(145deg, #eef6f5 0%, #f8f4ec 50%, #eef6f5 100%)' }}
+        style={{ backgroundImage: 'url(/background2.png)' }}
       >
         <div className="glass-card pointer-events-auto w-full max-w-4xl p-6 md:p-10 flex flex-col items-center text-center">
           <span className="text-label uppercase tracking-widest text-[#d7b36c] font-bold text-xs mb-2">Método Autoral</span>

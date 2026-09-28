@@ -46,6 +46,9 @@ function App() {
       gsap.ticker.lagSmoothing(0);
     }
 
+    // Add ScrollTrigger to window for global access
+    (window as any).ScrollTrigger = ScrollTrigger;
+
     let ctx = gsap.context(() => {
       // --- Scene 4 Horizontal Scrolljack ---
       const track = document.getElementById('trajectory-track');
@@ -56,11 +59,15 @@ function App() {
           x: () => -getScrollAmount(),
           ease: "none",
           scrollTrigger: {
+            id: "scene-4-pin",
             trigger: "#scene-4",
-            start: "center center",
-            end: () => "+=" + getScrollAmount(),
+            start: "top top",
+            // 2.5× o tamanho do track → scroll muito mais lento, dá tempo de ver cada card
+            end: () => "+=" + getScrollAmount() * 2.5,
             pin: true,
-            scrub: 1,
+            pinSpacing: true,
+            anticipatePin: 1,
+            scrub: 2.5, // mais suave (era 1)
             invalidateOnRefresh: true,
             onUpdate: (self) => {
               scrollState.scene4Progress = self.progress;
@@ -69,12 +76,13 @@ function App() {
         });
       }
 
-      // Create ScrollTriggers for each scene simply to track active state
+      // Create ScrollTriggers for each scene simply to track active state and exact positions
       SCENES.forEach((id, index) => {
         ScrollTrigger.create({
+          id: id,
           trigger: `#${id}`,
-          start: "top center",
-          end: "bottom center",
+          start: "top top",
+          end: "bottom top",
           onEnter: () => scrollState.currentScene = index + 1,
           onEnterBack: () => scrollState.currentScene = index + 1,
         });
