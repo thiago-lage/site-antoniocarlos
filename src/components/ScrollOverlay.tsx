@@ -60,7 +60,7 @@ export const ScrollOverlay: React.FC = () => {
           <span className="text-label uppercase tracking-widest text-[#d7b36c] font-bold text-xs mb-2">A Síntese</span>
           
           {/* Cards elegantes e centralizados substituindo os tópicos */}
-          <div className="flex flex-wrap justify-center gap-3 md:gap-4 mt-8 mb-8 w-full max-w-3xl">
+          <div className="flex md:flex-wrap overflow-x-auto md:overflow-visible snap-x snap-mandatory md:justify-center gap-3 md:gap-4 mt-8 mb-8 w-full max-w-3xl px-6 md:px-0 pb-4 md:pb-0 scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" style={{ WebkitOverflowScrolling: 'touch' }}>
             {[
               'O organismo reage', 'A sensação informa', 
               'A consciência percebe', 'A regulação permanece', 
@@ -69,7 +69,7 @@ export const ScrollOverlay: React.FC = () => {
             ].map((text, i) => (
               <div 
                 key={i} 
-                className="px-5 py-3 rounded-full border text-xs md:text-[13px] font-bold tracking-wider uppercase flex items-center justify-center text-center" 
+                className="snap-center shrink-0 px-5 py-3 rounded-full border text-xs md:text-[13px] font-bold tracking-wider uppercase flex items-center justify-center text-center" 
                 style={{ 
                   background: 'rgba(251, 247, 237, 0.76)', 
                   borderColor: 'rgba(255, 255, 255, 0.68)',
