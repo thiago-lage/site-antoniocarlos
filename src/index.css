@@ -3,26 +3,40 @@
 
 @theme {
   /* Primary brand colors */
-  --color-turquesa: #009688;
-  --color-turquesa-light: #4DB6AC;
-  --color-turquesa-escuro: #00796b;
-  --color-turquesa-glow: rgba(0, 150, 136, 0.15);
+  --color-turquesa: #53b7ae;
+  --color-turquesa-light: #6eaaa5;
+  --color-turquesa-escuro: #28616a;
+  --color-turquesa-glow: rgba(83, 183, 174, 0.15);
+
+  /* New design system */
+  --color-deep-teal: #163f49;
+  --color-petrol: #28616a;
+  --color-soft-teal: #6eaaa5;
+  --color-aqua: #53b7ae;
+  --color-warm-cream: #f3e7d1;
+  --color-soft-ivory: #fbf7ed;
+  --color-warm-gold: #d7b36c;
+  --color-ink: #173847;
+  --color-muted-ink: #5f7477;
+  --surface-glass: rgba(251, 247, 237, 0.76);
+  --surface-glass-warm: rgba(246, 229, 217, 0.76);
+  --border-glass: rgba(255, 255, 255, 0.68);
 
   /* Backgrounds */
-  --color-fundo: #F8F7F3; /* warm cream */
-  --color-fundo-alt: #EFEEE9; /* slightly darker cream */
+  --color-fundo: #fbf7ed;
+  --color-fundo-alt: #f3e7d1;
 
   /* Text */
-  --color-texto: #28201e;
-  --color-texto-secundario: #6B7280;
-  --color-texto-suave: #9CA3AF;
+  --color-texto: #173847;
+  --color-texto-secundario: #5f7477;
+  --color-texto-suave: #8fa6aa;
 
   /* Glass surfaces */
-  --color-glass: rgba(255,255,255,0.55);
-  --color-glass-border: rgba(255,255,255,0.65);
+  --color-glass: rgba(251, 247, 237, 0.76);
+  --color-glass-border: rgba(255, 255, 255, 0.68);
 
   /* Nuvem (white) */
-  --color-nuvem: #FAFAFA;
+  --color-nuvem: #fbf7ed;
 
   /* Font families */
   --font-serif: 'Playfair Display', Georgia, serif;
@@ -35,8 +49,8 @@
 }
 
 body {
-  background-color: #F8F7F3;
-  color: #2A2A2A;
+  background-color: #fbf7ed;
+  color: #173847;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
@@ -68,14 +82,14 @@ body {
   font-weight: 600;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: #9CA3AF;
+  color: #6eaaa5;
 }
 
 .text-body {
   font-family: 'Inter', system-ui, sans-serif;
   font-weight: 300;
   line-height: 1.7;
-  color: #6B7280;
+  color: #5f7477;
 }
 
 .text-quote {
@@ -83,7 +97,7 @@ body {
   font-style: italic;
   font-weight: 400;
   line-height: 1.5;
-  color: #4B5563;
+  color: #28616a;
 }
 
 .font-handwriting {
@@ -91,23 +105,44 @@ body {
   font-weight: 500;
 }
 
-/* ─── Glass Card ────────────────────────────────── */
+/* ─── Glass Card — warm ivory surface ───────────── */
 .glass-card {
-  background: rgba(255, 255, 255, 0.55);
+  background: rgba(251, 247, 237, 0.76);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.68);
   border-radius: 2rem;
-  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.04), 0 1px 4px rgba(0,0,0,0.03);
+  box-shadow: 0 4px 32px rgba(22, 63, 73, 0.07), 0 1px 4px rgba(22,63,73,0.04);
 }
 
 .glass-card-inner {
-  background: rgba(255, 255, 255, 0.40);
+  background: rgba(251, 247, 237, 0.60);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.60);
   border-radius: 1.25rem;
 }
+
+/* ─── Scene cards: scenes 2, 3, 5 ──────────────── */
+.scene-card-section {
+  background: linear-gradient(160deg, #f8f4ec 0%, #eef6f5 50%, #f3e7d1 100%);
+}
+
+.scene-text-title {
+  color: #163f49;
+}
+
+.scene-text-body {
+  color: #5f7477;
+}
+
+.scene-blockquote {
+  background: rgba(243, 231, 209, 0.55);
+  border: 1px solid rgba(215, 179, 108, 0.3);
+  border-radius: 1rem;
+}
+
+
 
 /* ─── Gradient Backgrounds ──────────────────────── */
 .gradient-teal {
@@ -209,3 +244,15 @@ body {
 .delay-1 { animation-delay: 0.5s; }
 .delay-2 { animation-delay: 1s; }
 .delay-3 { animation-delay: 1.5s; }
+
+/* Glassmorphism overlay only shows when user scrolls past the hero */
+.scene-glass-overlay {
+  backdrop-filter: none;
+  background: transparent;
+  transition: backdrop-filter 0.3s, background 0.3s;
+}
+.scrolled-past-hero .scene-glass-overlay {
+  backdrop-filter: blur(60px);
+  background: rgba(255,255,255,0.3);
+}
+

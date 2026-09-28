@@ -3,20 +3,9 @@ import { scrollToScene, getCurrentSceneIndex, SCENES } from '../scrollUtils';
 
 export const ScrollIndicator: React.FC = () => {
   const [atBottom, setAtBottom] = useState(false);
-  const [isIdle, setIsIdle] = useState(false);
   const [isAtTimelineEnd, setIsAtTimelineEnd] = useState(false);
 
   useEffect(() => {
-    let timeout: ReturnType<typeof setTimeout>;
-
-    const resetIdle = () => {
-      setIsIdle(false);
-      clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        setIsIdle(true);
-      }, 2000);
-    };
-
     // Arrow visibility logic
     const checkScroll = () => {
       const idx = getCurrentSceneIndex();
@@ -36,20 +25,15 @@ export const ScrollIndicator: React.FC = () => {
       } else {
         setIsAtTimelineEnd(false);
       }
-
-      resetIdle();
     };
 
     window.addEventListener('scroll', checkScroll, { passive: true });
-    window.addEventListener('mousemove', resetIdle, { passive: true });
-    window.addEventListener('touchstart', resetIdle, { passive: true });
     
-    // Start initial timer
-    resetIdle();
+    // Initial check
+    checkScroll();
 
     // Keyboard navigation: ArrowDown / ArrowUp
     const onKey = (e: KeyboardEvent) => {
-      resetIdle();
       if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
         e.preventDefault();
         const idx = getCurrentSceneIndex();
@@ -90,10 +74,7 @@ export const ScrollIndicator: React.FC = () => {
     window.addEventListener('keydown', onKey);
 
     return () => {
-      clearTimeout(timeout);
       window.removeEventListener('scroll', checkScroll);
-      window.removeEventListener('mousemove', resetIdle);
-      window.removeEventListener('touchstart', resetIdle);
       window.removeEventListener('keydown', onKey);
     };
   }, []);
@@ -135,19 +116,20 @@ export const ScrollIndicator: React.FC = () => {
     scrollToScene(Math.min(idx + 1, SCENES.length - 1));
   };
 
-  const isVisible = isIdle && !atBottom;
-
   if (atBottom) return null;
 
   return (
     <div
       className="fixed bottom-2 md:bottom-4 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center gap-1 transition-opacity duration-1000"
-      style={{ opacity: isVisible ? 1 : 0, pointerEvents: isVisible ? 'auto' : 'none' }}
+      style={{ opacity: 1, pointerEvents: 'auto' }}
     >
       <button
         id="scroll-indicator-btn"
         onClick={handleClickDown}
-        className="w-12 h-12 flex items-center justify-center text-turquesa hover:text-turquesa-escuro transition-colors bg-transparent border-none outline-none cursor-pointer animate-bounce"
+        className="w-12 h-12 flex items-center justify-center transition-colors bg-transparent border-none outline-none cursor-pointer animate-bounce"
+        style={{ color: '#EED7A0' }}
+        onMouseEnter={e => (e.currentTarget.style.color = '#fbf7ed')}
+        onMouseLeave={e => (e.currentTarget.style.color = '#EED7A0')}
         aria-label="Next section"
       >
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} className="w-8 h-8">

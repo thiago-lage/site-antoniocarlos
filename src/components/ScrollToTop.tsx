@@ -36,7 +36,14 @@ export const ScrollToTop: React.FC = () => {
     >
       <button 
         onClick={handleScrollTop}
-        className="relative w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-lg text-white hover:bg-white/20 transition-all hover:scale-105 group"
+        className="relative w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-full backdrop-blur-md shadow-lg transition-all hover:scale-105 group"
+        style={{
+          background: 'rgba(251, 247, 237, 0.1)',
+          border: '1px solid rgba(251, 247, 237, 0.2)',
+          color: '#fbf7ed'
+        }}
+        onMouseEnter={e => (e.currentTarget.style.background = 'rgba(251, 247, 237, 0.2)')}
+        onMouseLeave={e => (e.currentTarget.style.background = 'rgba(251, 247, 237, 0.1)')}
         aria-label="Voltar ao topo"
       >
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="w-6 h-6 md:w-7 md:h-7 transition-transform group-hover:-translate-y-1">

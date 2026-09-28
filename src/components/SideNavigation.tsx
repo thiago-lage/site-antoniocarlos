@@ -19,20 +19,20 @@ export const SideNavigation: React.FC = () => {
           key={i}
           onClick={() => scrollToScene(i)}
           title={labels[i]}
-          className={`relative group flex items-center justify-center transition-all duration-300`}
+          className={`relative group flex items-center justify-center transition-all duration-300 w-4 h-4`}
         >
           {/* Tooltip label */}
-          <span className="absolute right-6 whitespace-nowrap text-xs text-gray-500 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-white/70 backdrop-blur-sm rounded-full px-2 py-0.5 border border-white/50 shadow-sm pointer-events-none">
+          <span className="absolute right-6 whitespace-nowrap text-[10px] uppercase tracking-widest font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-[#fbf7ed]/80 backdrop-blur-md rounded-full px-3 py-1 border border-white/50 shadow-sm pointer-events-none" style={{ color: '#163f49' }}>
             {labels[i]}
           </span>
           {/* Dot */}
           <span
             className="block rounded-full transition-all duration-300"
             style={{
-              width: activeIdx === i ? '10px' : '7px',
-              height: activeIdx === i ? '10px' : '7px',
-              backgroundColor: activeIdx === i ? '#009688' : '#C9D1D9',
-              boxShadow: activeIdx === i ? '0 0 0 3px rgba(0,150,136,0.2)' : 'none',
+              width: activeIdx === i ? '10px' : '6px',
+              height: activeIdx === i ? '10px' : '6px',
+              backgroundColor: activeIdx === i ? '#d7b36c' : 'rgba(95, 116, 119, 0.4)',
+              boxShadow: activeIdx === i ? '0 0 0 3px rgba(215, 179, 108, 0.25)' : 'none',
             }}
           />
         </button>

@@ -27,6 +27,15 @@ function App() {
     // Add Lenis to window for global access
     (window as any).lenis = lenis;
 
+    // Toggle glass overlay class: active only after scrolling past hero
+    const heroEl = document.getElementById('scene-1');
+    const toggleGlass = () => {
+      const heroH = heroEl ? heroEl.offsetHeight : window.innerHeight;
+      document.documentElement.classList.toggle('scrolled-past-hero', window.scrollY > heroH * 0.8);
+    };
+    window.addEventListener('scroll', toggleGlass, { passive: true });
+    toggleGlass();
+
     const el = containerRef.current as unknown as HTMLElement;
     if (el) {
       // Synchronize Lenis with GSAP ScrollTrigger
@@ -38,7 +47,6 @@ function App() {
     }
 
     let ctx = gsap.context(() => {
-      // --- Create Pins FIRST so they wrap the DOM correctly before other triggers measure it ---
       // --- Scene 4 Horizontal Scrolljack ---
       const track = document.getElementById('trajectory-track');
       if (track) {
@@ -76,46 +84,21 @@ function App() {
           end: "bottom center",
           onEnter: () => scrollState.currentScene = index + 1,
           onEnterBack: () => scrollState.currentScene = index + 1,
-          snap: id !== 'scene-4' ? {
-            snapTo: 0.5, // 0.5 means the exact center of the element aligns with the center of the viewport
-            duration: { min: 0.2, max: 0.8 },
-            delay: 0.1, // Wait 100ms after user stops scrolling before snapping
-            ease: "power2.inOut"
-          } : undefined
         });
 
-        // For scene-4, don't use the default fade up on the entire section because it's pinned
-        // It conflicts with the horizontal movement.
-        if (id !== 'scene-4') {
+        if (id !== 'scene-1' && id !== 'scene-4') {
+          // Fade-up animation for text inside glass cards
           gsap.fromTo(`#${id} .glass-card, #${id} .animate-up`, 
-            { opacity: 0, y: 80 },
+            { opacity: 0, y: 60 },
             {
               opacity: 1,
               y: 0,
-              duration: 1.2,
+              duration: 1.0,
               ease: "power3.out",
-              stagger: 0.2,
               scrollTrigger: {
                 trigger: `#${id}`,
-                start: "top 75%",
-                end: "bottom 25%",
-                toggleActions: "play reverse play reverse",
-              }
-            }
-          );
-        } else {
-          // Manual fade for Scene 4 title only
-          gsap.fromTo(`#scene-4 .animate-up`, 
-            { opacity: 0, y: 80 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 1.2,
-              ease: "power3.out",
-              scrollTrigger: {
-                trigger: "#scene-4",
-                start: "top 75%",
-                end: "bottom 25%",
+                start: "top 80%",
+                end: "bottom 20%",
                 toggleActions: "play reverse play reverse",
               }
             }
@@ -144,18 +127,18 @@ function App() {
   return (
     <div ref={containerRef} className="relative w-full min-h-screen overflow-x-hidden bg-[#F8F7F3] text-gray-800 font-sans selection:bg-turquesa/30">
       
-      {/* 3D Background */}
-      <div className="fixed inset-0 w-full h-full z-0">
+      {/* 3D Background — only shown from Scene 2 onwards via CSS, hidden behind hero */}
+      <div className="fixed inset-0 w-full h-full" style={{ zIndex: 0 }}>
         <Suspense fallback={null}>
           <CanvasContainer eventSource={containerRef as unknown as React.RefObject<HTMLElement>} />
         </Suspense>
       </div>
 
-      {/* Global Glassmorphism Blur Effect */}
-      <div className="fixed inset-0 w-full h-full z-0 pointer-events-none backdrop-blur-[60px] bg-white/30"></div>
+      {/* Global Glassmorphism Blur Effect — only for scenes 2+ */}
+      <div className="fixed inset-0 w-full h-full pointer-events-none scene-glass-overlay" style={{ zIndex: 0 }} />
 
       {/* Foreground Content */}
-      <div className="relative z-10 w-full">
+      <div className="relative w-full" style={{ zIndex: 10 }}>
         <ScrollOverlay />
         <Footer />
       </div>

@@ -90,58 +90,37 @@ const vertexShader = `
 const fragmentShader = `
   uniform float uTime;
   uniform float uOpacity;
-  uniform float uColorT; // 1.0 = standard turquoise. 0.0 = Red. 0.5 = Blue.
   
   varying vec2 vUv;
   varying vec3 vWorldPosition;
   varying vec3 vNormal;
 
   void main() {
-    // ─── STANDARD PALETTE (Turquoise) ───
-    vec3 cTurq1 = vec3(0.0, 0.58, 0.53);
-    vec3 cTurq2 = vec3(0.8, 0.9, 0.9);
-    vec3 cTurq3 = vec3(0.3, 0.7, 0.65);
-    vec3 cTurq4 = vec3(0.9, 0.7, 0.8);
-    
-    // ─── SCENE 4 PALETTE ───
-    // Red phase (uColorT ≈ 0.0)
-    vec3 cRed1 = vec3(0.8, 0.2, 0.2);
-    vec3 cRed2 = vec3(0.9, 0.5, 0.5);
-    
-    // Blue phase (uColorT ≈ 0.5)
-    vec3 cBlue1 = vec3(0.1, 0.3, 0.8);
-    vec3 cBlue2 = vec3(0.5, 0.7, 0.9);
-    
-    // Calculate current color based on uColorT
-    // 0.0 -> Red, 0.5 -> Blue, 1.0 -> Turquoise
-    float p1 = smoothstep(0.0, 0.5, uColorT);
-    float p2 = smoothstep(0.5, 1.0, uColorT);
-    
-    vec3 color1 = mix(mix(cRed1, cBlue1, p1), cTurq1, p2);
-    vec3 color2 = mix(mix(cRed2, cBlue2, p1), cTurq2, p2);
-    vec3 color3 = mix(color1, color2, 0.5); // Midpoint
-    vec3 color4 = cTurq4; // keep standard iridescence
+    // ─── NEW PALETTE (Teal, Ivory, Gold) ───
+    vec3 cBase = vec3(0.086, 0.247, 0.286); // #163f49 (deep-teal)
+    vec3 cMid = vec3(0.325, 0.718, 0.682);  // #53b7ae (aqua)
+    vec3 cGlow = vec3(0.843, 0.702, 0.424); // #d7b36c (warm gold)
+    vec3 cHighlight = vec3(0.984, 0.969, 0.929); // #fbf7ed (soft ivory)
 
-    // Use view direction to create a glass-like fresnel effect
     vec3 viewDirection = normalize(cameraPosition - vWorldPosition);
     float fresnel = dot(viewDirection, normalize(vNormal));
     fresnel = clamp(1.0 - fresnel, 0.0, 1.0);
     
-    // Base color mix mapping across the bubble
-    vec3 baseColor = mix(color1, color3, vUv.x);
+    // Smooth transition across the surface
+    vec3 color = mix(cBase, cMid, vUv.x * 1.5);
     
-    // Inner bubble transparency / iridescent edge
-    float edgeGlow = pow(fresnel, 3.0);
-    baseColor = mix(baseColor, color2, edgeGlow);
+    // Inner bubble transparency / golden iridescent edge
+    float edgeGlow = pow(fresnel, 2.8);
+    color = mix(color, cGlow, edgeGlow * 0.85);
     
-    // Add subtle warm iridescence at the very extreme edges
-    float extremeEdge = pow(fresnel, 5.0);
-    baseColor = mix(baseColor, color4, extremeEdge * 0.5);
+    // Add subtle bright highlight at the very extreme edges
+    float extremeEdge = pow(fresnel, 4.5);
+    color = mix(color, cHighlight, extremeEdge);
 
-    // Keep center slightly transparent like a soap bubble, but more visible now
-    float alpha = mix(0.35, 0.95, fresnel) * uOpacity;
+    // Keep center highly transparent, edges more opaque
+    float alpha = mix(0.15, 0.75, fresnel) * uOpacity;
 
-    gl_FragColor = vec4(baseColor, alpha);
+    gl_FragColor = vec4(color, alpha);
   }
 `;
 
@@ -190,36 +169,26 @@ export const BubbleGraphic: React.FC = () => {
     let tX3 = 0, tY3 = 0;
 
     if (scene === 1) {
-      // Scene 1: Centralizada e pulsar igual coração, com flutuação suave
-      targetScaleX = 3.5;
-      targetScaleY = 3.5;
-      targetScaleZ = 3.5;
-      tX1 = Math.sin(t * 0.5) * 0.4; 
-      tY1 = Math.cos(t * 0.3) * 0.3;
-      targetDistort = 0.08; 
-      targetSpeed = 0.1;
+      // Scene 1: Oculto/Neutro (hero agora tem background estático opaco)
+      targetScaleX = 3.5; targetScaleY = 3.5; targetScaleZ = 3.5;
+      tX1 = 0; tY1 = 0;
+      targetDistort = 0.08; targetSpeed = 0.1;
     } else if (scene === 2) {
       // Scene 2: Flutua para canto inferior esquerdo
       targetScaleX = 3.0; targetScaleY = 3.0; targetScaleZ = 3.0;
       tX1 = -1.8; tY1 = -1.0;
-      targetDistort = 0.1;
-      targetSpeed = 0.1;
+      targetDistort = 0.1; targetSpeed = 0.1;
     } else if (scene === 3) {
       // Scene 3: Flutua para canto superior direito
       targetScaleX = 3.0; targetScaleY = 3.0; targetScaleZ = 3.0;
       tX1 = 1.8; tY1 = 1.0;
       targetDistort = 0.1;
     } else if (scene === 4) {
-      // Scene 4: Centro com textura canelada (fluted glass)
-      const p4 = scrollState.scene4Progress || 0; 
-      
-      const s = 1.0 + (p4 * 3.0);
-      targetScaleX = s; targetScaleY = s; targetScaleZ = s;
-      targetStripe = 1.0;
-      targetDistort = 0.03; 
+      // Scene 4: Neutro oculto (coberto pela Trajetória)
+      targetScaleX = 1.0; targetScaleY = 1.0; targetScaleZ = 1.0;
       tX1 = 0; tY1 = 0;
     } else {
-      // Scene 5: Divide em 3 moleculas
+      // Scene 5: Divide em 3 moleculas (Síntese)
       targetScaleX = 2.0; targetScaleY = 2.0; targetScaleZ = 2.0;
       targetOpacitySplit = 1.0;
       
@@ -235,26 +204,8 @@ export const BubbleGraphic: React.FC = () => {
     material1.uniforms.uDistortSpeed.value = THREE.MathUtils.lerp(material1.uniforms.uDistortSpeed.value, targetSpeed, 0.05);
     material1.uniforms.uStripeIntensity.value = THREE.MathUtils.lerp(material1.uniforms.uStripeIntensity.value, targetStripe, 0.05);
     
-    let targetColorT = 1.0; // standard turquoise
-    if (scene === 4) {
-      targetColorT = scrollState.scene4Progress || 0.0;
-    }
-    material1.uniforms.uColorT.value = THREE.MathUtils.lerp(material1.uniforms.uColorT.value, targetColorT, 0.05);
-    
-    // Heartbeat Pulse logic for Scene 1 & 4
-    let pulse = 0;
-    if (scene === 1) {
-      // Heartbeat pulse: quick double beat, then pause
-      const beat = (t * 1.5) % (Math.PI * 2);
-      pulse = (Math.sin(beat) > 0.8 ? 0.1 : 0) + (Math.sin(beat + 0.5) > 0.8 ? 0.05 : 0);
-    } else if (scene === 4) {
-      const p4 = scrollState.scene4Progress || 0;
-      const beat = (t * (3.0 - p4 * 1.5)) % (Math.PI * 2);
-      pulse = (Math.sin(beat) > 0.8 ? 0.15 * (1 - p4) : 0);
-    } else {
-      // Normal slow breathing for others
-      pulse = Math.sin(t * 1.5) * 0.05;
-    }
+    // Pulse logic
+    let pulse = Math.sin(t * 1.5) * 0.05;
     
     mesh1Ref.current!.scale.x = THREE.MathUtils.lerp(mesh1Ref.current!.scale.x, targetScaleX + pulse, 0.05);
     mesh1Ref.current!.scale.y = THREE.MathUtils.lerp(mesh1Ref.current!.scale.y, targetScaleY + pulse, 0.05);
@@ -269,7 +220,6 @@ export const BubbleGraphic: React.FC = () => {
       mat.uniforms.uDistortAmount.value = material1.uniforms.uDistortAmount.value;
       mat.uniforms.uDistortSpeed.value = material1.uniforms.uDistortSpeed.value;
       mat.uniforms.uStripeIntensity.value = material1.uniforms.uStripeIntensity.value;
-      mat.uniforms.uColorT.value = material1.uniforms.uColorT.value;
       mat.uniforms.uOpacity.value = THREE.MathUtils.lerp(mat.uniforms.uOpacity.value, targetOpacitySplit, 0.05);
     });
 

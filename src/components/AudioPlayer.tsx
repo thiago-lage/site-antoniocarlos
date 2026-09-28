@@ -32,7 +32,14 @@ export const AudioPlayer: React.FC = () => {
     <div className="fixed top-6 right-6 md:top-8 md:right-8 z-[100]">
       <button 
         onClick={togglePlay}
-        className="w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-lg text-gray-700 hover:text-turquesa transition-all hover:scale-105"
+        className="w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-full backdrop-blur-md shadow-lg transition-all hover:scale-105"
+        style={{
+          background: 'rgba(251, 247, 237, 0.5)',
+          border: '1px solid rgba(251, 247, 237, 0.4)',
+          color: isPlaying ? '#28616a' : '#5f7477'
+        }}
+        onMouseEnter={e => (e.currentTarget.style.color = '#d7b36c')}
+        onMouseLeave={e => (e.currentTarget.style.color = isPlaying ? '#28616a' : '#5f7477')}
         aria-label="Toggle ambient music"
       >
         {isPlaying ? (
@@ -56,7 +63,7 @@ export const AudioPlayer: React.FC = () => {
         ref={audioRef} 
         loop 
         src="/Constellation - Shuta Yasukochi.mp3" 
-        preload="auto"
+        preload="metadata"
       />
     </div>
   );
