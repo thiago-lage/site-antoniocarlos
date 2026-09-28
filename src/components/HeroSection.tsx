@@ -126,15 +126,16 @@ export const HeroSection: React.FC = () => {
       {/* â”€â”€ 6: ConteÃºdo â”€â”€ */}
       <div className="h-content">
         <p className="h-credentials animate-up text-[#EED7A0] tracking-wider text-[11px] md:text-xs uppercase font-bold mb-4">
-          Dr. Antônio Carlos • Médico CRM-3916 • Homeopatia RQE-3783
+          DR. ANTÔNIO CARLOS<br />
+          <span className="font-medium text-white/80 normal-case tracking-normal">Médico CRM-3916 • Homeopatia RQE - 3783<br />Saúde Mental, Corpo e Sistema</span>
         </p>
         <div className="h-divider animate-up delay-1" aria-hidden="true" />
         <h1 className="h-title animate-up delay-1">
-          Sou mÃ©dico e<br />
-          <em>psicoterapeuta</em>
+          Diagnóstico detalhado<br />
+          <em>do seu corpo</em>
         </h1>
         <p className="h-body animate-up delay-2">
-          "Ajudo vocÃª a compreender como corpo, emoÃ§Ãµes e histÃ³ria se unem na sua forma de viver e adoecer. Meu objetivo Ã© despertar sua autoridade interior para uma vida mais plena e consciente."
+          "Trabalho ajudando pessoas a compreender como o corpo, as emoções, a história e os vínculos participam da forma como elas vivem e adoecem. Meu trabalho é ajudá-las a ampliar a consciência, recuperar a autoridade interior e encontrar maneiras mais inteiras de viver."
         </p>
         <div className="h-cta-row animate-up delay-3">
           <a
@@ -305,9 +306,9 @@ export const HeroSection: React.FC = () => {
         .h-content {
           position: relative;
           z-index: 10;
-          margin-left: auto;
+          margin-left: clamp(2rem, 45vw, 600px);
           width: 100%;
-          max-width: 540px;
+          max-width: 580px;
           padding-right: clamp(2rem, 8vw, 6rem);
           padding-left: 1rem;
           pointer-events: auto; /* IMPORTANTE: Permite interagir com os botÃµes */
