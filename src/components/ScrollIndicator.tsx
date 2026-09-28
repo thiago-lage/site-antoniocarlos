@@ -55,32 +55,6 @@ export const ScrollIndicator: React.FC = () => {
         e.preventDefault();
         const idx = getCurrentSceneIndex();
 
-        if (idx === 3) {
-          // Custom scrub logic for Scene 4 (Trajetória)
-          const scene5 = document.getElementById('scene-5');
-          const scene4 = document.getElementById('scene-4');
-          if (scene5 && scene4) {
-            const maxScroll = scene5.getBoundingClientRect().top + window.scrollY;
-            const minScroll = scene4.getBoundingClientRect().top + window.scrollY;
-            
-            if (e.key === 'ArrowDown') {
-              if (window.scrollY < maxScroll - window.innerHeight * 0.8) {
-                const nextScroll = window.scrollY + window.innerWidth * 0.4;
-                if ((window as any).lenis) (window as any).lenis.scrollTo(nextScroll, { duration: 1.2 });
-                else window.scrollTo({ top: nextScroll, behavior: 'smooth' });
-                return;
-              }
-            } else { // ArrowUp
-              // The user requested that the UP arrow returns to the beginning of the timeline
-              if (window.scrollY > minScroll + 10) {
-                if ((window as any).lenis) (window as any).lenis.scrollTo(minScroll, { duration: 1.5 });
-                else window.scrollTo({ top: minScroll, behavior: 'smooth' });
-                return;
-              }
-            }
-          }
-        }
-
         if (e.key === 'ArrowDown') {
           scrollToScene(Math.min(idx + 1, SCENES.length - 1));
         } else {
