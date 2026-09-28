@@ -1,21 +1,20 @@
-import React, { useEffect, useRef, useState } from 'react';
+﻿import React, { useEffect, useRef, useState } from 'react';
 
 /**
- * HeroSection â€” composiÃ§Ã£o em camadas 2D puramente estÃ¡tica e leve
+ * HeroSection Ã¢â‚¬â€ composiÃƒÂ§ÃƒÂ£o em camadas 2D puramente estÃƒÂ¡tica e leve
  *
  * Parallax: rAF + lerp 0.08 | somente transform/opacity
  */
 
 const LERP = 0.08;
-const AMP  = { bg: 12, person: 20, fgR: 45, fgL: 55 } as const;
+const AMP  = { bg: 12, person: 20, fg: 45 } as const;
 
 interface Layer { el: HTMLElement; amp: number; cx: number; cy: number }
 
 export const HeroSection: React.FC = () => {
   const bgRef     = useRef<HTMLDivElement>(null);
   const personRef = useRef<HTMLDivElement>(null);
-  const fgRRef    = useRef<HTMLDivElement>(null);
-  const fgLRef    = useRef<HTMLDivElement>(null);
+  const fgRef    = useRef<HTMLDivElement>(null);
   const rafRef    = useRef<number>(0);
   const mouse     = useRef({ nx: 0, ny: 0 });
   const layersRef = useRef<Layer[]>([]);
@@ -34,11 +33,10 @@ export const HeroSection: React.FC = () => {
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-    layersRef.current = [
-      { el: bgRef.current!,     amp: AMP.bg,     cx: 0, cy: 0 },
+        layersRef.current = [
+      { el: bgRef.current!,     amp: AMP.bg,      cx: 0, cy: 0 },
       { el: personRef.current!, amp: AMP.person,  cx: 0, cy: 0 },
-      { el: fgRRef.current!,    amp: AMP.fgR,     cx: 0, cy: 0 },
-      { el: fgLRef.current!,    amp: AMP.fgL,     cx: 0, cy: 0 },
+      { el: fgRef.current!,     amp: AMP.fg,      cx: 0, cy: 0 },
     ].filter(l => Boolean(l.el));
 
     const onMove = (e: MouseEvent) => {
@@ -82,12 +80,9 @@ export const HeroSection: React.FC = () => {
     <section
       id="scene-1"
       className="scene hero-root"
-      aria-label="ApresentaÃ§Ã£o do Dr. AntÃ´nio Carlos"
+      aria-label="ApresentaÃƒÂ§ÃƒÂ£o do Dr. AntÃƒÂ´nio Carlos"
     >
-      {/* â”€â”€ 0: Efeito de Sol Lens Flare â”€â”€ */}
-      <div className="sun-flare" />
-
-      {/* â”€â”€ 1: Background â”€â”€ */}
+      {/* ── 1: Background ── */}
       <div ref={bgRef} className="h-layer h-bg" aria-hidden="true" style={{ willChange: 'transform' }}>
         <img
           src="/background.png" alt=""
@@ -96,46 +91,42 @@ export const HeroSection: React.FC = () => {
         />
       </div>
 
-      {/* â”€â”€ 2: Homem + Poltrona â”€â”€ */}
+      {/* ── 2: Homem + poltrona ── */}
       <div 
         ref={personRef} 
         className="h-layer h-person" 
         aria-hidden="true" 
-        style={{ willChange: 'transform' }}
+        style={isMobileState ? undefined : { willChange: 'transform' }}
       >
         {isMobileState ? (
-          <img src="/drAntonioCarlos.png" alt="" className="h-person-media h-person-static" loading="eager" />
+          <img src="/avatar.png" alt="" className="h-person-media h-person-static" loading="eager" />
         ) : (
-          <img src="/antonio-carlos.png" alt="" className="h-person-media h-person-static" loading="eager" />
+          <img src="/dr-antonio-carlos.png" alt="" className="h-person-media h-person-static" loading="eager" />
         )}
       </div>
 
-      {/* â”€â”€ 3: Foliagem Direita Animada (Sway) â”€â”€ */}
-      <div ref={fgRRef} className="h-layer h-fg-right" aria-hidden="true" style={{ willChange: 'transform' }}>
-        <img src="/05-folhagem-direita-layer.png" className="sway-1 w-full h-full object-cover" alt="" loading="lazy" decoding="async" aria-hidden="true" />
-      </div>
+      {/* ── 3: Foliagens Animadas (Sway) ── */}
+      {!isMobileState && (
+        <div ref={fgRef} className="h-layer h-fg" aria-hidden="true" style={{ willChange: 'transform' }}>
+          <img src="/folhagens.png" className="sway-1 w-full h-full object-cover" alt="" loading="lazy" decoding="async" aria-hidden="true" />
+        </div>
+      )}
 
-      {/* â”€â”€ 4: Foliagem Esquerda Animada (Sway) â”€â”€ */}
-      <div ref={fgLRef} className="h-layer h-fg-left" aria-hidden="true" style={{ willChange: 'transform' }}>
-        <img src="/04-folhagem-esquerda-layer.png" className="sway-2 w-full h-full object-cover" alt="" loading="lazy" decoding="async" aria-hidden="true" />
-      </div>
-
-      {/* â”€â”€ 5: Gradiente de contraste â”€â”€ */}
       <div className="h-gradient" aria-hidden="true" />
 
-      {/* â”€â”€ 6: ConteÃºdo â”€â”€ */}
+      {/* Ã¢â€â‚¬Ã¢â€â‚¬ 6: ConteÃƒÂºdo Ã¢â€â‚¬Ã¢â€â‚¬ */}
       <div className="h-content">
         <p className="h-credentials animate-up text-[#EED7A0] tracking-wider text-[11px] md:text-xs uppercase font-bold mb-4">
-          DR. ANTÔNIO CARLOS<br />
-          <span className="font-medium text-white/80 normal-case tracking-normal">Médico CRM-3916 • Homeopatia RQE - 3783<br />Saúde Mental, Corpo e Sistema</span>
+          DR. ANTÃ”NIO CARLOS<br />
+          <span className="font-medium text-white/80 normal-case tracking-normal">MÃ©dico CRM-3916 â€¢ Homeopatia RQE - 3783<br />SaÃºde Mental, Corpo e Sistema</span>
         </p>
         <div className="h-divider animate-up delay-1" aria-hidden="true" />
         <h1 className="h-title animate-up delay-1">
-          Diagnóstico detalhado<br />
+          DiagnÃ³stico detalhado<br />
           <em>do seu corpo</em>
         </h1>
         <p className="h-body animate-up delay-2">
-          "Ajudo pessoas a transformar aquilo que o corpo sente e a história repete em consciência e escolha."
+          "Ajudo pessoas a transformar aquilo que o corpo sente e a histÃ³ria repete em consciÃªncia e escolha."
         </p>
         <div className="h-cta-row animate-up delay-3">
           <a
@@ -152,7 +143,7 @@ export const HeroSection: React.FC = () => {
           <div className="h-social" aria-label="Redes sociais">
             <span className="h-social-sep" aria-hidden="true" />
             <a href="https://www.instagram.com/drantoniocarloslage/" target="_blank" rel="noopener noreferrer"
-               aria-label="Instagram do Dr. AntÃ´nio Carlos" className="h-social-link">
+               aria-label="Instagram do Dr. AntÃƒÂ´nio Carlos" className="h-social-link">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} width="18" height="18" aria-hidden="true">
                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
                 <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" />
@@ -160,7 +151,7 @@ export const HeroSection: React.FC = () => {
               </svg>
             </a>
             <a href="https://open.spotify.com/track/6kkwzB6hXLIONkEk9JciA6" target="_blank" rel="noopener noreferrer"
-               aria-label="Spotify do Dr. AntÃ´nio Carlos" className="h-social-link">
+               aria-label="Spotify do Dr. AntÃƒÂ´nio Carlos" className="h-social-link">
               <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true">
                 <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.36-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.24 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.62 18.66 12.84c.361.181.54.78.301 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.6.18-1.2.72-1.38 4.26-1.26 11.28-1.02 15.72 1.621.539.3.719 1.02.419 1.56-.239.54-.959.72-1.559.3z" />
               </svg>
@@ -170,9 +161,9 @@ export const HeroSection: React.FC = () => {
       </div>
 
       <style>{`
-        /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-           Hero â€” base (desktop first)
-        â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+        /* Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â
+           Hero Ã¢â‚¬â€ base (desktop first)
+        Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â */
         .hero-root {
           position: relative;
           overflow: hidden;
@@ -187,7 +178,7 @@ export const HeroSection: React.FC = () => {
           overflow-x: hidden;
         }
 
-        /* AnimaÃ§Ãµes (Vento, Fade-in, Sol) */
+        /* AnimaÃƒÂ§ÃƒÂµes (Vento, Fade-in, Sol) */
         @keyframes sway {
           0%, 100% { transform: rotate(0deg) translate(0, 0); }
           25% { transform: rotate(1deg) translate(2px, 1px); }
@@ -234,7 +225,7 @@ export const HeroSection: React.FC = () => {
           user-select: none;
         }
 
-        /* 1 â€” Background */
+        /* 1 Ã¢â‚¬â€ Background */
         .h-bg { z-index: 1; }
         .h-bg-img {
           width: 100%;
@@ -245,7 +236,7 @@ export const HeroSection: React.FC = () => {
           scale: 1.04; 
         }
 
-        /* 2 â€” Homem + poltrona */
+        /* 2 Ã¢â‚¬â€ Homem + poltrona */
         .h-person { z-index: 3; }
         .h-person-media {
           position: absolute;
@@ -253,42 +244,24 @@ export const HeroSection: React.FC = () => {
           left: -10%;
           height: 115%;
           width: auto;
-          max-width: 150vw; /* Remove restriÃ§Ãµes laterais que encolhem vÃ­deos 16:9 */
+          max-width: 150vw; /* Remove restriÃƒÂ§ÃƒÂµes laterais que encolhem vÃƒÂ­deos 16:9 */
           object-fit: contain;
           object-position: bottom left;
           display: block;
           filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));
         }
 
-        /* 3 â€” Foliagem direita */
-        .h-fg-right {
-          z-index: 4;
-          inset: auto;
-          bottom: 0; right: 0;
-          width: 32%; height: 60%;
-        }
-        .h-fg-right img {
+        /* 3 — Foliagens frontais */
+        .h-fg { z-index: 4; }
+        .h-fg img {
           width: 100%; height: 100%;
-          object-fit: contain;
-          object-position: bottom right;
+          object-fit: cover;
+          object-position: center;
           display: block;
+          pointer-events: none;
         }
 
-        /* 4 â€” Foliagem esquerda */
-        .h-fg-left {
-          z-index: 5;
-          inset: auto;
-          bottom: 0; left: 0;
-          width: 28%; height: 55%;
-        }
-        .h-fg-left img {
-          width: 100%; height: 100%;
-          object-fit: contain;
-          object-position: bottom left;
-          display: block;
-        }
-
-        /* 5 â€” Gradiente de contraste */
+        /* 5 Ã¢â‚¬â€ Gradiente de contraste */
         .h-gradient {
           position: absolute;
           inset: 0;
@@ -302,7 +275,7 @@ export const HeroSection: React.FC = () => {
           );
         }
 
-        /* 6 â€” ConteÃºdo */
+        /* 6 Ã¢â‚¬â€ ConteÃƒÂºdo */
         .h-content {
           position: relative;
           z-index: 10;
@@ -311,7 +284,7 @@ export const HeroSection: React.FC = () => {
           max-width: 580px;
           padding-right: clamp(2rem, 8vw, 6rem);
           padding-left: 1rem;
-          pointer-events: auto; /* IMPORTANTE: Permite interagir com os botÃµes */
+          pointer-events: auto; /* IMPORTANTE: Permite interagir com os botÃƒÂµes */
         }
 
         .h-eyebrow {
@@ -411,10 +384,10 @@ export const HeroSection: React.FC = () => {
         .h-social-link:hover { color: #EED7A0; transform: translateY(-3px) scale(1.15); }
         .h-social-link:focus-visible { outline: 2px solid #EED7A0; border-radius: 4px; }
 
-        /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-           MOBILE  320â€“767px
-           Layout: conteÃºdo no topo / Avatar circular no MOBILE
-        â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+        /* Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â
+           MOBILE  320Ã¢â‚¬â€œ767px
+           Layout: conteÃƒÂºdo no topo / Avatar circular no MOBILE
+        Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â */
         @media (max-width: 767px) {
           .hero-root {
             flex-direction: column;
@@ -457,7 +430,7 @@ export const HeroSection: React.FC = () => {
           .h-content {
             margin-left: 0;
             max-width: 100%;
-            padding: 0 2.5rem 0rem; /* EspaÃ§o extra nas laterais para nÃ£o encostar nos dots */
+            padding: 0 2.5rem 0rem; /* EspaÃƒÂ§o extra nas laterais para nÃƒÂ£o encostar nos dots */
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -483,23 +456,23 @@ export const HeroSection: React.FC = () => {
             flex-direction: column;
             align-items: center;
             gap: 1.25rem;
-            margin-bottom: 12rem; /* Sobe o botÃ£o ainda mais */
+            margin-bottom: 12rem; /* Sobe o botÃƒÂ£o ainda mais */
           }
           .h-social { display: none !important; } /* Esconde redes sociais no mobile */
           .h-social-sep { display: none; }
         }
 
-        /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-           TABLET  768â€“1023px
-        â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+        /* Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â
+           TABLET  768Ã¢â‚¬â€œ1023px
+        Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â */
         @media (min-width: 768px) and (max-width: 1023px) {
           .h-person-media { max-width: 60% !important; left: -5%; }
           .h-content { padding-right: clamp(1.5rem, 4vw, 3rem); }
         }
 
-        /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+        /* Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â
            prefers-reduced-motion
-        â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+        Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â */
         @media (prefers-reduced-motion: reduce) {
           .h-layer { will-change: auto !important; transform: none !important; }
           .sway-1, .sway-2, .animate-up, .sun-flare { animation: none !important; opacity: 1 !important; transform: none !important; }

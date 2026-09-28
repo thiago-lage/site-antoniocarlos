@@ -1,55 +1,94 @@
 ﻿# -*- coding: utf-8 -*-
 import re
 
-# 1. ScrollIndicator
-with open('src/components/ScrollIndicator.tsx', 'r', encoding='utf-8') as f: text = f.read()
+with open('src/components/HeroSection.tsx', 'r', encoding='utf-8') as f:
+    text = f.read()
+
+# 1. Update AMP
 text = re.sub(
-    r'className="fixed bottom-2 md:bottom-4 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center gap-1 transition-opacity duration-1000"',
-    'className="fixed bottom-2 md:bottom-4 right-4 md:right-[max(4rem,calc(50vw-290px))] z-50 flex flex-col items-center gap-1 transition-opacity duration-1000"',
+    r'const AMP\s*=\s*\{ bg: 12, person: 20, fgR: 45, fgL: 55 \}\s*as\s*const;',
+    'const AMP  = { bg: 12, person: 20, fg: 45 } as const;',
     text
 )
-with open('src/components/ScrollIndicator.tsx', 'w', encoding='utf-8') as f: f.write(text)
 
-# 2. scrollUtils
-with open('src/scrollUtils.ts', 'r', encoding='utf-8') as f: utils = f.read()
-utils = re.sub(
-    r'const rect = el\.getBoundingClientRect\(\);\n\s*const elTop',
-    'const rect = el.getBoundingClientRect();\n    if (rect.height === 0) return;\n    const elTop',
-    utils
-)
-with open('src/scrollUtils.ts', 'w', encoding='utf-8') as f: f.write(utils)
-
-# 3. SideNavigation
-with open('src/components/SideNavigation.tsx', 'r', encoding='utf-8') as f: sideNav = f.read()
-sideNav = re.sub(
-    r'className={elative group flex items-center justify-center transition-all duration-300 w-4 h-4}',
-    'className={elative group flex items-center justify-center transition-all duration-300 w-4 h-4 }',
-    sideNav
-)
-with open('src/components/SideNavigation.tsx', 'w', encoding='utf-8') as f: f.write(sideNav)
-
-# 4. ScrollOverlay
-with open('src/components/ScrollOverlay.tsx', 'r', encoding='utf-8') as f: overlay = f.read()
-overlay = re.sub(
-    r'<section\n\s*className="scene min-h-screen w-full flex flex-col justify-center items-center pl-6 pr-12 sm:px-12 md:px-16 \nlg:px-24"\n\s*id="scene-5"',
-    '<section\n        className="scene min-h-screen w-full hidden md:flex flex-col justify-center items-center pl-6 pr-12 sm:px-12 md:px-16 lg:px-24"\n        id="scene-5"',
-    overlay
-)
-# fallback for overlay section class just in case:
-overlay = re.sub(
-    r'className="scene min-h-screen w-full flex flex-col justify-center items-center pl-6 pr-12 sm:px-12 md:px-16 lg:px-24"\n\s*id="scene-5"',
-    'className="scene min-h-screen w-full hidden md:flex flex-col justify-center items-center pl-6 pr-12 sm:px-12 md:px-16 lg:px-24"\n        id="scene-5"',
-    overlay
+# 2. Update Refs
+text = re.sub(
+    r'const fgRRef\s*=\s*useRef<HTMLDivElement>\(null\);\n\s*const fgLRef\s*=\s*useRef<HTMLDivElement>\(null\);',
+    'const fgRef    = useRef<HTMLDivElement>(null);',
+    text
 )
 
-overlay = re.sub(
-    r'<h2 className="text-display text-2xl sm:text-3xl md:text-4xl mt-2 uppercase tracking-wide"',
-    '<h2 className="text-display text-2xl sm:text-3xl md:text-4xl mt-2"',
-    overlay
+# 3. Update layers initialization in useEffect
+text = re.sub(
+    r'layersRef\.current\s*=\s*\[\s*\{\s*el:\s*bgRef\.current!,\s*amp:\s*AMP\.bg,\s*cx:\s*0,\s*cy:\s*0\s*\},.*?\].filter\(l => Boolean\(l\.el\)\);',
+    '''    layersRef.current = [
+      { el: bgRef.current!,     amp: AMP.bg,      cx: 0, cy: 0 },
+      { el: personRef.current!, amp: AMP.person,  cx: 0, cy: 0 },
+      { el: fgRef.current!,     amp: AMP.fg,      cx: 0, cy: 0 },
+    ].filter(l => Boolean(l.el));''',
+    text,
+    flags=re.DOTALL
 )
-overlay = re.sub(
-    r'<h2 className="text-display text-2xl sm:text-3xl mt-2 uppercase tracking-wide"',
-    '<h2 className="text-display text-2xl sm:text-3xl mt-2"',
-    overlay
-)
-with open('src/components/ScrollOverlay.tsx', 'w', encoding='utf-8') as f: f.write(overlay)
+
+# 4. Update the JSX for images
+start_idx = text.find('      {/*')
+end_idx = text.find('      {/* ', start_idx) # wait, this will match the next comment
+end_idx = text.find('<div className="h-gradient" aria-hidden="true" />')
+
+jsx_replace = '''      {/* ── 1: Background ── */}
+      <div ref={bgRef} className="h-layer h-bg" aria-hidden="true" style={{ willChange: 'transform' }}>
+        <img
+          src="/background.png" alt=""
+          className="h-bg-img"
+          loading="eager" decoding="async" aria-hidden="true"
+        />
+      </div>
+
+      {/* ── 2: Homem + poltrona ── */}
+      <div 
+        ref={personRef} 
+        className="h-layer h-person" 
+        aria-hidden="true" 
+        style={isMobileState ? undefined : { willChange: 'transform' }}
+      >
+        {isMobileState ? (
+          <img src="/avatar.png" alt="" className="h-person-media h-person-static" loading="eager" />
+        ) : (
+          <img src="/dr-antonio-carlos.png" alt="" className="h-person-media h-person-static" loading="eager" />
+        )}
+      </div>
+
+      {/* ── 3: Foliagens Animadas (Sway) ── */}
+      {!isMobileState && (
+        <div ref={fgRef} className="h-layer h-fg" aria-hidden="true" style={{ willChange: 'transform' }}>
+          <img src="/folhagens.png" className="sway-1 w-full h-full object-cover" alt="" loading="lazy" decoding="async" aria-hidden="true" />
+        </div>
+      )}
+
+      '''
+
+# Safely replace only that block
+old_block = text[start_idx:end_idx]
+text = text.replace(old_block, jsx_replace)
+
+# 5. Update CSS for foreground
+css_start = text.find('/* 3')
+css_end = text.find('/* 5')
+
+css_replace = '''/* 3 — Foliagens frontais */
+        .h-fg { z-index: 4; }
+        .h-fg img {
+          width: 100%; height: 100%;
+          object-fit: cover;
+          object-position: center;
+          display: block;
+          pointer-events: none;
+        }
+
+        '''
+old_css_block = text[css_start:css_end]
+text = text.replace(old_css_block, css_replace)
+
+with open('src/components/HeroSection.tsx', 'w', encoding='utf-8') as f:
+    f.write(text)
+

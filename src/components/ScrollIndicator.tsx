@@ -142,7 +142,7 @@ export const ScrollIndicator: React.FC = () => {
 
   return (
     <div
-      className="fixed bottom-2 md:bottom-4 right-4 md:right-[max(4rem,calc(50vw-290px))] z-50 flex flex-col items-center gap-1 transition-opacity duration-1000"
+      className="fixed bottom-2 md:bottom-4 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center gap-1 transition-opacity duration-1000"
       style={{ opacity: isVisible ? 1 : 0, pointerEvents: 'auto' }}
     >
       <button
