@@ -39,10 +39,11 @@ export const ScrollOverlay: React.FC = () => {
           </h2>
           <p className="text-body font-semibold text-base md:text-lg mt-6" style={{ color: '#28616a' }}>
             Porque o corpo não é o destino final.<br/>
-            É o lugar concreto onde a consciência começa, se perde, se reencontra e finalmente precisa aprender a viver.
+            É o lugar concreto onde a consciência começa, se perde, se reencontra e aprende a viver.
           </p>
-          <p className="text-body text-sm md:text-base mt-6 text-left" style={{ color: '#5f7477', lineHeight: '1.8' }}>
-            O corpo, em O Corpo como Caminho para a Consciência, é simultaneamente realidade biológica, experiência vivida, campo de regulação, lugar de expressão relacional e via possível de simbolização. Sua escuta não autoriza causalidades psicológicas automáticas nem interpretações universais. O trabalho corporal busca ampliar percepção, flexibilidade regulatória, diferenciação entre passado e presente, capacidade de reconhecer impulsos sem ser governado por eles e possibilidade de encarnar novas escolhas. O corpo não é oráculo nem mero objeto: é território de experiência onde história, organismo, relação e consciência se encontram.
+          <p className="text-body text-sm md:text-base mt-6 text-center" style={{ color: '#5f7477', lineHeight: '1.8' }}>
+            O corpo é o território vivo onde história, organismo, relação e consciência se encontram.<br/><br/>
+            O trabalho corporal busca ampliar a percepção e a flexibilidade para encarnar novas escolhas de vida, sem buscar causas automáticas ou interpretações universais.
           </p>
         </div>
       </section>
@@ -56,31 +57,22 @@ export const ScrollOverlay: React.FC = () => {
         id="scene-5"
         style={{ background: 'linear-gradient(170deg, #f3e7d1 0%, #f8f4ec 50%, #eef6f5 100%)' }}
       >
-        <div className="glass-card pointer-events-auto w-full max-w-2xl p-6 md:p-10 flex flex-col items-center text-center">
+        <div className="glass-card pointer-events-auto w-full max-w-3xl p-6 md:p-10 flex flex-col items-center text-center">
           <span className="text-label uppercase tracking-widest text-[#d7b36c] font-bold text-xs mb-2">A Síntese</span>
           
           <div className="text-body font-semibold text-sm md:text-base mt-4 text-[#28616a] leading-relaxed">
-            <p>O organismo reage.</p>
-            <p>A sensação informa.</p>
-            <p>A consciência percebe.</p>
-            <p>A regulação permite permanecer.</p>
-            <p>O símbolo amplia significado.</p>
-            <p>A história contextualiza.</p>
-            <p>A autoridade interior escolhe.</p>
-            <p>A ação encarna.</p>
+            <p>O organismo reage • A sensação informa • A consciência percebe • A regulação permite permanecer • O símbolo amplia • A história contextualiza • A autoridade escolhe • A ação encarna</p>
           </div>
 
           <div className="text-body text-sm md:text-base mt-6 text-[#5f7477]">
-            <p>E o corpo deixa de ser apenas:<br/>
-            aquilo que dói; aquilo que envelhece; aquilo que precisa ser corrigido.</p>
-            <p className="mt-4 text-[#163f49] font-bold">
-            Torna-se também:<br/>
-            casa; fronteira; testemunha; recurso; presença; possibilidade.
+            <p>
+              O corpo deixa de ser apenas aquilo que dói, que envelhece ou precisa ser corrigido.<br/>
+              <span className="text-[#163f49] font-bold mt-2 block">Torna-se casa, recurso, presença e possibilidade.</span>
             </p>
           </div>
 
           <p className="text-body text-sm mt-6 text-[#5f7477] italic">
-            Por isso, o princípio corporal mais profundo do método pode ser formulado assim:
+            O princípio mais profundo do método:
           </p>
 
           <div className="mt-4 p-4 md:p-6 rounded-2xl text-center w-full" style={{ background: 'rgba(251, 247, 237, 0.7)', border: '1px solid rgba(22, 63, 73, 0.1)' }}>

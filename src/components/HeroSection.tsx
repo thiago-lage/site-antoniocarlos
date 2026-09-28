@@ -135,7 +135,7 @@ export const HeroSection: React.FC = () => {
           <em>psicoterapeuta</em>
         </h1>
         <p className="h-body animate-up delay-2">
-          "Trabalho ajudando pessoas a compreender como o corpo, as emoções, a história e os vínculos participam da forma como elas vivem e adoecem. Meu trabalho é ajudá-las a ampliar a consciência, recuperar a autoridade interior e encontrar maneiras mais inteiras de viver."
+          "Ajudo você a compreender como corpo, emoções e história se unem na sua forma de viver e adoecer. Meu objetivo é despertar sua autoridade interior para uma vida mais plena e consciente."
         </p>
         <div className="h-cta-row animate-up delay-3">
           <a
