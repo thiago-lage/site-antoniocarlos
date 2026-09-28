@@ -34,7 +34,7 @@ export const ScrollOverlay: React.FC = () => {
       >
         <div className="glass-card pointer-events-auto w-full max-w-4xl p-6 md:p-10 flex flex-col items-center text-center">
           <span className="text-label uppercase tracking-widest text-[#d7b36c] font-bold text-xs mb-2">Método Autoral</span>
-          <h2 className="text-display text-2xl sm:text-3xl md:text-4xl mt-2 uppercase tracking-wide" style={{ color: '#163f49' }}>
+          <h2 className="text-display text-2xl sm:text-3xl md:text-4xl mt-2" style={{ color: '#163f49' }}>
             O Corpo como Caminho para a Consciência
           </h2>
           <p className="text-body font-semibold text-base md:text-lg mt-6" style={{ color: '#28616a' }}>
@@ -52,7 +52,7 @@ export const ScrollOverlay: React.FC = () => {
 
       {/* SCENE 5: Síntese */}
       <section
-        className="scene min-h-screen w-full flex flex-col justify-center items-center pl-6 pr-12 sm:px-12 md:px-16 lg:px-24"
+        className="scene min-h-screen w-full hidden md:flex flex-col justify-center items-center pl-6 pr-12 sm:px-12 md:px-16 lg:px-24"
         id="scene-5"
         style={{ background: 'linear-gradient(170deg, #f3e7d1 0%, #f8f4ec 50%, #eef6f5 100%)' }}
       >
@@ -99,7 +99,7 @@ export const ScrollOverlay: React.FC = () => {
       >
         <div className="glass-card pointer-events-auto w-full max-w-2xl p-6 md:p-10 flex flex-col items-center text-center">
           <span className="text-label uppercase tracking-widest text-[#d7b36c] font-bold text-xs mb-2">O Princípio</span>
-          <h2 className="text-display text-2xl sm:text-3xl mt-2 uppercase tracking-wide" style={{ color: '#163f49' }}>
+          <h2 className="text-display text-2xl sm:text-3xl mt-2" style={{ color: '#163f49' }}>
             A Essência do Método
           </h2>
           <div className="mt-8 p-4 md:p-8 rounded-2xl text-center w-full" style={{ background: 'rgba(251, 247, 237, 0.7)', border: '1px solid rgba(22, 63, 73, 0.1)' }}>

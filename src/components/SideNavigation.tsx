@@ -19,7 +19,7 @@ export const SideNavigation: React.FC = () => {
           key={i}
           onClick={() => scrollToScene(i)}
           title={labels[i]}
-          className={`relative group flex items-center justify-center transition-all duration-300 w-4 h-4`}
+          className={`relative group flex items-center justify-center transition-all duration-300 w-4 h-4 ${i === 4 ? 'hidden md:flex' : ''}`}
         >
           {/* Tooltip label */}
           <span className="absolute right-6 whitespace-nowrap text-[10px] uppercase tracking-widest font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-[#fbf7ed]/80 backdrop-blur-md rounded-full px-3 py-1 border border-white/50 shadow-sm pointer-events-none" style={{ color: '#163f49' }}>

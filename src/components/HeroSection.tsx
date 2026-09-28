@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 /**
  * HeroSection â€” composiÃ§Ã£o em camadas 2D puramente estÃ¡tica e leve
@@ -135,7 +135,7 @@ export const HeroSection: React.FC = () => {
           <em>do seu corpo</em>
         </h1>
         <p className="h-body animate-up delay-2">
-          "Trabalho ajudando pessoas a compreender como o corpo, as emoções, a história e os vínculos participam da forma como elas vivem e adoecem. Meu trabalho é ajudá-las a ampliar a consciência, recuperar a autoridade interior e encontrar maneiras mais inteiras de viver."
+          "Ajudo pessoas a transformar aquilo que o corpo sente e a história repete em consciência e escolha."
         </p>
         <div className="h-cta-row animate-up delay-3">
           <a

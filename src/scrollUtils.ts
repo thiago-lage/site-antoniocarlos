@@ -30,6 +30,7 @@ export const getCurrentSceneIndex = (): number => {
     const el = document.getElementById(id);
     if (!el) return;
     const rect = el.getBoundingClientRect();
+    if (rect.height === 0) return;
     const elTop = window.scrollY + rect.top;
     const dist = Math.abs(viewportMid - (elTop + rect.height / 2));
     if (dist < minDist) { minDist = dist; closest = i; }

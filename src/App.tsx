@@ -50,14 +50,7 @@ function App() {
       // --- Scene 4 Horizontal Scrolljack ---
       const track = document.getElementById('trajectory-track');
       if (track) {
-        const getScrollAmount = () => {
-          const lastCard = track.lastElementChild as HTMLElement;
-          if (!lastCard) return track.scrollWidth - window.innerWidth;
-          // Calculate distance to perfectly center the last card in the viewport
-          const lastCardCenter = lastCard.offsetLeft + lastCard.offsetWidth / 2;
-          const maxScroll = lastCardCenter - window.innerWidth / 2;
-          return Math.max(0, maxScroll);
-        };
+        const getScrollAmount = () => Math.max(0, track.scrollWidth - window.innerWidth);
 
         gsap.to(track, {
           x: () => -getScrollAmount(),

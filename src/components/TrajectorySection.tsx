@@ -30,7 +30,7 @@ export const TrajectorySection: React.FC = () => {
           maskImage: 'linear-gradient(to right, transparent 0%, black 10%, black 80%, transparent 100%)'
         }}
       >
-        <div id="trajectory-track" className="flex items-stretch pb-12 pt-4 w-max px-[15vw] md:px-[25vw] gap-0">
+        <div id="trajectory-track" className="relative flex items-stretch pb-12 pt-4 w-max px-[15vw] md:px-[25vw] gap-0">
           {CARDS.map((item, idx, arr) => (
             <div key={item.title} className="snap-center shrink-0 w-[280px] md:w-[320px] px-3 flex flex-col items-center">
               
