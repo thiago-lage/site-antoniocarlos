@@ -156,8 +156,8 @@ const fragmentShader = `
     float edge = pow(fresnel, 4.5);
     color = lerpColor(color, siteIvory, edge * 0.85);
 
-    // Opacidade: presença sólida e luminosa no centro com borda difusa
-    float alpha = mix(0.45, 0.88, fresnel) * uOpacity;
+    // Opacidade: presença delicada e translúcida
+    float alpha = mix(0.30, 0.70, fresnel) * uOpacity;
 
     gl_FragColor = vec4(color, alpha);
   }
@@ -198,52 +198,76 @@ export const BubbleGraphic: React.FC = () => {
     // ── Defaults ──
     let targetScaleX = 0.01, targetScaleY = 0.01, targetScaleZ = 0.01;
     let targetDistort = 0.08, targetSpeed = 0.1, targetStripe = 0.0;
+    let targetOpacity1 = 1.0;
     let targetOpacitySplit = 0.0;
+    let targetColorT = 1.0;
     let tX1 = 0, tY1 = 0;
     let tX2 = 0, tY2 = 0;
     let tX3 = 0, tY3 = 0;
 
-    if (scene === 1) {
-      targetScaleX = targetScaleY = targetScaleZ = 3.5;
-      targetDistort = 0.08; targetSpeed = 0.1;
-    } else if (scene === 2) {
-      targetScaleX = targetScaleY = targetScaleZ = 3.0;
-      tX1 = -1.8; tY1 = -1.0;
-      targetDistort = 0.1; targetSpeed = 0.1;
-    } else if (scene === 3) {
-      targetScaleX = targetScaleY = targetScaleZ = 3.0;
-      tX1 = 1.8; tY1 = 1.0;
-      targetDistort = 0.1;
-    } else if (scene === 4) {
-      // ── Scene 4: Bubble emocional centrada e presente atrás dos cards ──
+    const isTrajetoria = scene === 4 || (p4 > 0.005 && p4 < 0.995);
+
+    if (isTrajetoria) {
+      // ── Scene 4 (Trajetória): ÚNICO local onde a bubble aparece ──
       tX1 = 0;
       tY1 = 0;
 
-      // Tamanho: presente e visível desde o 1º card (2.2) até o último (3.2), pulsando continuamente
-      const baseScale = 2.2 + p4 * 1.0;
-      const pulse = Math.sin(t * 2.2) * 0.12;
+      // Tamanho: presente e visível desde o 1º card (2.2) até o último (3.0), pulsando suavemente
+      const baseScale = 2.2 + p4 * 0.8;
+      const pulse = Math.sin(t * 2.0) * 0.1;
       targetScaleX = targetScaleY = targetScaleZ = baseScale + pulse;
 
-      targetDistort = 0.08 + p4 * 0.06;
+      targetDistort = 0.08 + p4 * 0.05;
       targetSpeed = 0.1;
 
-      // Cor: vermelho vivo/magenta (0) → azul elétrico (0.5) → verde/aqua (1.0)
-      material1.uniforms.uOpacity.value = 1.0;
-      material1.uniforms.uColorT.value = THREE.MathUtils.lerp(
-        material1.uniforms.uColorT.value, p4, 0.08
-      );
+      // Opacidade 50%
+      targetOpacity1 = 0.50;
+      // Começa 0.0 (Vermelho no Corpo Temido) e evolui até 1.0 (Verde/Azul no Corpo Habitado)
+      targetColorT = p4;
+    } else if (scene === 3) {
+      // Método: invisível, pré-carrega posição central e cor vermelha para entrar no Corpo Temido
+      tX1 = 0;
+      tY1 = 0;
+      targetScaleX = targetScaleY = targetScaleZ = 2.2;
+      targetOpacity1 = 0.0;
+      targetColorT = 0.0; // VERMELHO
+    } else if (scene >= 5) {
+      // Síntese / Contato: invisível, pré-carrega cor verde (1.0) para entrar no Corpo Habitado ao voltar no modo reverso
+      tX1 = 0;
+      tY1 = 0;
+      targetScaleX = targetScaleY = targetScaleZ = 3.0;
+      targetOpacity1 = 0.0;
+      targetColorT = 1.0; // VERDE
     } else {
-      // Scene 5: divide em 3 moléculas
-      targetScaleX = targetScaleY = targetScaleZ = 2.0;
-      targetOpacitySplit = 1.0;
-      const splitDist = 2.8 + Math.sin(t * 0.5) * 0.5;
-      tX1 = 0; tY1 = splitDist;
-      tX2 = -splitDist * 0.866; tY2 = -splitDist * 0.5;
-      tX3 = splitDist * 0.866;  tY3 = -splitDist * 0.5;
+      // Início / Promessa: totalmente invisível
+      tX1 = 0;
+      tY1 = 0;
+      targetScaleX = targetScaleY = targetScaleZ = 0.001;
+      targetOpacity1 = 0.0;
+      targetOpacitySplit = 0.0;
+      targetColorT = 0.0;
+    }
+
+    // Garante vermelho imediato no primeiro card ao descer e verde imediato no último card ao subir
+    if (isTrajetoria && p4 < 0.03 && material1.uniforms.uColorT.value > 0.05 && scene === 4) {
+      material1.uniforms.uColorT.value = 0.0;
+    } else if (isTrajetoria && p4 > 0.97 && material1.uniforms.uColorT.value < 0.95) {
+      material1.uniforms.uColorT.value = 1.0;
+    } else {
+      material1.uniforms.uColorT.value = THREE.MathUtils.lerp(
+        material1.uniforms.uColorT.value,
+        targetColorT,
+        0.08
+      );
     }
 
     // ── Aplica uniforms ──
     material1.uniforms.uTime.value = t;
+    material1.uniforms.uOpacity.value = THREE.MathUtils.lerp(
+      material1.uniforms.uOpacity.value,
+      targetOpacity1,
+      0.08
+    );
     material1.uniforms.uDistortAmount.value = THREE.MathUtils.lerp(material1.uniforms.uDistortAmount.value, targetDistort, 0.05);
     material1.uniforms.uDistortSpeed.value  = THREE.MathUtils.lerp(material1.uniforms.uDistortSpeed.value,  targetSpeed,   0.05);
     material1.uniforms.uStripeIntensity.value = THREE.MathUtils.lerp(material1.uniforms.uStripeIntensity.value, targetStripe, 0.05);
@@ -254,27 +278,17 @@ export const BubbleGraphic: React.FC = () => {
     mesh1Ref.current!.position.x = THREE.MathUtils.lerp(mesh1Ref.current!.position.x, tX1, 0.035);
     mesh1Ref.current!.position.y = THREE.MathUtils.lerp(mesh1Ref.current!.position.y, tY1, 0.035);
 
+    // Oculta completamente moléculas secundárias (nunca são usadas)
     [material2, material3].forEach(mat => {
-      mat.uniforms.uTime.value = t;
-      mat.uniforms.uDistortAmount.value = material1.uniforms.uDistortAmount.value;
-      mat.uniforms.uDistortSpeed.value  = material1.uniforms.uDistortSpeed.value;
-      mat.uniforms.uStripeIntensity.value = material1.uniforms.uStripeIntensity.value;
-      mat.uniforms.uOpacity.value = THREE.MathUtils.lerp(mat.uniforms.uOpacity.value, targetOpacitySplit, 0.05);
+      mat.uniforms.uOpacity.value = 0.0;
     });
-
-    mesh2Ref.current!.scale.copy(mesh1Ref.current!.scale);
-    mesh3Ref.current!.scale.copy(mesh1Ref.current!.scale);
-    mesh2Ref.current!.position.x = THREE.MathUtils.lerp(mesh2Ref.current!.position.x, tX2, 0.03);
-    mesh2Ref.current!.position.y = THREE.MathUtils.lerp(mesh2Ref.current!.position.y, tY2, 0.03);
-    mesh3Ref.current!.position.x = THREE.MathUtils.lerp(mesh3Ref.current!.position.x, tX3, 0.03);
-    mesh3Ref.current!.position.y = THREE.MathUtils.lerp(mesh3Ref.current!.position.y, tY3, 0.03);
+    if (mesh2Ref.current) mesh2Ref.current.visible = false;
+    if (mesh3Ref.current) mesh3Ref.current.visible = false;
   });
 
   return (
     <group position={[0, 0, -2]}>
       <mesh ref={mesh1Ref} geometry={geometry} material={material1} />
-      <mesh ref={mesh2Ref} geometry={geometry} material={material2} />
-      <mesh ref={mesh3Ref} geometry={geometry} material={material3} />
     </group>
   );
 };

@@ -440,10 +440,10 @@ export const HeroSection: React.FC = () => {
         .h-body {
           font-family: 'Inter', system-ui, sans-serif;
           font-size: clamp(0.85rem, 1.2vw, 0.95rem);
-          line-height: 1.7;
+          line-height: 1.8;
           color: rgba(244,241,232,0.85);
-          max-width: 48ch;
-          margin: 0 0 1.8rem;
+          max-width: 44ch;
+          margin: 0 0 2.2rem;
         }
 
         /* CTA */

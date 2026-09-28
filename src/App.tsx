@@ -69,8 +69,23 @@ function App() {
             anticipatePin: 1,
             scrub: 2.5, // mais suave (era 1)
             invalidateOnRefresh: true,
+            onEnter: () => {
+              scrollState.currentScene = 4;
+            },
+            onEnterBack: () => {
+              scrollState.currentScene = 4;
+            },
+            onLeave: () => {
+              scrollState.currentScene = 5;
+            },
+            onLeaveBack: () => {
+              scrollState.currentScene = 3;
+            },
             onUpdate: (self) => {
               scrollState.scene4Progress = self.progress;
+              if (self.isActive) {
+                scrollState.currentScene = 4;
+              }
             }
           }
         });
@@ -78,11 +93,13 @@ function App() {
 
       // Create ScrollTriggers for each scene simply to track active state and exact positions
       SCENES.forEach((id, index) => {
+        if (id === 'scene-4') return;
+        const isFooter = id === 'scene-6';
         ScrollTrigger.create({
           id: id,
           trigger: `#${id}`,
-          start: "top top",
-          end: "bottom top",
+          start: isFooter ? "top 70%" : "top top",
+          end: isFooter ? "bottom bottom" : "bottom top",
           onEnter: () => scrollState.currentScene = index + 1,
           onEnterBack: () => scrollState.currentScene = index + 1,
         });
