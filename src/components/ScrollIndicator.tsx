@@ -3,9 +3,20 @@ import { scrollToScene, getCurrentSceneIndex, SCENES } from '../scrollUtils';
 
 export const ScrollIndicator: React.FC = () => {
   const [atBottom, setAtBottom] = useState(false);
+  const [isIdle, setIsIdle] = useState(false);
   const [isAtTimelineEnd, setIsAtTimelineEnd] = useState(false);
 
   useEffect(() => {
+    let timeout: ReturnType<typeof setTimeout>;
+
+    const resetIdle = () => {
+      setIsIdle(false);
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        setIsIdle(true);
+      }, 2000);
+    };
+
     // Arrow visibility logic
     const checkScroll = () => {
       const idx = getCurrentSceneIndex();
@@ -25,15 +36,21 @@ export const ScrollIndicator: React.FC = () => {
       } else {
         setIsAtTimelineEnd(false);
       }
+      
+      resetIdle();
     };
 
     window.addEventListener('scroll', checkScroll, { passive: true });
+    window.addEventListener('mousemove', resetIdle, { passive: true });
+    window.addEventListener('touchstart', resetIdle, { passive: true });
     
     // Initial check
     checkScroll();
+    resetIdle();
 
     // Keyboard navigation: ArrowDown / ArrowUp
     const onKey = (e: KeyboardEvent) => {
+      resetIdle();
       if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
         e.preventDefault();
         const idx = getCurrentSceneIndex();
@@ -74,7 +91,10 @@ export const ScrollIndicator: React.FC = () => {
     window.addEventListener('keydown', onKey);
 
     return () => {
+      clearTimeout(timeout);
       window.removeEventListener('scroll', checkScroll);
+      window.removeEventListener('mousemove', resetIdle);
+      window.removeEventListener('touchstart', resetIdle);
       window.removeEventListener('keydown', onKey);
     };
   }, []);
@@ -116,12 +136,14 @@ export const ScrollIndicator: React.FC = () => {
     scrollToScene(Math.min(idx + 1, SCENES.length - 1));
   };
 
+  const isVisible = isIdle && !atBottom;
+
   if (atBottom) return null;
 
   return (
     <div
       className="fixed bottom-2 md:bottom-4 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center gap-1 transition-opacity duration-1000"
-      style={{ opacity: 1, pointerEvents: 'auto' }}
+      style={{ opacity: isVisible ? 1 : 0, pointerEvents: 'auto' }}
     >
       <button
         id="scroll-indicator-btn"
