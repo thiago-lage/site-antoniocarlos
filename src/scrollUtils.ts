@@ -1,5 +1,5 @@
 // Scene IDs in order
-export const SCENES = ['scene-1', 'scene-2', 'scene-3', 'scene-4', 'scene-5', 'scene-6'];
+export const SCENES = ['scene-1', 'scene-2', 'scene-3', 'scene-4', 'scene-5', 'scene-5b', 'scene-6'];
 
 export const scrollToScene = (index: number) => {
   // If clicking the last dot (footer/contact), scroll to the absolute bottom

@@ -77,13 +77,22 @@ export const ScrollOverlay: React.FC = () => {
               <span className="text-[#163f49] font-bold mt-2 block">Torna-se casa, recurso, presença e possibilidade.</span>
             </p>
           </div>
+        </div>
+      </section>
 
-          <p className="text-body text-sm mt-6 text-[#5f7477] italic">
-            O princípio mais profundo do método:
-          </p>
-
-          <div className="mt-4 p-4 md:p-6 rounded-2xl text-center w-full" style={{ background: 'rgba(251, 247, 237, 0.7)', border: '1px solid rgba(22, 63, 73, 0.1)' }}>
-            <p className="text-quote text-base md:text-lg font-playfair text-[#163f49] italic leading-snug">
+      {/* SCENE 5B: O Princípio */}
+      <section
+        className="scene min-h-screen w-full flex flex-col justify-center items-center pl-6 pr-12 sm:px-12 md:px-16 lg:px-24"
+        id="scene-5b"
+        style={{ background: 'linear-gradient(170deg, #eef6f5 0%, #f8f4ec 50%, #f3e7d1 100%)' }}
+      >
+        <div className="glass-card pointer-events-auto w-full max-w-2xl p-6 md:p-10 flex flex-col items-center text-center">
+          <span className="text-label uppercase tracking-widest text-[#d7b36c] font-bold text-xs mb-2">O Princípio</span>
+          <h2 className="text-display text-2xl sm:text-3xl mt-2 uppercase tracking-wide" style={{ color: '#163f49' }}>
+            A Essência do Método
+          </h2>
+          <div className="mt-8 p-4 md:p-8 rounded-2xl text-center w-full" style={{ background: 'rgba(251, 247, 237, 0.7)', border: '1px solid rgba(22, 63, 73, 0.1)' }}>
+            <p className="text-quote text-base md:text-xl font-playfair text-[#163f49] italic leading-relaxed">
               "Não buscamos libertar a consciência do corpo. Buscamos uma consciência suficientemente ampliada para habitar o corpo com presença, respeito, liberdade e responsabilidade."
             </p>
           </div>

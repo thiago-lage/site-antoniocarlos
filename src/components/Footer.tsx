@@ -108,7 +108,7 @@ export const Footer: React.FC = () => {
               Pronto para dar o primeiro passo?
             </h2>
             <a 
-              href="https://wa.me/5527998644435" 
+              href="https://wa.me/5527998644435?text=Ol%C3%A1%2C%20gostaria%20de%20falar%20com%20a%20secret%C3%A1ria%20do%20Dr.%20Ant%C3%B4nio%20Carlos%20para%20agendar%20uma%20consulta." 
               target="_blank" 
               rel="noopener noreferrer" 
               className="inline-flex items-center gap-2 px-8 py-3 bg-[#d7b36c] text-[#163f49] rounded-full text-xs font-bold tracking-widest uppercase transition-transform hover:scale-105 shadow-lg"

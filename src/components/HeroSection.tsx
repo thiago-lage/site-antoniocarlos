@@ -139,7 +139,7 @@ export const HeroSection: React.FC = () => {
         </p>
         <div className="h-cta-row animate-up delay-3">
           <a
-            href="https://wa.me/5527998644435"
+            href="https://wa.me/5527998644435?text=Ol%C3%A1%2C%20gostaria%20de%20falar%20com%20a%20secret%C3%A1ria%20do%20Dr.%20Ant%C3%B4nio%20Carlos%20para%20agendar%20uma%20consulta."
             target="_blank"
             rel="noopener noreferrer"
             className="h-cta"
