@@ -165,8 +165,6 @@ const fragmentShader = `
 
 export const BubbleGraphic: React.FC = () => {
   const mesh1Ref = useRef<THREE.Mesh>(null);
-  const mesh2Ref = useRef<THREE.Mesh>(null);
-  const mesh3Ref = useRef<THREE.Mesh>(null);
 
   const geometry = useMemo(() => new THREE.IcosahedronGeometry(1, 128), []);
 
@@ -187,8 +185,6 @@ export const BubbleGraphic: React.FC = () => {
   });
 
   const material1 = useMemo(createMaterial, []);
-  const material2 = useMemo(createMaterial, []);
-  const material3 = useMemo(createMaterial, []);
 
   useFrame((state) => {
     const t = state.clock.elapsedTime;
@@ -199,11 +195,8 @@ export const BubbleGraphic: React.FC = () => {
     let targetScaleX = 0.01, targetScaleY = 0.01, targetScaleZ = 0.01;
     let targetDistort = 0.08, targetSpeed = 0.1, targetStripe = 0.0;
     let targetOpacity1 = 1.0;
-    let targetOpacitySplit = 0.0;
     let targetColorT = 1.0;
     let tX1 = 0, tY1 = 0;
-    let tX2 = 0, tY2 = 0;
-    let tX3 = 0, tY3 = 0;
 
     const isTrajetoria = scene === 4 || (p4 > 0.005 && p4 < 0.995);
 
@@ -244,7 +237,6 @@ export const BubbleGraphic: React.FC = () => {
       tY1 = 0;
       targetScaleX = targetScaleY = targetScaleZ = 0.001;
       targetOpacity1 = 0.0;
-      targetOpacitySplit = 0.0;
       targetColorT = 0.0;
     }
 
@@ -277,13 +269,6 @@ export const BubbleGraphic: React.FC = () => {
     mesh1Ref.current!.scale.z = THREE.MathUtils.lerp(mesh1Ref.current!.scale.z, targetScaleZ, 0.04);
     mesh1Ref.current!.position.x = THREE.MathUtils.lerp(mesh1Ref.current!.position.x, tX1, 0.035);
     mesh1Ref.current!.position.y = THREE.MathUtils.lerp(mesh1Ref.current!.position.y, tY1, 0.035);
-
-    // Oculta completamente moléculas secundárias (nunca são usadas)
-    [material2, material3].forEach(mat => {
-      mat.uniforms.uOpacity.value = 0.0;
-    });
-    if (mesh2Ref.current) mesh2Ref.current.visible = false;
-    if (mesh3Ref.current) mesh3Ref.current.visible = false;
   });
 
   return (
