@@ -577,11 +577,54 @@ export const HeroSection: React.FC = () => {
         }
 
         /* ══════════════════════════════════════════════
-           TABLET 768 – 1023px
+           TABLET & TELAS MENORES (768px – 1100px)
         ══════════════════════════════════════════════ */
-        @media (min-width: 768px) and (max-width: 1023px) {
-          .h-person-media { max-width: 60% !important; left: -5%; }
-          .h-content { padding-right: clamp(1.5rem, 4vw, 3rem); }
+        @media (min-width: 768px) and (max-width: 1100px) {
+          .h-person-media {
+            position: absolute !important;
+            bottom: -5% !important;
+            left: -12% !important;
+            height: 112% !important;
+            width: auto !important;
+            max-width: none !important;
+            object-fit: contain !important;
+            object-position: bottom left !important;
+            scale: 1.08 !important;
+          }
+          .h-content {
+            margin-left: clamp(1.5rem, 43vw, 460px) !important;
+            max-width: 520px !important;
+            padding-right: clamp(1.5rem, 4vw, 3rem) !important;
+            padding-left: 0.5rem !important;
+          }
+          .h-title {
+            font-size: clamp(1.8rem, 3.4vw, 2.6rem) !important;
+          }
+          .h-body {
+            font-size: clamp(0.82rem, 1.1vw, 0.9rem) !important;
+            max-width: 42ch !important;
+          }
+          .h-gradient {
+            background: linear-gradient(
+              to right,
+              rgba(32,62,70,0.0) 0%,
+              rgba(32,62,70,0.3) 35%,
+              rgba(32,62,70,0.78) 55%,
+              rgba(32,62,70,0.92) 100%
+            ) !important;
+          }
+        }
+
+        @media (min-width: 768px) and (max-width: 1023px) and (orientation: portrait) {
+          .h-person-media {
+            height: 75vh !important;
+            left: -18% !important;
+            bottom: -2% !important;
+          }
+          .h-content {
+            margin-left: 36vw !important;
+            max-width: 60vw !important;
+          }
         }
 
         /* ══════════════════════════════════════════════
