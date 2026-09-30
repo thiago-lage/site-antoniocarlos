@@ -264,6 +264,12 @@ export const HeroSection: React.FC = () => {
           padding-bottom: env(safe-area-inset-bottom);
         }
 
+        /* Pseudo-elemento para balancear o layout em monitores ultrawide */
+        .hero-root::before {
+          content: "";
+          flex: 0 0 45vw;
+        }
+
         /* Animações de entrada */
         @keyframes fadeUp {
           0%   { opacity: 0; transform: translateY(20px); }
@@ -406,11 +412,10 @@ export const HeroSection: React.FC = () => {
         .h-content {
           position: relative;
           z-index: 10;
-          margin-left: clamp(2rem, 45vw, 600px);
+          margin: 0 auto;
           width: 100%;
-          max-width: 580px;
-          padding-right: clamp(2rem, 8vw, 6rem);
-          padding-left: 1rem;
+          max-width: 600px;
+          padding: 0 2rem;
           pointer-events: auto;
         }
 
@@ -503,6 +508,7 @@ export const HeroSection: React.FC = () => {
             align-items: center;
             justify-content: flex-start;
           }
+          .hero-root::before { display: none; }
 
           /* Esconde background layers absolutas no mobile */
           .h-bg { opacity: 0.7; }
@@ -553,7 +559,7 @@ export const HeroSection: React.FC = () => {
 
           /* Conteúdo */
           .h-content {
-            margin-left: 0;
+            margin: 0;
             max-width: 100%;
             padding: 0 2.5rem 0rem;
             text-align: center;
@@ -580,6 +586,7 @@ export const HeroSection: React.FC = () => {
            TABLET & TELAS MENORES (768px – 1100px)
         ══════════════════════════════════════════════ */
         @media (min-width: 768px) and (max-width: 1100px) {
+          .hero-root::before { display: none; }
           .h-person-media {
             position: absolute !important;
             bottom: -5% !important;
