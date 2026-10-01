@@ -71,7 +71,7 @@ export const HeroSection: React.FC = () => {
 
   // Parallax — roda uma única vez no mount, checa mobile inline no tick
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    // Forçando parallax independente das configs de redução de movimento do SO
 
     // Aguarda o próximo frame para garantir que os refs estejam no DOM
     const initId = requestAnimationFrame(() => {
@@ -634,13 +634,6 @@ export const HeroSection: React.FC = () => {
           }
         }
 
-        /* ══════════════════════════════════════════════
-           prefers-reduced-motion
-        ══════════════════════════════════════════════ */
-        @media (prefers-reduced-motion: reduce) {
-          .h-layer { will-change: auto !important; transform: none !important; }
-          .animate-up { animation: none !important; opacity: 1 !important; transform: none !important; }
-        }
       `}</style>
     </section>
   );
