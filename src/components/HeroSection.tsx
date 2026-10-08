@@ -209,11 +209,11 @@ export const HeroSection: React.FC = () => {
         </p>
         <div className="h-divider animate-up delay-1" aria-hidden="true" />
         <h1 className="h-title animate-up delay-1">
-          Diagnóstico detalhado<br />
-          <em>do seu corpo</em>
+          O corpo como caminho<br />
+          <em>para a consciência</em>
         </h1>
         <p className="h-body animate-up delay-2">
-          "Trabalho ajudando pessoas a compreender como o corpo, as emoções, a história e os vínculos participam da forma como elas vivem e adoecem. Meu trabalho é ajudá-las a ampliar a consciência, recuperar a autoridade interior e encontrar maneiras mais inteiras de viver."
+          "O corpo guarda e expressa nossa história. Escutá-lo é um caminho para compreender sintomas, emoções e vínculos — e reconhecer novas possibilidades de viver com mais consciência, liberdade e inteireza."
         </p>
         <div className="h-cta-row animate-up delay-3">
           <a

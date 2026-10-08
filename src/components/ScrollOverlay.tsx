@@ -18,10 +18,10 @@ export const ScrollOverlay: React.FC = () => {
         <div className="glass-card pointer-events-auto w-full max-w-xl p-6 md:p-10 flex flex-col items-center text-center">
           <span className="text-label">A Promessa</span>
           <blockquote className="text-heading text-xl sm:text-2xl md:text-3xl mt-4 leading-snug" style={{ color: '#163f49' }}>
-            "Ajudo pessoas a transformar aquilo que o corpo sente e a história repete em consciência e escolha."
+            "Transformar o que o corpo revela e a história repete em consciência, autoridade interior e novas escolhas."
           </blockquote>
           <p className="text-body text-sm md:text-base mt-4 max-w-lg">
-            Ajudar pessoas a transformar experiência corporal e história de vida em consciência, autoridade interior e liberdade responsável.
+            Um cuidado que integra corpo, emoções, história e relações para que você compreenda seus padrões e encontre uma forma mais livre e consciente de viver.
           </p>
         </div>
       </section>
@@ -42,7 +42,7 @@ export const ScrollOverlay: React.FC = () => {
             É o lugar onde a consciência começa e se reencontra.
           </p>
           <p className="text-body text-sm md:text-base mt-4 text-center max-w-2xl" style={{ color: '#5f7477', lineHeight: '1.8' }}>
-            O trabalho corporal busca reconectar você à sua percepção, oferecendo flexibilidade para encarnar novas escolhas de vida, sem a necessidade de interpretações prontas ou regras universais.
+            Ao escutar o corpo, sensações e emoções ganham significado. Padrões tornam-se conscientes e novas escolhas podem emergir — mais livres, coerentes e próprias.
           </p>
         </div>
       </section>
@@ -104,7 +104,7 @@ export const ScrollOverlay: React.FC = () => {
           </h2>
           <div className="mt-8 p-4 md:p-8 rounded-2xl text-center w-full" style={{ background: 'rgba(251, 247, 237, 0.7)', border: '1px solid rgba(22, 63, 73, 0.1)' }}>
             <p className="text-quote text-base md:text-xl font-playfair text-[#163f49] italic leading-relaxed">
-              "Não buscamos libertar a consciência do corpo. Buscamos uma consciência suficientemente ampliada para habitar o corpo com presença, respeito, liberdade e responsabilidade."
+              "O caminho não é libertar a consciência do corpo, mas ampliar a consciência para habitá-lo com presença, liberdade, responsabilidade e sentido."
             </p>
           </div>
         </div>
