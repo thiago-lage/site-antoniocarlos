@@ -92,16 +92,19 @@ function App() {
       }
 
       // Create ScrollTriggers for each scene simply to track active state and exact positions
+      const trajIdx = SCENES.indexOf('scene-4');
       SCENES.forEach((id, index) => {
         if (id === 'scene-4') return;
         const isFooter = id === 'scene-6';
+        // Map to legacy 1..5 state expected by BubbleGraphic (3 = before Trajetória, 4 = Trajetória, 5 = after Trajetória)
+        const mappedScene = index === 0 ? 1 : index < trajIdx - 1 ? 2 : index === trajIdx - 1 ? 3 : 5;
         ScrollTrigger.create({
           id: id,
           trigger: `#${id}`,
           start: isFooter ? "top 70%" : "top top",
           end: isFooter ? "bottom bottom" : "bottom top",
-          onEnter: () => scrollState.currentScene = index + 1,
-          onEnterBack: () => scrollState.currentScene = index + 1,
+          onEnter: () => { scrollState.currentScene = mappedScene; },
+          onEnterBack: () => { scrollState.currentScene = mappedScene; },
         });
 
         if (id !== 'scene-1' && id !== 'scene-4') {

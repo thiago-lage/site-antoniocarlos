@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { scrollToScene, getCurrentSceneIndex, SCENES } from '../scrollUtils';
+import { scrollToScene, getCurrentSceneIndex, SCENES, SCENE_LABELS } from '../scrollUtils';
 
 export const SideNavigation: React.FC = () => {
   const [activeIdx, setActiveIdx] = useState(0);
@@ -10,20 +10,21 @@ export const SideNavigation: React.FC = () => {
     return () => window.removeEventListener('scroll', update);
   }, []);
 
-  const labels = ['Início', 'Promessa', 'Método', 'Trajetória', 'Síntese', 'Princípio', 'Contato'];
-
   return (
-    <nav className="fixed right-4 md:right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col items-center gap-3 select-none">
-      {SCENES.map((_, i) => (
+    <nav className="fixed right-3 md:right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col items-center gap-2.5 select-none">
+      {SCENES.map((sceneId, i) => (
         <button
-          key={i}
+          key={sceneId}
           onClick={() => scrollToScene(i)}
-          title={labels[i]}
-          className={`relative group flex items-center justify-center transition-all duration-300 w-4 h-4 ${i === 4 ? 'hidden md:flex' : ''}`}
+          title={SCENE_LABELS[i]}
+          className={`relative group flex items-center justify-center transition-all duration-300 w-4 h-4 ${sceneId === 'scene-5' ? 'hidden md:flex' : ''}`}
         >
           {/* Tooltip label */}
-          <span className="absolute right-6 whitespace-nowrap text-[10px] uppercase tracking-widest font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-[#fbf7ed]/80 backdrop-blur-md rounded-full px-3 py-1 border border-white/50 shadow-sm pointer-events-none" style={{ color: '#163f49' }}>
-            {labels[i]}
+          <span
+            className="absolute right-6 whitespace-nowrap text-[10px] uppercase tracking-widest font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-[#fbf7ed]/80 backdrop-blur-md rounded-full px-3 py-1 border border-white/50 shadow-sm pointer-events-none"
+            style={{ color: '#163f49' }}
+          >
+            {SCENE_LABELS[i]}
           </span>
           {/* Dot */}
           <span

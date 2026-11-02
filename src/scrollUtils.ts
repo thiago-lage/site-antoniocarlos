@@ -1,5 +1,29 @@
 // Scene IDs in order
-export const SCENES = ['scene-1', 'scene-2', 'scene-3', 'scene-4', 'scene-5', 'scene-5b', 'scene-6'];
+export const SCENES = [
+  'scene-1',
+  'scene-2',
+  'scene-sintomas',
+  'scene-caminho',
+  'scene-3',
+  'scene-4',
+  'scene-5',
+  'scene-5b',
+  'scene-acompanhamento',
+  'scene-6',
+];
+
+export const SCENE_LABELS = [
+  'Início',
+  'Acolhimento',
+  'Sintomas',
+  'Integração',
+  'Método',
+  'Trajetória',
+  'Síntese',
+  'Princípio',
+  'Acompanhamento',
+  'Contato',
+];
 
 /**
  * Retorna a posição Y exata (em pixels de scroll do documento) onde a cena começa no topo da viewport.
@@ -20,7 +44,7 @@ export const getSceneScrollTop = (index: number): number => {
   const id = SCENES[index];
   const ST = (window as any).ScrollTrigger;
   if (ST) {
-    const st = ST.getById(id);
+    const st = ST.getById(id === 'scene-4' ? 'scene-4-pin' : id);
     if (st && typeof st.start === 'number') {
       return Math.min(maxScroll, Math.round(st.start));
     }
@@ -82,8 +106,11 @@ export const getCurrentSceneIndex = (): number => {
 
   let activeIdx = 0;
   for (let i = 0; i < SCENES.length; i++) {
+    const el = document.getElementById(SCENES[i]);
+    // Ignora cenas ocultas no viewport atual (ex: hidden no mobile)
+    if (el && el.offsetParent === null) continue;
     const top = getSceneScrollTop(i);
-    if (currentY >= top - 60) {
+    if (currentY >= top - 80) {
       activeIdx = i;
     }
   }

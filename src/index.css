@@ -258,3 +258,17 @@ body {
   background: rgba(255, 255, 255, 0.12);
 }
 
+/* ─── Modal Dialog (Modern Web Guidance) ─────────── */
+dialog:modal {
+  overscroll-behavior: contain;
+}
+
+dialog::backdrop {
+  overflow: hidden;
+  overscroll-behavior: contain;
+  background-color: rgba(22, 63, 73, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+

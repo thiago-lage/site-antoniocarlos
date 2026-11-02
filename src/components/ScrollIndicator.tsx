@@ -6,6 +6,8 @@ export const ScrollIndicator: React.FC = () => {
   const [isIdle, setIsIdle] = useState(false);
   const [isAtTimelineEnd, setIsAtTimelineEnd] = useState(false);
 
+  const trajIdx = SCENES.indexOf('scene-4');
+
   useEffect(() => {
     let timeout: ReturnType<typeof setTimeout>;
 
@@ -21,9 +23,9 @@ export const ScrollIndicator: React.FC = () => {
     const checkScroll = () => {
       const idx = getCurrentSceneIndex();
       setAtBottom(idx === SCENES.length - 1);
-      
+
       // Check if we are at the end of the Scene 4 timeline
-      if (idx === 3) {
+      if (idx === trajIdx) {
         const scene5 = document.getElementById('scene-5');
         if (scene5) {
           const maxScroll = scene5.getBoundingClientRect().top + window.scrollY;
@@ -36,24 +38,25 @@ export const ScrollIndicator: React.FC = () => {
       } else {
         setIsAtTimelineEnd(false);
       }
-      
+
       resetIdle();
     };
 
     window.addEventListener('scroll', checkScroll, { passive: true });
-    // window.addEventListener('mousemove', resetIdle, { passive: true });
-    // window.addEventListener('touchstart', resetIdle, { passive: true });
-    
+
     // Initial check
     checkScroll();
     resetIdle();
 
     // Keyboard navigation: ArrowDown / ArrowUp
     const onKey = (e: KeyboardEvent) => {
+      // Do not intercept arrow keys if a modal dialog is open
+      if (document.querySelector('dialog[open]')) return;
+
       resetIdle();
       if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
         e.preventDefault();
-        
+
         const ST = (window as any).ScrollTrigger;
         const currentY = window.scrollY;
         const stPin = ST ? ST.getById('scene-4-pin') : null;
@@ -61,12 +64,12 @@ export const ScrollIndicator: React.FC = () => {
         // Se estiver dentro da animação horizontal da Trajetória (Scene 4)
         if (stPin && currentY >= stPin.start - 20 && currentY < stPin.end - 40) {
           const step = (stPin.end - stPin.start) / 8; // 8 passos para os 9 cards
-          
+
           if (e.key === 'ArrowDown') {
             const nextCardY = currentY + step;
-            // Se passar do último card ("CORPO HABITADO"), força ir direto para a cena 5 (A Síntese)
+            // Se passar do último card ("CORPO HABITADO"), força ir direto para a cena seguinte
             if (nextCardY >= stPin.end - step * 0.4) {
-              scrollToScene(4); // Cena 5 (A Síntese) - 100% no topo, sem faixa!
+              scrollToScene(trajIdx + 1);
             } else {
               if ((window as any).lenis) {
                 (window as any).lenis.scrollTo(nextCardY, { duration: 1.0 });
@@ -75,11 +78,12 @@ export const ScrollIndicator: React.FC = () => {
               }
             }
             return;
-          } else { // ArrowUp
+          } else {
+            // ArrowUp
             const prevCardY = currentY - step;
-            // Se voltar antes do primeiro card ("CORPO TEMIDO"), vai direto para a cena 3 (Método Autoral)
+            // Se voltar antes do primeiro card ("CORPO TEMIDO"), vai direto para a cena anterior
             if (prevCardY <= stPin.start + step * 0.4) {
-              scrollToScene(2); // Cena 3 (Método Autoral)
+              scrollToScene(trajIdx - 1);
             } else {
               if ((window as any).lenis) {
                 (window as any).lenis.scrollTo(prevCardY, { duration: 1.0 });
@@ -91,10 +95,12 @@ export const ScrollIndicator: React.FC = () => {
           }
         }
 
-        // Navegação direta entre as demais seções (forçando ir 100% no topo exato)
+        // Navegação direta entre as demais seções
         if (e.key === 'ArrowDown') {
           let nextIdx = SCENES.length - 1;
           for (let i = 0; i < SCENES.length; i++) {
+            const el = document.getElementById(SCENES[i]);
+            if (el && el.offsetParent === null) continue;
             const sceneTop = getSceneScrollTop(i);
             if (sceneTop > currentY + 40) {
               nextIdx = i;
@@ -102,9 +108,12 @@ export const ScrollIndicator: React.FC = () => {
             }
           }
           scrollToScene(nextIdx);
-        } else { // ArrowUp
+        } else {
+          // ArrowUp
           let prevIdx = 0;
           for (let i = SCENES.length - 1; i >= 0; i--) {
+            const el = document.getElementById(SCENES[i]);
+            if (el && el.offsetParent === null) continue;
             const sceneTop = getSceneScrollTop(i);
             if (sceneTop < currentY - 40) {
               prevIdx = i;
@@ -122,7 +131,7 @@ export const ScrollIndicator: React.FC = () => {
       window.removeEventListener('scroll', checkScroll);
       window.removeEventListener('keydown', onKey);
     };
-  }, []);
+  }, [trajIdx]);
 
   const handleClickDown = () => {
     const ST = (window as any).ScrollTrigger;
@@ -133,7 +142,7 @@ export const ScrollIndicator: React.FC = () => {
       const step = (stPin.end - stPin.start) / 8;
       const nextCardY = currentY + step;
       if (nextCardY >= stPin.end - step * 0.4) {
-        scrollToScene(4); // Força ir direto para Scene 5
+        scrollToScene(trajIdx + 1);
       } else {
         if ((window as any).lenis) {
           (window as any).lenis.scrollTo(nextCardY, { duration: 1.0 });
@@ -146,6 +155,8 @@ export const ScrollIndicator: React.FC = () => {
 
     let nextIdx = SCENES.length - 1;
     for (let i = 0; i < SCENES.length; i++) {
+      const el = document.getElementById(SCENES[i]);
+      if (el && el.offsetParent === null) continue;
       const sceneTop = getSceneScrollTop(i);
       if (sceneTop > currentY + 40) {
         nextIdx = i;
@@ -169,8 +180,8 @@ export const ScrollIndicator: React.FC = () => {
         onClick={handleClickDown}
         className="w-14 h-14 flex items-center justify-center transition-all duration-300 bg-transparent border-none outline-none cursor-pointer animate-bounce"
         style={{ color: '#EED7A0' }}
-        onMouseEnter={e => (e.currentTarget.style.color = '#fbf7ed')}
-        onMouseLeave={e => (e.currentTarget.style.color = '#EED7A0')}
+        onMouseEnter={(e) => (e.currentTarget.style.color = '#fbf7ed')}
+        onMouseLeave={(e) => (e.currentTarget.style.color = '#EED7A0')}
         aria-label="Next section"
       >
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} className="w-8 h-8">
