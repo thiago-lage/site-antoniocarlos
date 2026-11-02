@@ -190,14 +190,16 @@ const SYMPTOMS: SymptomItem[] = [
 export const SymptomsSection: React.FC = () => {
   const [selectedSymptom, setSelectedSymptom] = useState<SymptomItem | null>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const scrollBodyRef = useRef<HTMLDivElement>(null);
 
   const openSymptomModal = (item: SymptomItem) => {
     setSelectedSymptom(item);
     const dialog = dialogRef.current;
     if (dialog && !dialog.open) {
       dialog.showModal();
-      if ((window as any).lenis) {
-        (window as any).lenis.stop();
+      // Reset modal scroll position to top when opened
+      if (scrollBodyRef.current) {
+        scrollBodyRef.current.scrollTop = 0;
       }
     }
   };
@@ -214,9 +216,6 @@ export const SymptomsSection: React.FC = () => {
     if (!dialog) return;
 
     const handleClose = () => {
-      if ((window as any).lenis) {
-        (window as any).lenis.start();
-      }
       setSelectedSymptom(null);
     };
 
@@ -296,7 +295,7 @@ export const SymptomsSection: React.FC = () => {
                     >
                       {item.icon}
                     </div>
-                    <h3 className="text-heading text-base md:text-[17px] font-semibold text-[#163f49] leading-tight truncate">
+                    <h3 className="text-heading text-sm sm:text-base md:text-[16px] font-semibold text-[#163f49] leading-tight">
                       {item.title}
                     </h3>
                   </div>
@@ -337,20 +336,23 @@ export const SymptomsSection: React.FC = () => {
         </div>
       </div>
 
-      {/* Modal / Dialog Nativo para Aprofundamento Individual */}
+      {/* Modal / Dialog Nativo com data-lenis-prevent para permitir rolagem nativa em mobile, tablet e desktop */}
       <dialog
         ref={dialogRef}
         closedby="any"
+        data-lenis-prevent
+        data-lenis-prevent-wheel
+        data-lenis-prevent-touch
         aria-labelledby="symptom-dialog-title"
-        className="symptom-modal pointer-events-auto m-auto w-[92vw] max-w-xl rounded-3xl p-0 border border-white/80 shadow-2xl text-left bg-[#fbf7ed]/95 backdrop-blur-xl text-[#173847]"
+        className="symptom-modal pointer-events-auto m-auto w-[92vw] max-w-xl max-h-[88dvh] rounded-3xl p-0 border border-white/80 shadow-2xl text-left bg-[#fbf7ed]/98 backdrop-blur-xl text-[#173847] overflow-hidden"
       >
         {selectedSymptom && (
-          <div className="p-5 sm:p-6 md:p-7 max-h-[85vh] overflow-y-auto">
-            {/* Cabeçalho do Modal */}
-            <div className="flex items-start justify-between gap-3 pb-3.5 border-b border-[#163f49]/10">
+          <div className="flex flex-col max-h-[88dvh] w-full">
+            {/* Cabeçalho Fixo do Modal */}
+            <div className="flex items-start justify-between gap-3 px-5 pt-4 pb-3 sm:px-6 sm:pt-5 sm:pb-3.5 border-b border-[#163f49]/10 shrink-0 bg-[#fbf7ed]/95">
               <div className="flex items-center gap-3">
                 <div
-                  className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border border-white/80"
+                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center shrink-0 border border-white/80"
                   style={{ background: selectedSymptom.gradient, color: selectedSymptom.accentColor }}
                 >
                   {selectedSymptom.icon}
@@ -359,7 +361,7 @@ export const SymptomsSection: React.FC = () => {
                   <span className="text-label text-[9px] uppercase tracking-widest text-[#6eaaa5] block">
                     Compreensão e Cuidado
                   </span>
-                  <h3 id="symptom-dialog-title" className="text-display text-xl md:text-2xl text-[#163f49]">
+                  <h3 id="symptom-dialog-title" className="text-display text-lg sm:text-xl md:text-2xl text-[#163f49] leading-tight">
                     {selectedSymptom.title}
                   </h3>
                 </div>
@@ -377,15 +379,22 @@ export const SymptomsSection: React.FC = () => {
               </button>
             </div>
 
-            {/* Subtítulo Poético */}
-            <p className="text-quote text-sm md:text-base text-[#28616a] mt-3">
-              “{selectedSymptom.subtitle}”
-            </p>
+            {/* Corpo Rolável do Modal (touch-pan-y + data-lenis-prevent para mobile e tablet) */}
+            <div
+              ref={scrollBodyRef}
+              data-lenis-prevent
+              data-lenis-prevent-wheel
+              data-lenis-prevent-touch
+              className="flex-1 overflow-y-auto overscroll-contain touch-pan-y px-5 py-4 sm:px-6 sm:py-5 space-y-3"
+              style={{ WebkitOverflowScrolling: 'touch' }}
+            >
+              {/* Subtítulo Poético */}
+              <p className="text-quote text-xs sm:text-sm md:text-base text-[#28616a]">
+                “{selectedSymptom.subtitle}”
+              </p>
 
-            {/* As 4 Partes Estruturadas */}
-            <div className="mt-4 space-y-3">
               {/* 1. O que você pode sentir */}
-              <div className="p-3.5 rounded-2xl bg-white/60 border border-white/80">
+              <div className="p-3 sm:p-3.5 rounded-2xl bg-white/65 border border-white/80">
                 <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#163f49] mb-1.5 flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#d7b36c]"></span>
                   1. O que você pode sentir
@@ -398,7 +407,7 @@ export const SymptomsSection: React.FC = () => {
               </div>
 
               {/* 2. O que pode estar relacionado */}
-              <div className="p-3.5 rounded-2xl bg-white/60 border border-white/80">
+              <div className="p-3 sm:p-3.5 rounded-2xl bg-white/65 border border-white/80">
                 <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#163f49] mb-1 flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#53b7ae]"></span>
                   2. O que pode estar relacionado
@@ -409,7 +418,7 @@ export const SymptomsSection: React.FC = () => {
               </div>
 
               {/* 3. Como investigamos */}
-              <div className="p-3.5 rounded-2xl bg-white/60 border border-white/80">
+              <div className="p-3 sm:p-3.5 rounded-2xl bg-white/65 border border-white/80">
                 <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#163f49] mb-1 flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#28616a]"></span>
                   3. Como investigamos
@@ -420,7 +429,7 @@ export const SymptomsSection: React.FC = () => {
               </div>
 
               {/* 4. Como podemos cuidar */}
-              <div className="p-3.5 rounded-2xl bg-white/60 border border-white/80">
+              <div className="p-3 sm:p-3.5 rounded-2xl bg-white/65 border border-white/80">
                 <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#163f49] mb-1 flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#163f49]"></span>
                   4. Como podemos cuidar
@@ -431,10 +440,10 @@ export const SymptomsSection: React.FC = () => {
               </div>
             </div>
 
-            {/* Nota Clínica + CTA no Rodapé do Modal */}
-            <div className="mt-4 pt-3.5 border-t border-[#163f49]/10 flex flex-col sm:flex-row items-center justify-between gap-3">
-              <p className="text-[11px] text-[#5f7477] italic text-center sm:text-left">
-                Avaliação médica individualizada presencial ou por telemedicina.
+            {/* Rodapé Fixo do Modal */}
+            <div className="px-5 py-3 sm:px-6 sm:py-3.5 border-t border-[#163f49]/10 flex flex-col sm:flex-row items-center justify-between gap-2.5 shrink-0 bg-[#fbf7ed]/95">
+              <p className="text-[10.5px] text-[#5f7477] italic text-center sm:text-left">
+                Avaliação médica presencial ou por telemedicina.
               </p>
               <div className="flex items-center gap-2.5 w-full sm:w-auto justify-center">
                 <button
