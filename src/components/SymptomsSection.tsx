@@ -22,11 +22,11 @@ const SYMPTOMS: SymptomItem[] = [
     title: 'Ansiedade',
     subtitle: 'Quando a mente antecipa perigos e o corpo permanece em alerta.',
     summary:
-      'Compreendemos preocupações excessivas, tensão muscular, palpitações, desconfortos digestivos e padrões de hipervigilância, integrando avaliação clínica, regulação corporal e escuta emocional.',
+      'Compreendemos preocupações excessivas, tensão muscular, palpitações, desconfortos digestivos e padrões de hipervigilância. A abordagem integra avaliação clínica, regulação corporal e compreensão das experiências emocionais.',
     gradient: 'linear-gradient(135deg, rgba(83, 183, 174, 0.22) 0%, rgba(215, 179, 108, 0.18) 100%)',
     accentColor: '#28616a',
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-4 h-4 md:w-5 md:h-5">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-5 h-5">
         <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
       </svg>
     ),
@@ -50,11 +50,11 @@ const SYMPTOMS: SymptomItem[] = [
     title: 'Depressão',
     subtitle: 'Quando a vitalidade diminui e a vida parece perder suas cores.',
     summary:
-      'Acolhemos tristeza persistente, perda de prazer (anedonia) e alterações do sono, apetite e energia, considerando fatores biológicos e psicossociais para reconstruir vínculos e sentido.',
+      'Acolhemos a tristeza persistente, a perda de interesse ou prazer (anedonia) e as alterações do sono, apetite e energia, além de fatores biológicos e psicossociais. O cuidado inclui avaliação de gravidade, tratamento adequado e reconstrução gradual de vínculos e sentido.',
     gradient: 'linear-gradient(135deg, rgba(22, 63, 73, 0.18) 0%, rgba(110, 170, 165, 0.22) 100%)',
     accentColor: '#163f49',
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-4 h-4 md:w-5 md:h-5">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-5 h-5">
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
       </svg>
     ),
@@ -78,11 +78,11 @@ const SYMPTOMS: SymptomItem[] = [
     title: 'Crises de pânico',
     subtitle: 'Quando o corpo dispara um alarme intenso, mesmo sem um perigo evidente.',
     summary:
-      'Cuidamos de episódios de taquicardia, falta de ar, tontura e medo de perder o controle. Diferenciamos crises de pânico de outras condições clínicas e trabalhamos o ciclo do medo.',
+      'Cuidamos de episódios de taquicardia, falta de ar, tontura e medo de morrer ou perder o controle. Diferenciamos crises de pânico de outras condições clínicas e trabalhamos a compreensão do ciclo do medo, com recursos terapêuticos fundamentados.',
     gradient: 'linear-gradient(135deg, rgba(215, 179, 108, 0.25) 0%, rgba(83, 183, 174, 0.18) 100%)',
     accentColor: '#28616a',
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-4 h-4 md:w-5 md:h-5">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-5 h-5">
         <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
       </svg>
     ),
@@ -106,11 +106,11 @@ const SYMPTOMS: SymptomItem[] = [
     title: 'Insônia',
     subtitle: 'Quando o corpo está cansado, mas o descanso não chega.',
     summary:
-      'Investigamos hábitos, ritmo circadiano, medicamentos, apneia e ansiedade, integrando o cuidado médico a estratégias comportamentais (incluindo TCC para insônia quando indicada).',
+      'Investigamos hábitos, ritmo circadiano, medicamentos, apneia, ansiedade e outros fatores. Integramos o cuidado médico a estratégias comportamentais, incluindo terapia cognitivo-comportamental para insônia quando indicada.',
     gradient: 'linear-gradient(135deg, rgba(22, 63, 73, 0.22) 0%, rgba(215, 179, 108, 0.16) 100%)',
     accentColor: '#163f49',
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-4 h-4 md:w-5 md:h-5">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-5 h-5">
         <path strokeLinecap="round" strokeLinejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
       </svg>
     ),
@@ -134,11 +134,11 @@ const SYMPTOMS: SymptomItem[] = [
     title: 'Cansaço persistente',
     subtitle: 'Quando descansar parece não ser suficiente.',
     summary:
-      'Investigamos sono, anemia, tireoide, medicamentos, condições metabólicas, humor e sobrecarga para identificar causas tratáveis sem atribuir automaticamente a exaustão ao estresse.',
+      'Investigamos sono, anemia, tireoide, medicamentos, condições metabólicas, humor e sobrecarga. O objetivo é identificar causas tratáveis e reconstruir a vitalidade sem atribuir automaticamente a exaustão ao estresse.',
     gradient: 'linear-gradient(135deg, rgba(110, 170, 165, 0.24) 0%, rgba(243, 231, 209, 0.5) 100%)',
     accentColor: '#28616a',
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-4 h-4 md:w-5 md:h-5">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-5 h-5">
         <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
       </svg>
     ),
@@ -162,11 +162,11 @@ const SYMPTOMS: SymptomItem[] = [
     title: 'Dores e sintomas físicos recorrentes',
     subtitle: 'Quando o desconforto interfere na liberdade de viver.',
     summary:
-      'Investigamos causas orgânicas, mecanismos de sensibilização, tensão muscular, sono e fatores emocionais que modulam a dor, com um cuidado que respeita a realidade do sintoma.',
+      'Investigamos causas orgânicas, mecanismos de sensibilização, tensão muscular, sono e fatores emocionais que podem modular a experiência da dor. Desenvolvemos um cuidado que respeita a realidade do sintoma.',
     gradient: 'linear-gradient(135deg, rgba(215, 179, 108, 0.22) 0%, rgba(22, 63, 73, 0.16) 100%)',
     accentColor: '#163f49',
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-4 h-4 md:w-5 md:h-5">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-5 h-5">
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
       </svg>
     ),
@@ -197,7 +197,6 @@ export const SymptomsSection: React.FC = () => {
     const dialog = dialogRef.current;
     if (dialog && !dialog.open) {
       dialog.showModal();
-      // Reset modal scroll position to top when opened
       if (scrollBodyRef.current) {
         scrollBodyRef.current.scrollTop = 0;
       }
@@ -248,26 +247,26 @@ export const SymptomsSection: React.FC = () => {
 
   return (
     <section
-      className="scene min-h-screen w-full flex flex-col justify-center items-center py-8 md:py-10 pl-5 pr-10 sm:px-10 md:px-14 lg:px-20"
+      className="scene min-h-screen w-full flex flex-col justify-center items-center py-10 md:py-12 pl-5 pr-10 sm:px-10 md:px-14 lg:px-20"
       id="scene-sintomas"
       style={{ background: 'linear-gradient(170deg, #f8f4ec 0%, #eef6f5 50%, #f3e7d1 100%)' }}
     >
       <div className="pointer-events-auto w-full max-w-5xl flex flex-col items-center">
-        {/* Cabeçalho Compacto */}
-        <div className="text-center max-w-2xl mb-4 md:mb-5 px-2">
-          <span className="text-label uppercase tracking-widest text-[#d7b36c] font-bold text-[10px] mb-1 block">
+        {/* Cabeçalho */}
+        <div className="text-center max-w-2xl mb-6 md:mb-8 px-2">
+          <span className="text-label uppercase tracking-widest text-[#d7b36c] font-bold text-[10px] mb-1.5 block">
             Escuta Clínica e Integrativa
           </span>
-          <h2 className="text-display text-xl sm:text-2xl md:text-[28px] leading-tight" style={{ color: '#163f49' }}>
+          <h2 className="text-display text-2xl sm:text-3xl md:text-4xl leading-tight" style={{ color: '#163f49' }}>
             O que seu corpo e suas emoções estão expressando?
           </h2>
-          <p className="text-body text-xs md:text-[13px] mt-1.5 text-[#5f7477] leading-snug">
-            Toque em cada área abaixo para compreender como investigamos as causas clínicas e cuidamos da pessoa por inteiro.
+          <p className="text-body text-xs sm:text-sm mt-2 text-[#5f7477]">
+            Toque em cada tema para compreender como investigamos e cuidamos de cada experiência.
           </p>
         </div>
 
-        {/* Grade Compacta com os 6 Cartões de Sintomas */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-3.5 w-full">
+        {/* Grade Leve e Limpa com os 6 Cartões de Sintomas */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 md:gap-4 w-full">
           {SYMPTOMS.map((item) => (
             <article
               key={item.id}
@@ -282,54 +281,49 @@ export const SymptomsSection: React.FC = () => {
               role="button"
               aria-haspopup="dialog"
               aria-label={`Ver detalhes sobre ${item.title}`}
-              className="glass-card p-4 md:p-4.5 flex flex-col justify-between text-left cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-lg group focus-visible:outline-2 focus-visible:outline-[#28616a]"
-              style={{ borderRadius: '1.25rem' }}
+              className="glass-card p-5 md:p-6 flex flex-col justify-between text-left cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-lg group focus-visible:outline-2 focus-visible:outline-[#28616a]"
+              style={{ borderRadius: '1.35rem' }}
             >
               <div>
-                {/* Linha de Topo: Ícone + Título + Aprofundar */}
-                <div className="flex items-center justify-between gap-2 mb-1.5">
-                  <div className="flex items-center gap-2.5 min-w-0">
-                    <div
-                      className="w-8 h-8 rounded-xl flex items-center justify-center shrink-0 border border-white/70 shadow-xs transition-transform duration-300 group-hover:scale-105"
-                      style={{ background: item.gradient, color: item.accentColor }}
-                    >
-                      {item.icon}
-                    </div>
-                    <h3 className="text-heading text-sm sm:text-base md:text-[16px] font-semibold text-[#163f49] leading-tight">
-                      {item.title}
-                    </h3>
+                {/* Topo: Ícone + Botão Ver mais */}
+                <div className="flex items-center justify-between gap-2 mb-3">
+                  <div
+                    className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border border-white/70 shadow-xs transition-transform duration-300 group-hover:scale-105"
+                    style={{ background: item.gradient, color: item.accentColor }}
+                  >
+                    {item.icon}
                   </div>
-                  <span className="text-[10px] uppercase tracking-wider font-bold text-[#6eaaa5] group-hover:text-[#163f49] transition-colors shrink-0">
-                    Ver +
+                  <span className="text-[10px] uppercase tracking-widest font-bold text-[#6eaaa5] group-hover:text-[#163f49] transition-colors shrink-0">
+                    Saiba mais →
                   </span>
                 </div>
 
-                {/* Frase de impacto (Itálico Playfair) */}
-                <p className="text-quote text-xs md:text-[12.5px] text-[#28616a] font-medium leading-snug">
-                  “{item.subtitle}”
-                </p>
+                {/* Título */}
+                <h3 className="text-heading text-base sm:text-lg md:text-[19px] font-semibold text-[#163f49] leading-snug">
+                  {item.title}
+                </h3>
 
-                {/* Resumo conciso */}
-                <p className="text-body text-[11.5px] md:text-xs mt-1.5 text-[#5f7477] leading-relaxed">
-                  {item.summary}
+                {/* Frase-síntese (sem excesso de texto no cartão) */}
+                <p className="text-quote text-xs sm:text-[13.5px] mt-1.5 text-[#28616a] leading-relaxed">
+                  “{item.subtitle}”
                 </p>
               </div>
             </article>
           ))}
         </div>
 
-        {/* Nota de Distinção Clínica Essencial Compacta */}
+        {/* Nota de Distinção Clínica Essencial Bem Enquadrada */}
         <div
-          className="mt-4 md:mt-5 w-full max-w-4xl py-2.5 px-4 md:py-3 md:px-6 rounded-xl text-center border"
+          className="mt-6 md:mt-7 w-full max-w-3xl py-3.5 px-5 md:py-4 md:px-8 rounded-2xl text-center border"
           style={{
-            background: 'rgba(251, 247, 237, 0.85)',
+            background: 'rgba(251, 247, 237, 0.82)',
             borderColor: 'rgba(215, 179, 108, 0.45)',
-            boxShadow: '0 2px 12px rgba(22, 63, 73, 0.04)',
+            boxShadow: '0 4px 16px rgba(22, 63, 73, 0.05)',
           }}
         >
-          <p className="text-[11px] md:text-xs text-[#163f49] leading-snug">
-            <strong className="uppercase tracking-wider text-[10px] text-[#28616a] mr-1.5">
-              Distinção Clínica Essencial:
+          <p className="text-xs sm:text-[13px] text-[#163f49] leading-relaxed">
+            <strong className="uppercase tracking-widest text-[10px] text-[#28616a] block mb-0.5">
+              Distinção Clínica Essencial
             </strong>
             Nem todo sintoma corporal tem origem emocional, e compreender seu significado pessoal não substitui o diagnóstico nem o tratamento clínico.
           </p>
@@ -388,10 +382,15 @@ export const SymptomsSection: React.FC = () => {
               className="flex-1 overflow-y-auto overscroll-contain touch-pan-y px-5 py-4 sm:px-6 sm:py-5 space-y-3"
               style={{ WebkitOverflowScrolling: 'touch' }}
             >
-              {/* Subtítulo Poético */}
-              <p className="text-quote text-xs sm:text-sm md:text-base text-[#28616a]">
-                “{selectedSymptom.subtitle}”
-              </p>
+              {/* Subtítulo Poético + Resumo Geral */}
+              <div>
+                <p className="text-quote text-sm md:text-base text-[#28616a] font-medium">
+                  “{selectedSymptom.subtitle}”
+                </p>
+                <p className="text-body text-xs sm:text-[13px] text-[#5f7477] mt-2 leading-relaxed">
+                  {selectedSymptom.summary}
+                </p>
+              </div>
 
               {/* 1. O que você pode sentir */}
               <div className="p-3 sm:p-3.5 rounded-2xl bg-white/65 border border-white/80">
