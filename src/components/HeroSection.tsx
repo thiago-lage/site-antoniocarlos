@@ -201,7 +201,7 @@ export const HeroSection: React.FC = () => {
 
       {/* ── Conteúdo ── */}
       <div className="h-content">
-        <p className="h-credentials animate-up text-[#EED7A0] tracking-wider text-[11px] md:text-xs uppercase font-bold mb-4">
+        <p className="h-credentials animate-up text-[#EED7A0] tracking-wider text-[10px] md:text-[11px] uppercase font-bold">
           DR. ANTÔNIO CARLOS<br />
           <span className="font-medium text-white/80 normal-case tracking-normal">
             Médico CRM-3916 • Homeopatia RQE - 3783<br />Saúde Mental, Corpo e Sistema
@@ -212,12 +212,12 @@ export const HeroSection: React.FC = () => {
           Um olhar para além<br />
           <em>dos sintomas</em>
         </h1>
-        <p className="animate-up delay-1 text-[#F4F1E8] font-medium text-sm md:text-base mb-3 tracking-wide">
+        <p className="animate-up delay-1 text-[#F4F1E8] font-medium text-xs sm:text-sm md:text-[15px] mb-2 tracking-wide">
           Você chega com um sintoma. Nós acolhemos a pessoa inteira.
         </p>
         <p className="h-body animate-up delay-2">
           Ansiedade, tristeza, crises de pânico, insônia, cansaço e dores persistentes podem comprometer o bem-estar, os relacionamentos e a qualidade de vida. Cada sintoma merece ser investigado com atenção, considerando tanto suas possíveis causas clínicas quanto a história singular de quem o vivencia.
-          <strong className="block mt-2.5 text-[#EED7A0] font-medium">
+          <strong className="block mt-2 text-[#EED7A0] font-medium">
             Cuidar é aliviar o sofrimento, compreender a pessoa e ampliar suas possibilidades de viver.
           </strong>
         </p>
@@ -273,7 +273,7 @@ export const HeroSection: React.FC = () => {
         /* Pseudo-elemento para balancear o layout em monitores ultrawide */
         .hero-root::before {
           content: "";
-          flex: 0 0 45vw;
+          flex: 0 0 44vw;
         }
 
         /* Animações de entrada */
@@ -285,9 +285,9 @@ export const HeroSection: React.FC = () => {
           opacity: 0;
           animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
-        .delay-1 { animation-delay: 0.2s; }
-        .delay-2 { animation-delay: 0.4s; }
-        .delay-3 { animation-delay: 0.6s; }
+        .delay-1 { animation-delay: 0.15s; }
+        .delay-2 { animation-delay: 0.3s; }
+        .delay-3 { animation-delay: 0.45s; }
 
         /* ── Camadas base ── */
         .h-layer {
@@ -318,7 +318,6 @@ export const HeroSection: React.FC = () => {
             opacity: 0;
           }
           6% { opacity: 1; }
-          /* Sway suave: 3 pontos de oscilação lateral enquanto cai */
           30% {
             transform: translateX(-40px)  translateY(30vh)    rotate(calc(var(--rot) + 90deg));
           }
@@ -359,7 +358,6 @@ export const HeroSection: React.FC = () => {
           object-position: bottom left;
           display: block;
           filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));
-          /* extra margin para o parallax não mostrar bordas */
           scale: 1.06;
         }
 
@@ -410,7 +408,7 @@ export const HeroSection: React.FC = () => {
             to right,
             rgba(32,62,70,0.0)  0%,
             rgba(32,62,70,0.45) 42%,
-            rgba(32,62,70,0.88) 100%
+            rgba(32,62,70,0.90) 100%
           );
         }
 
@@ -420,83 +418,83 @@ export const HeroSection: React.FC = () => {
           z-index: 10;
           margin: 0 auto;
           width: 100%;
-          max-width: 600px;
-          padding: 0 2rem;
+          max-width: 580px;
+          padding: 1rem 2.5rem 1rem 1.5rem;
           pointer-events: auto;
         }
 
         .h-credentials {
           font-family: 'Inter', system-ui, sans-serif;
-          font-size: 11px;
+          font-size: 10.5px;
           letter-spacing: 0.06em;
-          color: rgba(244,241,232,0.7);
-          margin: 0 0 1.5rem;
-          line-height: 1.7;
+          color: rgba(244,241,232,0.75);
+          margin: 0 0 0.75rem;
+          line-height: 1.55;
         }
         .h-divider {
-          width: 3rem;
+          width: 2.5rem;
           height: 1px;
           background: rgba(238,215,160,0.6);
-          margin-bottom: 1.5rem;
+          margin-bottom: 0.75rem;
         }
         .h-title {
           font-family: 'Playfair Display', Georgia, serif;
-          font-size: clamp(2rem, 3.8vw, 3.2rem);
+          font-size: clamp(1.75rem, 3.1vw, 2.65rem);
           font-weight: 500;
           line-height: 1.1;
           color: #F4F1E8;
-          margin: 0 0 1.2rem;
+          margin: 0 0 0.6rem;
         }
         .h-title em { font-style: italic; color: #EED7A0; }
         .h-body {
           font-family: 'Inter', system-ui, sans-serif;
-          font-size: clamp(0.85rem, 1.2vw, 0.95rem);
-          line-height: 1.8;
-          color: rgba(244,241,232,0.85);
-          max-width: 44ch;
-          margin: 0 0 2.2rem;
+          font-size: clamp(0.78rem, 1.02vw, 0.875rem);
+          line-height: 1.6;
+          color: rgba(244,241,232,0.86);
+          max-width: 48ch;
+          margin: 0 0 1.35rem;
         }
 
         /* CTA */
         .h-cta-row {
           display: flex;
           align-items: center;
-          gap: 1.5rem;
+          gap: 1.25rem;
           flex-wrap: wrap;
         }
         .h-cta {
           display: inline-flex;
           align-items: center;
           gap: 0.6rem;
-          min-height: 48px;
-          padding: 0.75rem 2rem;
+          min-height: 42px;
+          padding: 0.65rem 1.65rem;
           background: #EED7A0;
           color: #163f49;
           border-radius: 999px;
           font-family: 'Inter', system-ui, sans-serif;
-          font-size: 12px;
+          font-size: 11px;
           font-weight: 700;
-          letter-spacing: 0.15em;
+          letter-spacing: 0.14em;
           text-transform: uppercase;
           text-decoration: none;
           transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
                       box-shadow 0.3s ease, background-color 0.3s ease;
           box-shadow: 0 4px 20px rgba(238,215,160,0.25);
         }
-        .h-cta:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 8px 30px rgba(238,215,160,0.45); background: #fbf7ed; }
+        .h-cta:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 30px rgba(238,215,160,0.45); background: #fbf7ed; }
         .h-cta:focus-visible { outline: 2px solid #EED7A0; outline-offset: 3px; }
 
         /* Social */
         .h-social { display: flex; align-items: center; gap: 0.5rem; }
         .h-social-sep {
-          display: inline-block; width: 1px; height: 1.5rem;
+          display: inline-block; width: 1px; height: 1.4rem;
           background: rgba(244,241,232,0.3);
-          margin-right: 0.4rem;
+          margin-right: 0.35rem;
         }
         .h-social-link {
           color: rgba(244,241,232,0.75);
           display: flex; align-items: center; justify-content: center;
-          width: 32px; height: 32px;
+          width: 30px; height: 30px;
           text-decoration: none;
           transition: color 0.3s, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
@@ -512,25 +510,26 @@ export const HeroSection: React.FC = () => {
           .hero-root {
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
+            justify-content: center;
+            padding-top: 1.25rem;
+            padding-bottom: 1.5rem;
           }
           .hero-root::before { display: none; }
 
-          /* Esconde background layers absolutas no mobile */
           .h-bg { opacity: 0.7; }
 
-          /* Avatar circular */
+          /* Avatar circular compacto para caber todo o texto na tela */
           .h-person {
             position: relative !important;
             inset: auto !important;
-            width: 150px !important;
-            height: 150px !important;
-            margin-top: calc(env(safe-area-inset-top) + 2rem);
-            margin-bottom: 1rem;
+            width: 112px !important;
+            height: 112px !important;
+            margin-top: 0.5rem;
+            margin-bottom: 0.75rem;
             border-radius: 50%;
             overflow: hidden;
-            border: 3px solid rgba(238,215,160,0.5);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+            border: 2.5px solid rgba(238,215,160,0.55);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.25);
             flex-shrink: 0;
             z-index: 10;
             will-change: auto !important;
@@ -550,93 +549,100 @@ export const HeroSection: React.FC = () => {
             transform: none !important;
           }
 
-          /* Foliagens: escondidas no mobile */
           .h-fg { display: none !important; }
 
-          /* Gradiente mobile */
           .h-gradient {
             background: linear-gradient(
               to bottom,
               rgba(32,62,70,0.35) 0%,
-              rgba(32,62,70,0.82) 40%,
-              rgba(32,62,70,0.95) 100%
+              rgba(32,62,70,0.84) 40%,
+              rgba(32,62,70,0.96) 100%
             ) !important;
           }
 
-          /* Conteúdo */
           .h-content {
             margin: 0;
             max-width: 100%;
-            padding: 0 2.5rem 0rem;
+            padding: 0 1.5rem 0 1.25rem;
             text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
           }
-          .h-title { font-size: clamp(1.8rem, 8vw, 2.4rem); margin-bottom: 0.5rem; }
-          .h-body  { font-size: 0.85rem; margin-bottom: 1.5rem; max-width: 100%; line-height: 1.6; }
-          .h-divider { margin-left: auto; margin-right: auto; margin-bottom: 0.75rem; }
+          .h-credentials { font-size: 10px; margin-bottom: 0.5rem; }
+          .h-divider { margin-left: auto; margin-right: auto; margin-bottom: 0.5rem; }
+          .h-title { font-size: clamp(1.45rem, 6.5vw, 1.95rem); margin-bottom: 0.35rem; }
+          .h-body  { font-size: 0.78rem; margin-bottom: 1rem; max-width: 38ch; line-height: 1.5; }
 
-          /* CTA row */
           .h-cta-row {
             flex-direction: column;
             align-items: center;
-            gap: 1.25rem;
-            margin-bottom: 12rem;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
           }
           .h-social { display: none !important; }
           .h-social-sep { display: none; }
         }
 
         /* ══════════════════════════════════════════════
-           TABLET & TELAS MENORES (768px – 1100px)
+           TABLET & TELAS MENORES (768px – 1150px)
         ══════════════════════════════════════════════ */
-        @media (min-width: 768px) and (max-width: 1100px) {
+        @media (min-width: 768px) and (max-width: 1150px) {
           .hero-root::before { display: none; }
           .h-person-media {
             position: absolute !important;
             bottom: -5% !important;
             left: -12% !important;
-            height: 112% !important;
+            height: 110% !important;
             width: auto !important;
             max-width: none !important;
             object-fit: contain !important;
             object-position: bottom left !important;
-            scale: 1.08 !important;
+            scale: 1.05 !important;
           }
           .h-content {
-            margin-left: clamp(1.5rem, 43vw, 460px) !important;
-            max-width: 520px !important;
-            padding-right: clamp(1.5rem, 4vw, 3rem) !important;
+            margin-left: clamp(1.5rem, 42vw, 440px) !important;
+            max-width: 500px !important;
+            padding-right: clamp(2rem, 5vw, 3.5rem) !important;
             padding-left: 0.5rem !important;
           }
           .h-title {
-            font-size: clamp(1.8rem, 3.4vw, 2.6rem) !important;
+            font-size: clamp(1.6rem, 2.9vw, 2.25rem) !important;
           }
           .h-body {
-            font-size: clamp(0.82rem, 1.1vw, 0.9rem) !important;
-            max-width: 42ch !important;
+            font-size: clamp(0.76rem, 1vw, 0.85rem) !important;
+            line-height: 1.5 !important;
+            max-width: 44ch !important;
           }
           .h-gradient {
             background: linear-gradient(
               to right,
               rgba(32,62,70,0.0) 0%,
-              rgba(32,62,70,0.3) 35%,
-              rgba(32,62,70,0.78) 55%,
-              rgba(32,62,70,0.92) 100%
+              rgba(32,62,70,0.35) 35%,
+              rgba(32,62,70,0.82) 55%,
+              rgba(32,62,70,0.94) 100%
             ) !important;
           }
         }
 
+        /* Telas de notebook com altura reduzida (≤ 760px) */
+        @media (min-width: 768px) and (max-height: 760px) {
+          .h-credentials { margin-bottom: 0.4rem !important; font-size: 10px !important; }
+          .h-divider { margin-bottom: 0.5rem !important; }
+          .h-title { font-size: clamp(1.55rem, 2.7vw, 2.15rem) !important; margin-bottom: 0.4rem !important; }
+          .h-body { font-size: 0.78rem !important; line-height: 1.48 !important; margin-bottom: 0.9rem !important; }
+          .h-cta { min-height: 38px !important; padding: 0.5rem 1.4rem !important; font-size: 10.5px !important; }
+        }
+
         @media (min-width: 768px) and (max-width: 1023px) and (orientation: portrait) {
           .h-person-media {
-            height: 75vh !important;
+            height: 72vh !important;
             left: -18% !important;
             bottom: -2% !important;
           }
           .h-content {
             margin-left: 36vw !important;
-            max-width: 60vw !important;
+            max-width: 58vw !important;
           }
         }
 
