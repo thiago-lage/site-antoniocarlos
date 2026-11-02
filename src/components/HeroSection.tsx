@@ -209,11 +209,17 @@ export const HeroSection: React.FC = () => {
         </p>
         <div className="h-divider animate-up delay-1" aria-hidden="true" />
         <h1 className="h-title animate-up delay-1">
-          O corpo como caminho<br />
-          <em>para a consciência</em>
+          Um olhar para além<br />
+          <em>dos sintomas</em>
         </h1>
+        <p className="animate-up delay-1 text-[#F4F1E8] font-medium text-sm md:text-base mb-3 tracking-wide">
+          Você chega com um sintoma. Nós acolhemos a pessoa inteira.
+        </p>
         <p className="h-body animate-up delay-2">
-          "O corpo guarda e expressa nossa história. Escutá-lo é um caminho para compreender sintomas, emoções e vínculos — e reconhecer novas possibilidades de viver com mais consciência, liberdade e inteireza."
+          Ansiedade, tristeza, crises de pânico, insônia, cansaço e dores persistentes podem comprometer o bem-estar, os relacionamentos e a qualidade de vida. Cada sintoma merece ser investigado com atenção, considerando tanto suas possíveis causas clínicas quanto a história singular de quem o vivencia.
+          <strong className="block mt-2.5 text-[#EED7A0] font-medium">
+            Cuidar é aliviar o sofrimento, compreender a pessoa e ampliar suas possibilidades de viver.
+          </strong>
         </p>
         <div className="h-cta-row animate-up delay-3">
           <a

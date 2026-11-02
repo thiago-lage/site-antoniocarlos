@@ -1,9 +1,9 @@
 // Scene IDs in order
 export const SCENES = [
   'scene-1',
-  'scene-2',
   'scene-sintomas',
   'scene-caminho',
+  'scene-2',
   'scene-3',
   'scene-4',
   'scene-5',
@@ -14,9 +14,9 @@ export const SCENES = [
 
 export const SCENE_LABELS = [
   'Início',
-  'Acolhimento',
   'Sintomas',
   'Integração',
+  'Promessa',
   'Método',
   'Trajetória',
   'Síntese',

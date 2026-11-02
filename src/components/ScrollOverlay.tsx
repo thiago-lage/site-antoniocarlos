@@ -39,65 +39,13 @@ const METHOD_STEPS = [
 export const ScrollOverlay: React.FC = () => {
   return (
     <div className="relative w-full text-gray-800 font-sans pointer-events-none">
-      {/* SCENE 1: Hero */}
+      {/* SCENE 1: Hero (1. Seção de acolhimento — Um olhar para além dos sintomas) */}
       <HeroSection />
 
-      {/* SCENE 2: Seção de Acolhimento + A Promessa */}
-      <section
-        className="scene min-h-screen w-full flex flex-col justify-center items-center py-20 pl-6 pr-12 sm:px-12 md:px-16 lg:px-24 bg-cover bg-center bg-no-repeat"
-        id="scene-2"
-        style={{ backgroundImage: 'url(/background2.png)' }}
-      >
-        <div className="glass-card pointer-events-auto w-full max-w-3xl p-6 sm:p-8 md:p-12 flex flex-col items-center text-center">
-          <span className="text-label uppercase tracking-widest text-[#d7b36c] font-bold text-xs mb-2">
-            Um Olhar Para Além dos Sintomas
-          </span>
-          <h2
-            className="text-display text-2xl sm:text-3xl md:text-4xl mt-2 leading-snug"
-            style={{ color: '#163f49' }}
-          >
-            Você chega com um sintoma.<br className="hidden sm:inline" /> Nós acolhemos a pessoa inteira.
-          </h2>
-
-          <p className="text-body text-sm md:text-base mt-6 max-w-2xl text-[#5f7477]">
-            Ansiedade, tristeza, crises de pânico, insônia, cansaço e dores persistentes podem comprometer o bem-estar, os relacionamentos e a qualidade de vida.
-          </p>
-
-          <p className="text-body text-sm md:text-base mt-4 max-w-2xl text-[#5f7477]">
-            Cada sintoma merece ser investigado com atenção, considerando tanto suas possíveis causas clínicas quanto a história singular de quem o vivencia.
-          </p>
-
-          <p
-            className="text-body font-semibold text-base md:text-lg mt-6 max-w-2xl"
-            style={{ color: '#163f49' }}
-          >
-            Cuidar é aliviar o sofrimento, compreender a pessoa e ampliar suas possibilidades de viver.
-          </p>
-
-          <div
-            className="mt-8 p-5 md:p-6 rounded-2xl w-full max-w-2xl"
-            style={{
-              background: 'rgba(251, 247, 237, 0.72)',
-              border: '1px solid rgba(215, 179, 108, 0.35)',
-            }}
-          >
-            <span className="text-label text-[10px] uppercase tracking-widest text-[#6eaaa5] block mb-2">
-              A Promessa
-            </span>
-            <blockquote
-              className="text-quote text-base md:text-lg leading-relaxed"
-              style={{ color: '#28616a' }}
-            >
-              “Transformar o que o corpo revela e a história repete em consciência, autoridade interior e novas escolhas.”
-            </blockquote>
-          </div>
-        </div>
-      </section>
-
-      {/* SCENE 3 (SINTOMAS): O que seu corpo e suas emoções estão expressando? */}
+      {/* SCENE 2 (SINTOMAS): O que seu corpo e suas emoções estão expressando? */}
       <SymptomsSection />
 
-      {/* SCENE 4 (CAMINHO): Como o método integra essas experiências — Do sintoma à consciência */}
+      {/* SCENE 3 (CAMINHO): Como o método integra essas experiências — Do sintoma à consciência */}
       <section
         className="scene min-h-screen w-full flex flex-col justify-center items-center py-20 pl-6 pr-12 sm:px-12 md:px-16 lg:px-24 bg-cover bg-center bg-no-repeat"
         id="scene-caminho"
@@ -162,6 +110,23 @@ export const ScrollOverlay: React.FC = () => {
         </div>
       </section>
 
+      {/* SCENE 4: Promessa */}
+      <section
+        className="scene min-h-screen w-full flex flex-col justify-center items-center pl-6 pr-12 sm:px-12 md:px-16 lg:px-24 bg-cover bg-center bg-no-repeat"
+        id="scene-2"
+        style={{ backgroundImage: 'url(/background2.png)' }}
+      >
+        <div className="glass-card pointer-events-auto w-full max-w-xl p-6 md:p-10 flex flex-col items-center text-center">
+          <span className="text-label">A Promessa</span>
+          <blockquote className="text-heading text-xl sm:text-2xl md:text-3xl mt-4 leading-snug" style={{ color: '#163f49' }}>
+            "Transformar o que o corpo revela e a história repete em consciência, autoridade interior e novas escolhas."
+          </blockquote>
+          <p className="text-body text-sm md:text-base mt-4 max-w-lg">
+            Um cuidado que integra corpo, emoções, história e relações para que você compreenda seus padrões e encontre uma forma mais livre e consciente de viver.
+          </p>
+        </div>
+      </section>
+
       {/* SCENE 5 (MÉTODO): O Corpo como Caminho para a Consciência */}
       <section
         className="scene min-h-screen w-full flex flex-col justify-center items-center py-20 pl-6 pr-12 sm:px-12 md:px-16 lg:px-24 bg-cover bg-center bg-no-repeat"
@@ -183,7 +148,7 @@ export const ScrollOverlay: React.FC = () => {
             className="text-body text-sm md:text-base mt-4 text-center max-w-2xl"
             style={{ color: '#5f7477', lineHeight: '1.8' }}
           >
-            Ao escutar o corpo, sensações e emoções ganham significado. Padrões tornam-se conscientes e novas escolhas podem emergir — mais livres, coerentes e próprias.
+            O corpo guarda e expressa nossa história. Ao escutá-lo, sensações, sintomas, emoções e vínculos ganham significado. Padrões tornam-se conscientes e novas escolhas podem emergir — mais livres, coerentes e próprias.
           </p>
         </div>
       </section>
