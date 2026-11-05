@@ -282,6 +282,16 @@ dialog::backdrop {
   scroll-margin-top: 1rem;
 }
 
+/* Single-card scenes stay centered with balanced space above and below. */
+#scene-2,
+#scene-3,
+#scene-5,
+#scene-5b,
+#scene-acompanhamento {
+  justify-content: center;
+  padding-block: clamp(2rem, 6svh, 4rem);
+}
+
 #scene-caminho > .glass-card {
   padding: clamp(1.25rem, 2vw, 1.75rem);
 }
