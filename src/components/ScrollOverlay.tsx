@@ -39,7 +39,7 @@ export const ScrollOverlay: React.FC = () => (
         <h2 id="dimensions-title" className="text-display editorial-title mt-2">Corpo, psique, relações e transcendência</h2>
         <div className="mt-5 grid md:grid-cols-2 gap-6 text-left items-center">
           <div className="editorial-body space-y-3">
-            <p>O adoecimento é um processo complexo, que pode envolver fatores biológicos, psicológicos, comportamentais, sociais e existenciais.</p>
+            <p className="dimensions-lead">O adoecimento é um processo complexo, que pode envolver fatores biológicos, psicológicos, comportamentais, sociais e existenciais.</p>
             <p>Nossa abordagem considera também a dimensão transcendente do ser: sua busca por sentido, seus valores fundamentais, sua espiritualidade e sua relação com aquilo que ultrapassa a própria individualidade.</p>
             <p>Perdas, rupturas de sentido, conflitos de valores e crises existenciais podem participar da experiência de sofrimento e influenciar a saúde. Essa dimensão é acolhida sem presumir que toda doença tenha uma origem espiritual ou emocional.</p>
           </div>

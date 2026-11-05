@@ -400,3 +400,19 @@ dialog::backdrop {
   .contact-footer { padding-block: 1rem; }
   .footer-layout > h2 { font-size: 1.3rem; margin-block: 0.75rem; }
 }
+
+.contact-surface {
+  background: linear-gradient(to bottom, #fbf7ed 0 var(--social-band-end, 140px), #163f49 var(--social-band-end, 140px) 100%);
+}
+.footer-social .glass-card { box-shadow: 0 8px 28px rgba(22, 63, 73, 0.13); }
+.consultation-cta {
+  min-height: 60px; min-width: min(100%, 320px); padding: 1rem 2rem;
+  font-size: 14px; letter-spacing: 0.1em;
+}
+.consultation-cta svg { width: 22px; height: 22px; }
+.dimensions-lead {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.05rem, 1.55vw, 1.3rem);
+  font-weight: 500; line-height: 1.45; color: #163f49;
+  border-left: 3px solid #d7b36c; padding-left: 1rem;
+}

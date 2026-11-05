@@ -24,6 +24,15 @@ export function useViewportFit() {
         const zoom = Math.floor(scale * 1000) / 1000;
         if (Math.abs(parseFloat(group.style.zoom || '1') - zoom) > 0.001) { group.style.zoom = String(zoom); changed = true; }
       }
+      const footer = document.getElementById('scene-6');
+      const social = footer?.querySelector<HTMLElement>('.footer-social');
+      const mobileSocial = footer?.querySelector<HTMLElement>('.footer-layout .md\\:hidden');
+      const visibleSocial = social && social.offsetHeight ? social : mobileSocial;
+      if (footer && visibleSocial) {
+        const rect = visibleSocial.getBoundingClientRect();
+        const end = rect.top - footer.getBoundingClientRect().top + rect.height * 0.65;
+        footer.style.setProperty('--social-band-end', `${Math.round(end)}px`);
+      }
       if (changed) ScrollTrigger.refresh();
     };
     const schedule = () => { if (!disposed && !frame) frame = requestAnimationFrame(fit); };
