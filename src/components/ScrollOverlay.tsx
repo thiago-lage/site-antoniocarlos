@@ -62,8 +62,8 @@ export const ScrollOverlay: React.FC = () => {
             Do sintoma à consciência
           </h2>
 
-          {/* Lista compacta com linha conectora que cabe 100% em telas de notebook, tablet e celular */}
-          <div className="mt-7 md:mt-8 w-full max-w-2xl space-y-4 sm:space-y-5">
+          {/* Etapas do método com espaçamento adaptado à altura da tela */}
+          <div className="method-steps mt-5 w-full max-w-2xl space-y-2.5">
             {METHOD_STEPS.map((step, idx) => (
               <div key={step.number} className="relative flex items-stretch gap-3 sm:gap-4 text-left">
                 {/* Coluna do número + linha vertical */}
@@ -88,7 +88,7 @@ export const ScrollOverlay: React.FC = () => {
 
                 {/* Conteúdo compacto do passo */}
                 <div
-                  className="flex-1 py-3.5 px-4 sm:py-4 sm:px-5 rounded-xl border transition-transform duration-300 hover:translate-x-1"
+                  className="flex-1 method-step py-2.5 px-4 rounded-xl border transition-transform duration-300 hover:translate-x-1"
                   style={{
                     background: 'rgba(251, 247, 237, 0.75)',
                     borderColor: 'rgba(255, 255, 255, 0.78)',
@@ -97,7 +97,7 @@ export const ScrollOverlay: React.FC = () => {
                   <h3 className="text-heading text-sm sm:text-base font-semibold text-[#163f49] leading-tight">
                     {step.title}
                   </h3>
-                  <p className="text-body text-[11.5px] sm:text-xs md:text-[13px] mt-1.5 text-[#5f7477] leading-relaxed">
+                  <p className="text-body text-[11.5px] sm:text-xs md:text-[13px] mt-1 text-[#5f7477] leading-relaxed">
                     {step.description}
                   </p>
                 </div>

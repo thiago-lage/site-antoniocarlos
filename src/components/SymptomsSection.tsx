@@ -251,7 +251,7 @@ export const SymptomsSection: React.FC = () => {
       id="scene-sintomas"
       style={{ background: 'linear-gradient(170deg, #f8f4ec 0%, #eef6f5 50%, #f3e7d1 100%)' }}
     >
-      <div className="pointer-events-auto w-full max-w-5xl flex flex-col items-center">
+      <div className="pointer-events-auto w-full max-w-6xl flex flex-col items-center">
         {/* Cabeçalho */}
         <div className="text-center max-w-2xl mb-6 md:mb-8 px-2">
           <span className="text-label uppercase tracking-widest text-[#d7b36c] font-bold text-[10px] mb-1.5 block">
@@ -300,9 +300,8 @@ export const SymptomsSection: React.FC = () => {
                   {item.title}
                 </h3>
 
-                {/* Frase-síntese (sem excesso de texto no cartão) */}
-                <p className="text-quote text-xs sm:text-[13.5px] mt-1.5 text-[#28616a] leading-relaxed">
-                  “{item.subtitle}”
+                <p className="mt-2 text-[14px] font-normal text-[#244f59] leading-relaxed">
+                  {item.subtitle}
                 </p>
               </div>
             </article>
@@ -311,17 +310,17 @@ export const SymptomsSection: React.FC = () => {
 
         {/* Nota de Distinção Clínica Essencial Bem Enquadrada */}
         <div
-          className="mt-8 md:mt-9 w-full max-w-3xl py-3.5 px-5 md:py-4 md:px-8 rounded-2xl text-center border"
+          className="clinical-note mt-5 w-full py-3 px-4 rounded-2xl text-center border"
           style={{
             background: 'rgba(251, 247, 237, 0.82)',
             borderColor: 'rgba(215, 179, 108, 0.45)',
             boxShadow: '0 4px 16px rgba(22, 63, 73, 0.05)',
           }}
         >
-          <p className="text-xs sm:text-[13px] text-[#163f49] leading-relaxed">
-            <strong className="uppercase tracking-widest text-[10px] text-[#28616a] block mb-0.5">
+          <p className="text-xs text-[#163f49] leading-relaxed">
+            <strong className="uppercase tracking-wider text-[10px] text-[#28616a]">
               Distinção Clínica Essencial
-            </strong>
+            </strong>{' '}
             Nem todo sintoma corporal tem origem emocional, e compreender seu significado pessoal não substitui o diagnóstico nem o tratamento clínico.
           </p>
         </div>

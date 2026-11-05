@@ -42,18 +42,18 @@ export const getSceneScrollTop = (index: number): number => {
   }
 
   const id = SCENES[index];
+  // Pinned trajectory needs its ScrollTrigger position; ordinary sections use
+  // current document geometry, which stays accurate after fonts/images load.
   const ST = (window as any).ScrollTrigger;
-  if (ST) {
-    const st = ST.getById(id === 'scene-4' ? 'scene-4-pin' : id);
-    if (st && typeof st.start === 'number') {
-      return Math.min(maxScroll, Math.round(st.start));
+  if (id === 'scene-4' && ST) {
+    const pin = ST.getById('scene-4-pin');
+    if (pin && typeof pin.start === 'number') {
+      return Math.min(maxScroll, Math.ceil(pin.start));
     }
   }
-
-  // Fallback se o ScrollTrigger ainda não estiver pronto
   const el = document.getElementById(id);
   if (!el) return 0;
-  return Math.min(maxScroll, Math.round(el.offsetTop || (el.getBoundingClientRect().top + window.scrollY)));
+  return Math.min(maxScroll, Math.ceil(el.getBoundingClientRect().top + window.scrollY));
 };
 
 /**
