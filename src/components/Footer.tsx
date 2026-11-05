@@ -108,13 +108,13 @@ export const Footer: React.FC = () => {
               className="text-display text-xl sm:text-2xl md:text-3xl text-[#fbf7ed] font-medium leading-snug"
               style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
             >
-              Seu sofrimento merece ser ouvido.<br className="hidden sm:inline" /> Sua história merece ser compreendida.
+              O primeiro passo é uma conversa.
             </h2>
             <p className="text-xs sm:text-sm text-[#fbf7ed]/85 max-w-lg leading-relaxed font-light">
-              O primeiro passo pode ser uma conversa que considere não apenas o que você sente, mas quem você é e como está vivendo.
+              Um encontro para compreender o que você sente, o que está vivendo e quais caminhos de cuidado podem ser construídos.
             </p>
             <a
-              href="https://wa.me/5527998644435?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta%20com%20Dr.%20Ant%C3%B4nio%20Carlos."
+              href="https://wa.me/5527998644435?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta%20com%20Dr.%20Ant%C3%B4nio%20Carlos%20Lage."
               target="_blank"
               rel="noopener noreferrer"
               className="mt-1 inline-flex items-center gap-2 px-7 py-2.5 bg-[#d7b36c] text-[#163f49] rounded-full text-[11px] font-bold tracking-widest uppercase transition-transform hover:scale-105 shadow-lg"
@@ -128,10 +128,12 @@ export const Footer: React.FC = () => {
         </div>
       </div>
 
+      <p className="text-quote text-sm text-[#eed7a0] text-center px-4 mb-4">Da consciência governada pelo medo à consciência guiada pelo amor.</p>
+
       {/* Simple Footer Credit */}
       <div className="w-full flex flex-col items-center border-t border-[#6eaaa5]/20 pt-3 pb-2 relative z-10">
         <span className="text-label text-[10px] text-[#6eaaa5]/80 text-center px-4 leading-relaxed max-w-[280px] md:max-w-none">
-          Dr. Antônio Carlos • Médico CRM-3916 • Homeopatia RQE-3783
+          Dr. Antônio Carlos Lage • Médico CRM-3916 • Homeopatia RQE-3783
         </span>
       </div>
     </section>

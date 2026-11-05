@@ -4,290 +4,157 @@ import { SymptomsSection } from './SymptomsSection';
 import { TrajectorySection } from './TrajectorySection';
 
 const METHOD_STEPS = [
-  {
-    number: '1',
-    title: 'Sintoma',
-    description:
-      'Acolher o sintoma e escutar como ele afeta o corpo, as emoções e a vida de cada pessoa.',
-  },
-  {
-    number: '2',
-    title: 'Investigação',
-    description:
-      'Identificar fatores físicos, emocionais, comportamentais e relacionais que possam contribuir para o sofrimento.',
-  },
-  {
-    number: '3',
-    title: 'Compreensão',
-    description:
-      'Compreender os sintomas à luz da avaliação clínica, da história de vida e dos padrões de resposta do corpo.',
-  },
-  {
-    number: '4',
-    title: 'Cuidado',
-    description:
-      'Utilizar recursos médicos, psicoterapêuticos e corporais conforme as necessidades e indicações individuais.',
-  },
-  {
-    number: '5',
-    title: 'Transformação',
-    description:
-      'Favorecer escolhas mais conscientes, autonomia, capacidade de autorregulação e qualidade de vida.',
-  },
+  { title: 'Acolher e escutar', description: 'Compreender o sofrimento, a história de vida e as expectativas da pessoa.' },
+  { title: 'Investigar e compreender', description: 'Avaliar sintomas, condições clínicas, hábitos, emoções, vínculos e questões existenciais.' },
+  { title: 'Perceber e reconhecer', description: 'Desenvolver consciência corporal, identificar padrões e reconhecer recursos internos.' },
+  { title: 'Integrar e cuidar', description: 'Construir um plano individualizado, utilizando abordagens médicas e psicoterapêuticas apropriadas.' },
+  { title: 'Transformar e transcender', description: 'Ampliar a autonomia, fortalecer escolhas e cultivar uma vida coerente com os próprios valores.' },
 ];
 
-export const ScrollOverlay: React.FC = () => {
-  return (
-    <div className="relative w-full text-gray-800 font-sans pointer-events-none">
-      {/* SCENE 1: Hero (1. Seção de acolhimento — Um olhar para além dos sintomas) */}
-      <HeroSection />
+const DIMENSIONS = [
+  { title: 'Corpo', dimension: 'Dimensão biológica', text: 'Fisiologia, metabolismo, sintomas e doenças.' },
+  { title: 'Psique', dimension: 'Dimensão emocional', text: 'Sentimentos, traumas, crenças e padrões de resposta.' },
+  { title: 'Relações', dimension: 'Dimensão sistêmica', text: 'Vínculos, pertencimento e história familiar.' },
+  { title: 'Transcendência', dimension: 'Dimensão existencial', text: 'Sentido, valores, espiritualidade e liberdade interior.' },
+];
 
-      {/* SCENE 2 (SINTOMAS): O que seu corpo e suas emoções estão expressando? */}
-      <SymptomsSection />
+const APPROACHES = [
+  { title: 'Medicina Integrativa', text: 'Investigação clínica abrangente, hábitos de vida, alimentação, sono, metabolismo e prevenção, articulando tratamentos convencionais e recursos complementares quando apropriados.' },
+  { title: 'Psicoterapia e Autoconhecimento', text: 'Escuta das emoções, experiências de vida, conflitos, padrões relacionais e processos de desenvolvimento da consciência.' },
+  { title: 'Consciência e Expressão Corporal', text: 'Recursos de percepção corporal, respiração, movimento e expressão emocional para ampliar a presença e a autorregulação.' },
+  { title: 'Dimensão Existencial e Transcendente', text: 'Reflexão sobre propósito, valores, finitude, espiritualidade e liberdade interior, respeitando as crenças e a visão de mundo de cada pessoa.' },
+];
 
-      {/* SCENE 3 (CAMINHO): Como o método integra essas experiências — Do sintoma à consciência */}
-      <section
-        className="scene content-scene min-h-screen w-full flex flex-col justify-center items-center py-8 md:py-10 pl-5 pr-10 sm:px-10 md:px-14 lg:px-20 bg-cover bg-center bg-no-repeat"
-        id="scene-caminho"
-        style={{ backgroundImage: 'url(/background2.png)' }}
-      >
-        <div className="glass-card pointer-events-auto w-full max-w-3xl p-5 sm:p-6 md:p-7 flex flex-col items-center">
-          <span className="text-label uppercase tracking-widest text-[#d7b36c] font-bold text-[10px] mb-1 text-center">
-            Como o Método Integra Essas Experiências
-          </span>
-          <h2
-            className="text-display text-xl sm:text-2xl md:text-[28px] leading-tight text-center"
-            style={{ color: '#163f49' }}
-          >
-            Do sintoma à consciência
-          </h2>
+const sectionClass = 'scene content-scene centered-scene w-full flex flex-col items-center px-5 pr-10 sm:px-10 md:px-14 lg:px-20 bg-cover bg-center bg-no-repeat';
+const cardClass = 'glass-card editorial-card pointer-events-auto w-full max-w-4xl p-6 md:p-8 text-center';
+const background = { backgroundImage: 'url(/background2.png)' };
+const bookingUrl = 'https://wa.me/5527998644435?text=' + encodeURIComponent('Olá, gostaria de agendar uma consulta com Dr. Antônio Carlos Lage.');
 
-          {/* Etapas do método com espaçamento adaptado à altura da tela */}
-          <div className="method-steps mt-5 w-full max-w-2xl space-y-2.5">
-            {METHOD_STEPS.map((step, idx) => (
-              <div key={step.number} className="relative flex items-stretch gap-3 sm:gap-4 text-left">
-                {/* Coluna do número + linha vertical */}
-                <div className="flex flex-col items-center shrink-0">
-                  <div
-                    className="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center font-bold text-xs shadow-xs border"
-                    style={{
-                      background: '#163f49',
-                      color: '#fbf7ed',
-                      borderColor: 'rgba(215, 179, 108, 0.5)',
-                    }}
-                  >
-                    {step.number}
-                  </div>
-                  {idx < METHOD_STEPS.length - 1 && (
-                    <div
-                      className="w-[2px] flex-1 min-h-[1rem] mt-1"
-                      style={{ background: 'rgba(83, 183, 174, 0.35)' }}
-                    />
-                  )}
-                </div>
+export const ScrollOverlay: React.FC = () => (
+  <div className="relative w-full text-gray-800 font-sans pointer-events-none">
+    <HeroSection />
+    <SymptomsSection />
 
-                {/* Conteúdo compacto do passo */}
-                <div
-                  className="flex-1 method-step py-2.5 px-4 rounded-xl border transition-transform duration-300 hover:translate-x-1"
-                  style={{
-                    background: 'rgba(251, 247, 237, 0.75)',
-                    borderColor: 'rgba(255, 255, 255, 0.78)',
-                  }}
-                >
-                  <h3 className="text-heading text-sm sm:text-base font-semibold text-[#163f49] leading-tight">
-                    {step.title}
-                  </h3>
-                  <p className="text-body text-[11.5px] sm:text-xs md:text-[13px] mt-1 text-[#5f7477] leading-relaxed">
-                    {step.description}
-                  </p>
-                </div>
+    <section id="scene-2" className={sectionClass} style={background} aria-labelledby="dimensions-title">
+      <div className={`${cardClass} max-w-5xl`}>
+        <span className="text-label">O ser humano para além dos sintomas</span>
+        <h2 id="dimensions-title" className="text-display editorial-title mt-2">Corpo, psique, relações e transcendência</h2>
+        <div className="mt-5 grid md:grid-cols-2 gap-6 text-left items-center">
+          <div className="editorial-body space-y-3">
+            <p>O adoecimento é um processo complexo, que pode envolver fatores biológicos, psicológicos, comportamentais, sociais e existenciais.</p>
+            <p>Nossa abordagem considera também a dimensão transcendente do ser: sua busca por sentido, seus valores fundamentais, sua espiritualidade e sua relação com aquilo que ultrapassa a própria individualidade.</p>
+            <p>Perdas, rupturas de sentido, conflitos de valores e crises existenciais podem participar da experiência de sofrimento e influenciar a saúde. Essa dimensão é acolhida sem presumir que toda doença tenha uma origem espiritual ou emocional.</p>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-3">
+            {DIMENSIONS.map(item => (
+              <div key={item.title} className="glass-card-inner p-4">
+                <span className="text-label text-[9px]">{item.dimension}</span>
+                <h3 className="text-heading text-lg text-[#163f49] mt-1">{item.title}</h3>
+                <p className="editorial-body mt-2">{item.text}</p>
               </div>
             ))}
           </div>
         </div>
-      </section>
+        <p className="editorial-body mt-5 text-center"><strong>Integração das dimensões do ser</strong><br />Uma compreensão ampliada da saúde e do sofrimento</p>
+      </div>
+    </section>
 
-      {/* SCENE 4: Promessa */}
-      <section
-        className="scene content-scene min-h-screen w-full flex flex-col justify-center items-center py-10 pl-5 pr-10 sm:px-12 md:px-16 lg:px-24 bg-cover bg-center bg-no-repeat"
-        id="scene-2"
-        style={{ backgroundImage: 'url(/background2.png)' }}
-      >
-        <div className="glass-card pointer-events-auto w-full max-w-xl p-6 md:p-8 flex flex-col items-center text-center">
-          <span className="text-label text-[10px]">A Promessa</span>
-          <blockquote className="text-heading text-lg sm:text-xl md:text-2xl mt-3 leading-snug" style={{ color: '#163f49' }}>
-            "Transformar o que o corpo revela e a história repete em consciência, autoridade interior e novas escolhas."
-          </blockquote>
-          <p className="text-body text-xs sm:text-sm md:text-[15px] mt-3 max-w-lg leading-relaxed">
-            Um cuidado que integra corpo, emoções, história e relações para que você compreenda seus padrões e encontre uma forma mais livre e consciente de viver.
-          </p>
+    <section id="scene-3" className={sectionClass} style={background} aria-labelledby="method-title">
+      <div className={cardClass}>
+        <span className="text-label">O método</span>
+        <h2 id="method-title" className="text-display editorial-title mt-2">O Corpo como Caminho para a Consciência</h2>
+        <p className="text-heading text-base sm:text-lg text-[#28616a] mt-4">O corpo não é o destino final. É um dos lugares onde a consciência começa e se reencontra.</p>
+        <p className="editorial-body mt-4">Por meio da percepção corporal, da escuta emocional e da reflexão sobre a própria história, buscamos reconhecer padrões, ampliar a liberdade interior e favorecer escolhas mais conscientes.</p>
+        <p className="text-label mt-5">Três perguntas fundamentais</p>
+        <div className="grid md:grid-cols-3 gap-3 mt-3 text-left">
+          {[
+            ['O que está acontecendo?', 'A identificação e investigação do sintoma.'],
+            ['Como isso se relaciona com minha história?', 'A compreensão dos fatores que participam do sofrimento.'],
+            ['Que novas possibilidades de vida podem emergir?', 'A construção de recursos, autonomia e sentido.'],
+          ].map(([question, answer]) => (
+            <div className="glass-card-inner p-4" key={question}>
+              <h3 className="text-heading text-base text-[#163f49]">{question}</h3>
+              <p className="editorial-body mt-2">{answer}</p>
+            </div>
+          ))}
         </div>
-      </section>
+        <p className="editorial-body mt-4">A dimensão transcendente amplia essa investigação, convidando a pessoa, quando fizer sentido para ela, a reconhecer seus valores essenciais, sua espiritualidade e aquilo que confere direção à existência.</p>
+      </div>
+    </section>
 
-      {/* SCENE 5 (MÉTODO): O Corpo como Caminho para a Consciência */}
-      <section
-        className="scene content-scene min-h-screen w-full flex flex-col justify-center items-center py-10 pl-5 pr-10 sm:px-12 md:px-16 lg:px-24 bg-cover bg-center bg-no-repeat"
-        id="scene-3"
-        style={{ backgroundImage: 'url(/background2.png)' }}
-      >
-        <div className="glass-card pointer-events-auto w-full max-w-3xl p-6 md:p-8 flex flex-col items-center text-center">
-          <span className="text-label uppercase tracking-widest text-[#d7b36c] font-bold text-[10px] mb-1.5">
-            Método Autoral
-          </span>
-          <h2 className="text-display text-xl sm:text-2xl md:text-3xl mt-1" style={{ color: '#163f49' }}>
-            O Corpo como Caminho para a Consciência
-          </h2>
-          <p className="text-body font-semibold text-sm sm:text-base md:text-[17px] mt-4" style={{ color: '#28616a' }}>
-            O corpo não é o destino final.<br />
-            É o lugar onde a consciência começa e se reencontra.
-          </p>
-          <p
-            className="text-body text-xs sm:text-sm md:text-[15px] mt-3 text-center max-w-xl leading-relaxed"
-            style={{ color: '#5f7477' }}
-          >
-            O corpo guarda e expressa nossa história. Ao escutá-lo, sensações, sintomas, emoções e vínculos ganham significado. Padrões tornam-se conscientes e novas escolhas podem emergir — mais livres, coerentes e próprias.
-          </p>
-        </div>
-      </section>
-
-      {/* SCENE 6 (TRAJETÓRIA): A Grande Trajetória */}
-      <TrajectorySection />
-
-      {/* SCENE 7: Síntese */}
-      <section
-        className="scene content-scene min-h-screen w-full hidden md:flex flex-col justify-center items-center py-10 pl-6 pr-12 sm:px-12 md:px-16 lg:px-24"
-        id="scene-5"
-        style={{ background: 'linear-gradient(170deg, #f3e7d1 0%, #f8f4ec 50%, #eef6f5 100%)' }}
-      >
-        <div className="glass-card pointer-events-auto w-full max-w-2xl p-6 md:p-8 flex flex-col items-center text-center">
-          <span className="text-label uppercase tracking-widest text-[#d7b36c] font-bold text-[10px] mb-1.5">
-            A Síntese
-          </span>
-
-          {/* Cards elegantes e centralizados */}
-          <div
-            className="flex md:flex-wrap overflow-x-auto md:overflow-visible snap-x snap-mandatory md:justify-center gap-2.5 md:gap-3 mt-5 mb-5 w-full max-w-2xl px-4 md:px-0 pb-2 md:pb-0 scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
-            style={{ WebkitOverflowScrolling: 'touch' }}
-          >
-            {[
-              'O organismo reage',
-              'A sensação informa',
-              'A consciência percebe',
-              'A regulação permanece',
-              'O símbolo amplia',
-              'A história contextualiza',
-              'A autoridade escolhe',
-              'A ação encarna',
-            ].map((text, i) => (
-              <div
-                key={i}
-                className="snap-center shrink-0 px-4 py-2.5 rounded-full border text-[11px] md:text-xs font-bold tracking-wider uppercase flex items-center justify-center text-center"
-                style={{
-                  background: 'rgba(251, 247, 237, 0.76)',
-                  borderColor: 'rgba(255, 255, 255, 0.68)',
-                  color: '#163f49',
-                  boxShadow: '0 4px 16px rgba(22, 63, 73, 0.05)',
-                }}
-              >
-                {text}
+    <section id="scene-caminho" className={sectionClass} style={background} aria-labelledby="journey-title">
+      <div className={`${cardClass} max-w-3xl`}>
+        <span className="text-label">O percurso terapêutico</span>
+        <h2 id="journey-title" className="text-display editorial-title mt-2">Da escuta à transformação</h2>
+        <p className="editorial-body mt-3">Do sintoma à compreensão. Da compreensão à consciência.<br className="hidden sm:block" /> Da consciência à transformação.</p>
+        <ol className="method-steps mt-5 space-y-2.5 text-left">
+          {METHOD_STEPS.map((step, index) => (
+            <li key={step.title} className="flex items-start gap-3">
+              <span className="w-7 h-7 shrink-0 rounded-full bg-[#163f49] text-[#fbf7ed] flex items-center justify-center text-xs font-semibold mt-1">{index + 1}</span>
+              <div className="method-step glass-card-inner flex-1 px-4 py-2.5">
+                <h3 className="text-heading text-base text-[#163f49]">{step.title}</h3>
+                <p className="editorial-body mt-1">{step.description}</p>
               </div>
-            ))}
-          </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
 
-          <div className="text-body text-xs sm:text-sm md:text-[15px] mt-3 text-[#5f7477]">
-            <p>
-              O corpo deixa de ser apenas aquilo que dói, que envelhece ou precisa ser corrigido.<br />
-              <span className="text-[#163f49] font-bold mt-1.5 block">
-                Torna-se casa, recurso, presença e possibilidade.
-              </span>
-            </p>
-          </div>
+    <TrajectorySection />
+
+    <section id="scene-5" className={sectionClass} style={{ background: 'linear-gradient(170deg, #f3e7d1 0%, #f8f4ec 50%, #eef6f5 100%)' }} aria-labelledby="approaches-title">
+      <div className={cardClass}>
+        <span className="text-label">Abordagens terapêuticas</span>
+        <h2 id="approaches-title" className="text-display editorial-title mt-2">Diferentes saberes a serviço de uma pessoa única</h2>
+        <p className="editorial-body mt-4">O atendimento integra conhecimentos da medicina, da psicoterapia e de práticas corporais, respeitando as indicações, os limites e o grau de evidência de cada recurso.</p>
+        <div className="grid md:grid-cols-2 gap-4 mt-5 text-left">
+          {APPROACHES.map(item => (
+            <div className="glass-card-inner p-4" key={item.title}>
+              <h3 className="text-heading text-lg text-[#163f49]">{item.title}</h3>
+              <p className="editorial-body mt-2">{item.text}</p>
+            </div>
+          ))}
         </div>
-      </section>
+      </div>
+    </section>
 
-      {/* SCENE 8: O Princípio */}
-      <section
-        className="scene content-scene min-h-screen w-full flex flex-col justify-center items-center py-10 pl-5 pr-10 sm:px-12 md:px-16 lg:px-24"
-        id="scene-5b"
-        style={{ background: 'linear-gradient(170deg, #eef6f5 0%, #f8f4ec 50%, #f3e7d1 100%)' }}
-      >
-        <div className="glass-card pointer-events-auto w-full max-w-xl p-6 md:p-8 flex flex-col items-center text-center">
-          <span className="text-label uppercase tracking-widest text-[#d7b36c] font-bold text-[10px] mb-1.5">
-            O Princípio
-          </span>
-          <h2 className="text-display text-xl sm:text-2xl md:text-3xl mt-1" style={{ color: '#163f49' }}>
-            A Essência do Método
-          </h2>
-          <div
-            className="mt-5 p-4 md:p-6 rounded-2xl text-center w-full"
-            style={{
-              background: 'rgba(251, 247, 237, 0.7)',
-              border: '1px solid rgba(22, 63, 73, 0.1)',
-            }}
-          >
-            <p className="text-quote text-sm sm:text-base md:text-lg font-playfair text-[#163f49] italic leading-relaxed">
-              “O caminho não é libertar a consciência do corpo, mas ampliar a consciência para habitá-lo com presença, liberdade, responsabilidade e sentido.”
-            </p>
-          </div>
+    <section id="scene-5b" className={sectionClass} style={background} aria-labelledby="about-title">
+      <div className={cardClass}>
+        <span className="text-label">Sobre o médico</span>
+        <img src="/avatar.png" alt="Dr. Antônio Carlos de Lacerda Lage" loading="lazy" width="96" height="96" className="w-24 h-24 rounded-full object-cover mx-auto mt-4 border-2 border-[#d7b36c]/50" />
+        <h2 id="about-title" className="text-display editorial-title mt-4">Dr. Antônio Carlos de Lacerda Lage</h2>
+        <p className="text-heading text-base text-[#28616a] mt-2">Médico integrativo e psicoterapeuta</p>
+        <div className="editorial-body mt-5 space-y-3 max-w-2xl mx-auto">
+          <p>Com quatro décadas de experiência médica e uma trajetória dedicada ao estudo do ser humano, desenvolveu uma abordagem que articula investigação clínica, psicoterapia, consciência corporal e compreensão existencial.</p>
+          <p>Sua formação reúne experiências em Homeopatia, Medicina Tradicional Chinesa, Medicina Antroposófica, Ayurveda, Medicina Funcional Integrativa e diferentes abordagens psicoterapêuticas.</p>
+          <p>Seu trabalho é orientado pelo respeito à singularidade humana e pela convicção de que o cuidado deve contemplar tanto o sofrimento quanto as possibilidades de desenvolvimento da pessoa.</p>
         </div>
-      </section>
+      </div>
+    </section>
 
-      {/* SCENE 9 (ACOMPANHAMENTO): Um cuidado construído com você */}
-      <section
-        className="scene content-scene min-h-screen w-full flex flex-col justify-center items-center py-10 pl-5 pr-10 sm:px-12 md:px-16 lg:px-24 bg-cover bg-center bg-no-repeat"
-        id="scene-acompanhamento"
-        style={{ backgroundImage: 'url(/background2.png)' }}
-      >
-        <div className="glass-card pointer-events-auto w-full max-w-2xl p-5 sm:p-7 md:p-8 flex flex-col items-center text-center">
-          <span className="text-label uppercase tracking-widest text-[#d7b36c] font-bold text-[10px] mb-1">
-            Apresentação do Acompanhamento
-          </span>
-          <h2 className="text-display text-xl sm:text-2xl md:text-3xl mt-1" style={{ color: '#163f49' }}>
-            Um cuidado construído com você
-          </h2>
-
-          <p className="text-body text-xs sm:text-sm md:text-[14.5px] mt-4 max-w-xl text-[#5f7477] leading-relaxed">
-            A primeira consulta é dedicada à escuta e à avaliação abrangente da pessoa. A partir dela, construímos uma proposta individualizada de acompanhamento, considerando necessidades clínicas, objetivos terapêuticos e o momento de vida.
-          </p>
-
-          <p className="text-body text-xs sm:text-sm md:text-[14.5px] mt-2.5 max-w-xl text-[#5f7477] leading-relaxed">
-            As sessões podem ocorrer semanalmente, mensalmente ou em intervalos maiores, de acordo com a estratégia definida em conjunto.
-          </p>
-
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-5 w-full">
-            {[
-              {
-                title: '1ª Consulta',
-                subtitle: 'Escuta profunda e avaliação clínica abrangente',
-              },
-              {
-                title: 'Plano Singular',
-                subtitle: 'Proposta terapêutica alinhada ao seu momento de vida',
-              },
-              {
-                title: 'Ritmo Flexível',
-                subtitle: 'Encontros semanais, mensais ou conforme a necessidade',
-              },
-            ].map((item, i) => (
-              <div
-                key={i}
-                className="p-3 rounded-xl border text-center"
-                style={{
-                  background: 'rgba(251, 247, 237, 0.75)',
-                  borderColor: 'rgba(255, 255, 255, 0.78)',
-                }}
-              >
-                <strong className="text-[11px] uppercase tracking-widest font-bold text-[#163f49] block">
-                  {item.title}
-                </strong>
-                <span className="text-[11.5px] text-[#5f7477] mt-1 block leading-snug">
-                  {item.subtitle}
-                </span>
-              </div>
-            ))}
-          </div>
+    <section id="scene-acompanhamento" className={sectionClass} style={background} aria-labelledby="care-title">
+      <div className={`${cardClass} max-w-3xl`}>
+        <span className="text-label">Atendimento e acompanhamento</span>
+        <h2 id="care-title" className="text-display editorial-title mt-2">Um cuidado construído com você</h2>
+        <p className="editorial-body mt-4">A primeira consulta é um espaço de escuta, investigação e compreensão da história pessoal e clínica. A partir dessa avaliação, é construído um plano individualizado, considerando necessidades, objetivos e possibilidades de acompanhamento.</p>
+        <p className="editorial-body mt-3">O processo pode envolver consultas médicas, encontros psicoterapêuticos e recursos de consciência corporal, sempre conforme a indicação e a escolha compartilhada.</p>
+        <div className="glass-card-inner mt-5 p-5">
+          <h3 className="text-heading text-xl text-[#163f49]">O primeiro passo é uma conversa.</h3>
+          <p className="editorial-body mt-2">Um encontro para compreender o que você sente, o que está vivendo e quais caminhos de cuidado podem ser construídos.</p>
+          <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="booking-link mt-4">Agende sua consulta <span aria-hidden="true">→</span></a>
         </div>
-      </section>
-    </div>
-  );
-};
+      </div>
+    </section>
+
+    <section id="scene-encerramento" className={sectionClass} style={{ background: 'linear-gradient(170deg, #eef6f5 0%, #f8f4ec 50%, #f3e7d1 100%)' }} aria-labelledby="closing-title">
+      <div className={`${cardClass} max-w-3xl`}>
+        <span className="text-label">Consciência, sentido e transcendência</span>
+        <h2 id="closing-title" className="text-display editorial-title mt-3">Cuidar do corpo. Compreender a alma. Despertar a consciência.</h2>
+        <p className="editorial-body mt-5">A saúde não se resume à ausência de sintomas. Ela envolve também a capacidade de viver com consciência, cultivar vínculos, reconhecer valores e encontrar sentido na própria existência.</p>
+        <blockquote className="text-quote text-base sm:text-lg mt-5">“O sintoma pede cuidado. A história pede compreensão. O ser, em sua profundidade, busca sentido e transcendência.”</blockquote>
+        <p className="editorial-body mt-5">O cuidado respeita suas crenças e sua visão de mundo. O adoecimento não significa falta de fé, propósito, consciência ou capacidade de amar.</p>
+      </div>
+    </section>
+  </div>
+);

@@ -279,7 +279,7 @@ dialog::backdrop {
   justify-content: flex-start;
   padding-top: clamp(2rem, 6svh, 4rem);
   padding-bottom: clamp(4rem, 9svh, 6rem);
-  scroll-margin-top: 1rem;
+  scroll-margin-top: 0;
 }
 
 /* Single-card scenes stay centered with balanced space above and below. */
@@ -316,3 +316,28 @@ dialog::backdrop {
   #scene-sintomas article > div > .flex { margin-bottom: 0.5rem; }
   #scene-sintomas .grid { gap: 1rem; }
 }
+
+/* Editorial sections retain the centered cards approved for the site. */
+.centered-scene {
+  justify-content: center;
+  padding-block: clamp(1.5rem, 5svh, 3.5rem);
+}
+.editorial-title { font-size: clamp(1.35rem, 2.3vw, 1.9rem); color: #163f49; }
+.editorial-body { font-size: 13px; line-height: 1.65; color: #49666c; font-weight: 400; }
+.booking-link {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.75rem;
+  border-radius: 999px; padding: 0.75rem 1.5rem; background: #163f49; color: #fbf7ed;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+}
+.booking-link:hover { background: #28616a; }
+.booking-link:focus-visible { outline: 2px solid #28616a; outline-offset: 4px; }
+@media (max-width: 767px) {
+  .editorial-card { padding: 1.5rem; }
+  .editorial-body { font-size: 13px; line-height: 1.7; }
+}
+@media (min-width: 768px) and (max-height: 760px) {
+  .editorial-card { padding: 1.5rem; }
+  .editorial-body { font-size: 12px; line-height: 1.55; }
+}
+
+#scene-caminho.centered-scene { padding-block: 1.5rem; }

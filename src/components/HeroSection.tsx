@@ -204,27 +204,25 @@ export const HeroSection: React.FC = () => {
         <p className="h-credentials animate-up text-[#EED7A0] tracking-wider text-[10px] md:text-[11px] uppercase font-bold">
           DR. ANTÔNIO CARLOS LAGE<br />
           <span className="font-medium text-white/80 normal-case tracking-normal">
-            Médico CRM-3916 • Homeopatia RQE - 3783<br />Saúde Mental, Corpo e Sistema
+            Médico CRM-3916 • Homeopatia RQE - 3783<br />Medicina Integrativa • Psicoterapia • Consciência • Transcendência
           </span>
         </p>
         <div className="h-divider animate-up delay-1" aria-hidden="true" />
         <h1 className="h-title animate-up delay-1">
-          Um olhar para além<br />
-          <em>dos sintomas</em>
+          O Corpo como Caminho<br />
+          <em>para a Consciência</em>
         </h1>
-        <p className="animate-up delay-1 text-[#F4F1E8] font-medium text-xs sm:text-sm md:text-[15px] mb-2 tracking-wide">
-          Você chega com um sintoma.<br />
-          Nós acolhemos a pessoa inteira.
+        <p className="animate-up delay-1 text-[#F4F1E8] font-medium text-xs sm:text-sm md:text-[15px] mb-3 tracking-wide">
+          Um olhar integrativo sobre a saúde,<br />o sofrimento e o sentido de viver.
         </p>
-        <p className="h-body animate-up delay-2">
-          Cada sintoma merece ser investigado com atenção, considerando tanto suas possíveis causas clínicas quanto a história singular de quem o vivencia.
-          <strong className="block mt-2 text-[#EED7A0] font-medium">
-            Cuidar é aliviar o sofrimento, compreender a pessoa e ampliar suas possibilidades de viver.
-          </strong>
-        </p>
+        <div className="h-body animate-up delay-2 space-y-3">
+          <p>O corpo expressa nossa condição biológica e participa de nossa experiência emocional, relacional e existencial.</p>
+          <p>Cada sintoma merece uma investigação cuidadosa. Cada pessoa traz uma história singular, com seus vínculos, conflitos, valores e possibilidades de transformação.</p>
+          <p className="text-[#EED7A0] font-medium">Mais do que tratar sintomas, buscamos compreender o ser humano em sua integralidade.</p>
+        </div>
         <div className="h-cta-row animate-up delay-3">
           <a
-            href="https://wa.me/5527998644435?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta%20com%20Dr.%20Ant%C3%B4nio%20Carlos."
+            href="https://wa.me/5527998644435?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta%20com%20Dr.%20Ant%C3%B4nio%20Carlos%20Lage."
             target="_blank"
             rel="noopener noreferrer"
             className="h-cta"

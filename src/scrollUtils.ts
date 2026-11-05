@@ -2,27 +2,30 @@
 export const SCENES = [
   'scene-1',
   'scene-sintomas',
-  'scene-caminho',
   'scene-2',
   'scene-3',
+  'scene-caminho',
   'scene-4',
   'scene-5',
   'scene-5b',
   'scene-acompanhamento',
+  'scene-encerramento',
   'scene-6',
 ];
 
 export const SCENE_LABELS = [
-  'Início',
-  'Sintomas',
-  'Integração',
-  'Promessa',
-  'Método',
-  'Trajetória',
-  'Síntese',
-  'Princípio',
-  'Acompanhamento',
-  'Contato',
+  'Início', 'Sintomas', 'Dimensões do ser', 'O Método', 'Percurso terapêutico',
+  'Trajetória', 'Abordagens', 'Sobre Mim', 'Contato', 'Encerramento', 'Redes e agendamento',
+];
+
+// Six primary areas; arrows still visit every section within each area.
+export const PRIMARY_NAV = [
+  { label: 'Início', sceneId: 'scene-1' },
+  { label: 'Sintomas', sceneId: 'scene-sintomas' },
+  { label: 'O Método', sceneId: 'scene-2' },
+  { label: 'Abordagens', sceneId: 'scene-5' },
+  { label: 'Sobre Mim', sceneId: 'scene-5b' },
+  { label: 'Contato', sceneId: 'scene-acompanhamento' },
 ];
 
 /**

@@ -22,7 +22,7 @@ const SYMPTOMS: SymptomItem[] = [
     title: 'Ansiedade',
     subtitle: 'Quando a mente antecipa perigos e o corpo permanece em alerta.',
     summary:
-      'Compreendemos preocupações excessivas, tensão muscular, palpitações, desconfortos digestivos e padrões de hipervigilância. A abordagem integra avaliação clínica, regulação corporal e compreensão das experiências emocionais.',
+      'Investigação clínica, regulação corporal e compreensão dos medos e inseguranças.',
     gradient: 'linear-gradient(135deg, rgba(83, 183, 174, 0.22) 0%, rgba(215, 179, 108, 0.18) 100%)',
     accentColor: '#28616a',
     icon: (
@@ -48,9 +48,9 @@ const SYMPTOMS: SymptomItem[] = [
   {
     id: 'depressao',
     title: 'Depressão',
-    subtitle: 'Quando a vitalidade diminui e a vida parece perder suas cores.',
+    subtitle: 'Quando a vitalidade diminui e a vida perde suas cores.',
     summary:
-      'Acolhemos a tristeza persistente, a perda de interesse ou prazer (anedonia) e as alterações do sono, apetite e energia, além de fatores biológicos e psicossociais. O cuidado inclui avaliação de gravidade, tratamento adequado e reconstrução gradual de vínculos e sentido.',
+      'Cuidado dos aspectos físicos, emocionais e existenciais, favorecendo vínculos e sentido.',
     gradient: 'linear-gradient(135deg, rgba(22, 63, 73, 0.18) 0%, rgba(110, 170, 165, 0.22) 100%)',
     accentColor: '#163f49',
     icon: (
@@ -76,9 +76,9 @@ const SYMPTOMS: SymptomItem[] = [
   {
     id: 'panico',
     title: 'Crises de pânico',
-    subtitle: 'Quando o corpo dispara um alarme intenso, mesmo sem um perigo evidente.',
+    subtitle: 'Quando o corpo dispara um alarme intenso.',
     summary:
-      'Cuidamos de episódios de taquicardia, falta de ar, tontura e medo de morrer ou perder o controle. Diferenciamos crises de pânico de outras condições clínicas e trabalhamos a compreensão do ciclo do medo, com recursos terapêuticos fundamentados.',
+      'Avaliação clínica, compreensão do ciclo do medo e recursos para recuperar segurança.',
     gradient: 'linear-gradient(135deg, rgba(215, 179, 108, 0.25) 0%, rgba(83, 183, 174, 0.18) 100%)',
     accentColor: '#28616a',
     icon: (
@@ -106,7 +106,7 @@ const SYMPTOMS: SymptomItem[] = [
     title: 'Insônia',
     subtitle: 'Quando o corpo está cansado, mas o descanso não chega.',
     summary:
-      'Investigamos hábitos, ritmo circadiano, medicamentos, apneia, ansiedade e outros fatores. Integramos o cuidado médico a estratégias comportamentais, incluindo terapia cognitivo-comportamental para insônia quando indicada.',
+      'Investigação do sono, das tensões emocionais e das inquietações que dificultam o repouso.',
     gradient: 'linear-gradient(135deg, rgba(22, 63, 73, 0.22) 0%, rgba(215, 179, 108, 0.16) 100%)',
     accentColor: '#163f49',
     icon: (
@@ -134,7 +134,7 @@ const SYMPTOMS: SymptomItem[] = [
     title: 'Cansaço persistente',
     subtitle: 'Quando descansar parece não ser suficiente.',
     summary:
-      'Investigamos sono, anemia, tireoide, medicamentos, condições metabólicas, humor e sobrecarga. O objetivo é identificar causas tratáveis e reconstruir a vitalidade sem atribuir automaticamente a exaustão ao estresse.',
+      'Busca das causas físicas e psicossociais, com atenção à vitalidade e ao propósito.',
     gradient: 'linear-gradient(135deg, rgba(110, 170, 165, 0.24) 0%, rgba(243, 231, 209, 0.5) 100%)',
     accentColor: '#28616a',
     icon: (
@@ -159,10 +159,10 @@ const SYMPTOMS: SymptomItem[] = [
   },
   {
     id: 'dores',
-    title: 'Dores e sintomas físicos recorrentes',
-    subtitle: 'Quando o desconforto interfere na liberdade de viver.',
+    title: 'Dores e sintomas físicos',
+    subtitle: 'Quando o desconforto limita a liberdade de viver.',
     summary:
-      'Investigamos causas orgânicas, mecanismos de sensibilização, tensão muscular, sono e fatores emocionais que podem modular a experiência da dor. Desenvolvemos um cuidado que respeita a realidade do sintoma.',
+      'Investigação médica e compreensão integrada dos fatores que influenciam o sofrimento.',
     gradient: 'linear-gradient(135deg, rgba(215, 179, 108, 0.22) 0%, rgba(22, 63, 73, 0.16) 100%)',
     accentColor: '#163f49',
     icon: (
@@ -258,7 +258,7 @@ export const SymptomsSection: React.FC = () => {
             Escuta Clínica e Integrativa
           </span>
           <h2 className="text-display text-2xl sm:text-3xl md:text-4xl leading-tight" style={{ color: '#163f49' }}>
-            O que seu corpo e suas emoções estão expressando?
+            O que você está vivendo hoje?
           </h2>
         </div>
 
@@ -321,7 +321,7 @@ export const SymptomsSection: React.FC = () => {
             <strong className="uppercase tracking-wider text-[10px] text-[#28616a]">
               Distinção Clínica Essencial
             </strong>{' '}
-            Nem todo sintoma corporal tem origem emocional, e compreender seu significado pessoal não substitui o diagnóstico nem o tratamento clínico.
+            Nem todo sintoma tem origem emocional ou espiritual. Compreendê-lo não substitui o diagnóstico nem o tratamento clínico.
           </p>
         </div>
       </div>
@@ -438,7 +438,7 @@ export const SymptomsSection: React.FC = () => {
             {/* Rodapé Fixo do Modal */}
             <div className="px-5 py-3 sm:px-6 sm:py-3.5 border-t border-[#163f49]/10 flex flex-col sm:flex-row items-center justify-between gap-2.5 shrink-0 bg-[#fbf7ed]/95">
               <p className="text-[10.5px] text-[#5f7477] italic text-center sm:text-left">
-                Avaliação médica presencial ou por telemedicina.
+                Conteúdo educativo; não substitui a avaliação individual.
               </p>
               <div className="flex items-center gap-2.5 w-full sm:w-auto justify-center">
                 <button
