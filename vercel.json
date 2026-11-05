@@ -1,0 +1,3 @@
+{
+  "rewrites": [{ "source": "/sintomas/:path*", "destination": "/index.html" }]
+}

@@ -3,15 +3,15 @@ import React from 'react';
 export const Footer: React.FC = () => {
   return (
     <section
-      className="scene min-h-screen w-full relative flex flex-col justify-between items-center px-5 sm:px-8 md:px-14 lg:px-20 z-10 py-6 md:py-8"
+      className="scene contact-footer min-h-screen w-full relative flex flex-col justify-between items-center px-5 sm:px-8 md:px-14 lg:px-20 z-10 py-6 md:py-8"
       id="scene-6"
     >
       {/* Dark background block covering the lower half */}
-      <div className="absolute bottom-0 left-0 w-full h-[62%] md:h-[54%] bg-[#163f49] -z-10 transition-all duration-300"></div>
+      <div className="absolute bottom-0 left-0 w-full h-full bg-[#163f49] -z-10 transition-all duration-300"></div>
 
       <div className="w-full flex flex-col items-center flex-grow justify-center">
         {/* DESKTOP ONLY: Compact Social Grid */}
-        <div className="hidden md:grid w-full max-w-3xl grid-cols-2 gap-5 mb-5">
+        <div className="footer-social hidden md:grid w-full max-w-3xl grid-cols-2 gap-5 mb-5">
           {/* Instagram Block */}
           <div className="glass-card pointer-events-auto p-4 md:p-5 flex flex-col items-center justify-between" style={{ borderRadius: '1.5rem' }}>
             <div className="flex items-center gap-2 mb-2.5">
@@ -23,7 +23,7 @@ export const Footer: React.FC = () => {
               <span className="text-label text-[10px] text-[#28616a]">Instagram</span>
             </div>
 
-            <div className="w-full h-[80px] bg-white/30 rounded-xl border border-white/50 flex items-center justify-center mb-3">
+            <div className="social-preview w-full h-[80px] bg-white/30 rounded-xl border border-white/50 flex items-center justify-center mb-3">
               <span className="text-xs text-[#5f7477] font-medium tracking-wide">@drantoniocarloslage</span>
             </div>
 
@@ -46,7 +46,7 @@ export const Footer: React.FC = () => {
               <span className="text-label text-[10px] text-[#28616a]">Spotify</span>
             </div>
 
-            <div className="w-full h-[80px] flex items-center justify-center mb-3 rounded-xl overflow-hidden shadow-xs">
+            <div className="social-preview w-full h-[80px] flex items-center justify-center mb-3 rounded-xl overflow-hidden shadow-xs">
               <iframe
                 style={{ borderRadius: '12px' }}
                 src="https://open.spotify.com/embed/track/6kkwzB6hXLIONkEk9JciA6?utm_source=generator&theme=0"
@@ -101,18 +101,15 @@ export const Footer: React.FC = () => {
           </a>
         </div>
 
-        {/* Call to Action Final (5. Encerramento e convite) */}
-        <div className="mt-2 md:mt-3 flex flex-col items-center gap-3 text-center pointer-events-auto w-full max-w-2xl mb-4 px-2">
-          <div className="flex flex-col items-center gap-2.5">
-            <h2
-              className="text-display text-xl sm:text-2xl md:text-3xl text-[#fbf7ed] font-medium leading-snug"
-              style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
-            >
-              O primeiro passo é uma conversa.
-            </h2>
-            <p className="text-xs sm:text-sm text-[#fbf7ed]/85 max-w-lg leading-relaxed font-light">
-              Um encontro para compreender o que você sente, o que está vivendo e quais caminhos de cuidado podem ser construídos.
-            </p>
+        <div className="contact-copy mt-3 flex flex-col items-center gap-3 text-center pointer-events-auto w-full max-w-4xl mb-4 px-2">
+          <span className="text-label text-[#d7b36c]">Atendimento e acompanhamento</span>
+          <h2 className="text-display text-xl sm:text-2xl text-white">Um cuidado construído com você</h2>
+          <div className="grid md:grid-cols-2 gap-3 text-xs sm:text-sm text-[#fbf7ed]/90 leading-relaxed max-w-3xl">
+            <p>A primeira consulta é um espaço de escuta, investigação e compreensão da história pessoal e clínica. A partir dessa avaliação, é construído um plano individualizado, considerando necessidades, objetivos e possibilidades de acompanhamento.</p>
+            <p>O processo pode envolver consultas médicas, encontros psicoterapêuticos e recursos de consciência corporal, sempre conforme a indicação e a escolha compartilhada.</p>
+          </div>
+          <p className="text-sm text-white font-medium">O primeiro passo é uma conversa.</p>
+          <p className="text-xs text-[#fbf7ed]/85">Atendimento presencial ou por telemedicina. Consulte a disponibilidade pelo canal de agendamento.</p>
             <a
               href="https://wa.me/5527998644435?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta%20com%20Dr.%20Ant%C3%B4nio%20Carlos%20Lage."
               target="_blank"
@@ -124,10 +121,10 @@ export const Footer: React.FC = () => {
               </svg>
               Agende uma consulta
             </a>
-          </div>
         </div>
       </div>
 
+      <h2 className="text-display text-xl sm:text-2xl text-center text-white max-w-3xl px-4 mt-3 mb-4">Cuidar do corpo. Compreender a alma. Despertar a consciência.</h2>
       <p className="text-quote text-sm text-[#eed7a0] text-center px-4 mb-4">Da consciência governada pelo medo à consciência guiada pelo amor.</p>
 
       {/* Simple Footer Credit */}

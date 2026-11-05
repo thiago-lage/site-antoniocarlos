@@ -341,3 +341,21 @@ dialog::backdrop {
 }
 
 #scene-caminho.centered-scene { padding-block: 1.5rem; }
+
+/* The full symptoms group is centered with equal breathing room. */
+#scene-sintomas.centered-scene {
+  justify-content: center;
+  padding-block: 1.5rem;
+}
+
+@media (min-width: 768px) and (max-height: 760px) {
+  .contact-footer { padding-block: 1rem; }
+  .footer-social { margin-bottom: 0.5rem; }
+  .footer-social .glass-card { padding: 0.75rem 1rem; }
+  .contact-copy { gap: 0.5rem; margin-block: 0.5rem; }
+  .contact-copy .grid { font-size: 12px; line-height: 1.5; }
+  .contact-footer > h2 { margin-block: 0.5rem; }
+  .contact-footer > p { margin-bottom: 0.5rem; }
+}
+
+.contact-footer > .text-quote { color: #eed7a0; }

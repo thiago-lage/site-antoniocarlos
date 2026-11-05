@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 
 export interface SymptomItem {
   id: string;
@@ -16,7 +16,7 @@ export interface SymptomItem {
   };
 }
 
-const SYMPTOMS: SymptomItem[] = [
+export const SYMPTOMS: SymptomItem[] = [
   {
     id: 'ansiedade',
     title: 'Ansiedade',
@@ -187,282 +187,28 @@ const SYMPTOMS: SymptomItem[] = [
   },
 ];
 
-export const SymptomsSection: React.FC = () => {
-  const [selectedSymptom, setSelectedSymptom] = useState<SymptomItem | null>(null);
-  const dialogRef = useRef<HTMLDialogElement>(null);
-  const scrollBodyRef = useRef<HTMLDivElement>(null);
-
-  const openSymptomModal = (item: SymptomItem) => {
-    setSelectedSymptom(item);
-    const dialog = dialogRef.current;
-    if (dialog && !dialog.open) {
-      dialog.showModal();
-      if (scrollBodyRef.current) {
-        scrollBodyRef.current.scrollTop = 0;
-      }
-    }
-  };
-
-  const closeSymptomModal = () => {
-    const dialog = dialogRef.current;
-    if (dialog && dialog.open) {
-      dialog.close();
-    }
-  };
-
-  useEffect(() => {
-    const dialog = dialogRef.current;
-    if (!dialog) return;
-
-    const handleClose = () => {
-      setSelectedSymptom(null);
-    };
-
-    dialog.addEventListener('close', handleClose);
-
-    // Fallback for browsers without closedby="any" support
-    const handleBackdropClick = (event: MouseEvent) => {
-      if (event.target !== dialog) return;
-      const rect = dialog.getBoundingClientRect();
-      const isDialogContent =
-        rect.top <= event.clientY &&
-        event.clientY <= rect.top + rect.height &&
-        rect.left <= event.clientX &&
-        event.clientX <= rect.left + rect.width;
-
-      if (!isDialogContent) {
-        dialog.close();
-      }
-    };
-
-    if (!('closedBy' in HTMLDialogElement.prototype)) {
-      dialog.addEventListener('click', handleBackdropClick);
-    }
-
-    return () => {
-      dialog.removeEventListener('close', handleClose);
-      dialog.removeEventListener('click', handleBackdropClick);
-    };
-  }, []);
-
-  return (
-    <section
-      className="scene content-scene min-h-screen w-full flex flex-col justify-center items-center py-10 md:py-12 pl-5 pr-10 sm:px-10 md:px-14 lg:px-20"
-      id="scene-sintomas"
-      style={{ background: 'linear-gradient(170deg, #f8f4ec 0%, #eef6f5 50%, #f3e7d1 100%)' }}
-    >
-      <div className="pointer-events-auto w-full max-w-6xl flex flex-col items-center">
-        {/* Cabeçalho */}
-        <div className="text-center max-w-2xl mb-6 md:mb-8 px-2">
-          <span className="text-label uppercase tracking-widest text-[#d7b36c] font-bold text-[10px] mb-1.5 block">
-            Escuta Clínica e Integrativa
-          </span>
-          <h2 className="text-display text-2xl sm:text-3xl md:text-4xl leading-tight" style={{ color: '#163f49' }}>
-            O que você está vivendo hoje?
-          </h2>
-        </div>
-
-        {/* Grade Leve e Limpa com os 6 Cartões de Sintomas */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 w-full">
-          {SYMPTOMS.map((item) => (
-            <article
-              key={item.id}
-              onClick={() => openSymptomModal(item)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  openSymptomModal(item);
-                }
-              }}
-              tabIndex={0}
-              role="button"
-              aria-haspopup="dialog"
-              aria-label={`Ver detalhes sobre ${item.title}`}
-              className="glass-card p-5 md:p-6 flex flex-col justify-between text-left cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-lg group focus-visible:outline-2 focus-visible:outline-[#28616a]"
-              style={{ borderRadius: '1.35rem' }}
-            >
-              <div>
-                {/* Topo: Ícone + Botão Ver mais */}
-                <div className="flex items-center justify-between gap-2 mb-3">
-                  <div
-                    className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border border-white/70 shadow-xs transition-transform duration-300 group-hover:scale-105"
-                    style={{ background: item.gradient, color: item.accentColor }}
-                  >
-                    {item.icon}
-                  </div>
-                  <span className="text-[10px] uppercase tracking-widest font-bold text-[#6eaaa5] group-hover:text-[#163f49] transition-colors shrink-0">
-                    Saiba mais →
-                  </span>
-                </div>
-
-                {/* Título */}
-                <h3 className="text-heading text-base sm:text-lg md:text-[19px] font-semibold text-[#163f49] leading-snug">
-                  {item.title}
-                </h3>
-
-                <p className="mt-2 text-[14px] font-normal text-[#244f59] leading-relaxed">
-                  {item.subtitle}
-                </p>
-              </div>
-            </article>
-          ))}
-        </div>
-
-        {/* Nota de Distinção Clínica Essencial Bem Enquadrada */}
-        <div
-          className="clinical-note mt-5 w-full py-3 px-4 rounded-2xl text-center border"
-          style={{
-            background: 'rgba(251, 247, 237, 0.82)',
-            borderColor: 'rgba(215, 179, 108, 0.45)',
-            boxShadow: '0 4px 16px rgba(22, 63, 73, 0.05)',
-          }}
-        >
-          <p className="text-xs text-[#163f49] leading-relaxed">
-            <strong className="uppercase tracking-wider text-[10px] text-[#28616a]">
-              Distinção Clínica Essencial
-            </strong>{' '}
-            Nem todo sintoma tem origem emocional ou espiritual. Compreendê-lo não substitui o diagnóstico nem o tratamento clínico.
-          </p>
-        </div>
+export const SymptomsSection: React.FC = () => (
+  <section id="scene-sintomas" className="scene content-scene centered-scene w-full flex flex-col items-center pl-5 pr-10 sm:px-10 md:px-14 lg:px-20" style={{ background: 'linear-gradient(170deg, #f8f4ec 0%, #eef6f5 50%, #f3e7d1 100%)' }} aria-labelledby="symptoms-title">
+    <div className="pointer-events-auto w-full max-w-6xl flex flex-col items-center">
+      <div className="text-center max-w-2xl mb-6 md:mb-8 px-2">
+        <span className="text-label text-[10px] block mb-1.5">Escuta Clínica e Integrativa</span>
+        <h2 id="symptoms-title" className="text-display text-2xl sm:text-3xl md:text-4xl text-[#163f49]">O que você está vivendo hoje?</h2>
       </div>
-
-      {/* Modal / Dialog Nativo com data-lenis-prevent para permitir rolagem nativa em mobile, tablet e desktop */}
-      <dialog
-        ref={dialogRef}
-        closedby="any"
-        data-lenis-prevent
-        data-lenis-prevent-wheel
-        data-lenis-prevent-touch
-        aria-labelledby="symptom-dialog-title"
-        className="symptom-modal pointer-events-auto m-auto w-[92vw] max-w-xl max-h-[88dvh] rounded-3xl p-0 border border-white/80 shadow-2xl text-left bg-[#fbf7ed]/98 backdrop-blur-xl text-[#173847] overflow-hidden"
-      >
-        {selectedSymptom && (
-          <div className="flex flex-col max-h-[88dvh] w-full">
-            {/* Cabeçalho Fixo do Modal */}
-            <div className="flex items-start justify-between gap-3 px-5 pt-4 pb-3 sm:px-6 sm:pt-5 sm:pb-3.5 border-b border-[#163f49]/10 shrink-0 bg-[#fbf7ed]/95">
-              <div className="flex items-center gap-3">
-                <div
-                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center shrink-0 border border-white/80"
-                  style={{ background: selectedSymptom.gradient, color: selectedSymptom.accentColor }}
-                >
-                  {selectedSymptom.icon}
-                </div>
-                <div>
-                  <span className="text-label text-[9px] uppercase tracking-widest text-[#6eaaa5] block">
-                    Compreensão e Cuidado
-                  </span>
-                  <h3 id="symptom-dialog-title" className="text-display text-lg sm:text-xl md:text-2xl text-[#163f49] leading-tight">
-                    {selectedSymptom.title}
-                  </h3>
-                </div>
-              </div>
-
-              <button
-                type="button"
-                onClick={closeSymptomModal}
-                aria-label="Fechar janela"
-                className="w-8 h-8 rounded-full flex items-center justify-center text-[#5f7477] hover:text-[#163f49] hover:bg-[#163f49]/10 transition-colors cursor-pointer shrink-0"
-              >
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="w-4 h-4">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 w-full">
+        {SYMPTOMS.map(item => (
+          <a key={item.id} href={`/sintomas/${item.id}`} aria-label={`Ver detalhes sobre ${item.title}`} className="glass-card p-5 md:p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-lg group focus-visible:outline-2 focus-visible:outline-[#28616a]" style={{ borderRadius: '1.35rem' }}>
+            <div className="flex items-center justify-between gap-2 mb-3">
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border border-white/70" style={{ background: item.gradient, color: item.accentColor }}>{item.icon}</div>
+              <span className="text-[10px] uppercase tracking-widest font-bold text-[#28616a]">Saiba mais →</span>
             </div>
-
-            {/* Corpo Rolável do Modal (touch-pan-y + data-lenis-prevent para mobile e tablet) */}
-            <div
-              ref={scrollBodyRef}
-              data-lenis-prevent
-              data-lenis-prevent-wheel
-              data-lenis-prevent-touch
-              className="flex-1 overflow-y-auto overscroll-contain touch-pan-y px-5 py-4 sm:px-6 sm:py-5 space-y-3"
-              style={{ WebkitOverflowScrolling: 'touch' }}
-            >
-              {/* Subtítulo Poético + Resumo Geral */}
-              <div>
-                <p className="text-quote text-sm md:text-base text-[#28616a] font-medium">
-                  “{selectedSymptom.subtitle}”
-                </p>
-                <p className="text-body text-xs sm:text-[13px] text-[#5f7477] mt-2 leading-relaxed">
-                  {selectedSymptom.summary}
-                </p>
-              </div>
-
-              {/* 1. O que você pode sentir */}
-              <div className="p-3 sm:p-3.5 rounded-2xl bg-white/65 border border-white/80">
-                <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#163f49] mb-1.5 flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#d7b36c]"></span>
-                  1. O que você pode sentir
-                </h4>
-                <ul className="space-y-1 text-xs text-[#5f7477] list-disc list-inside leading-snug">
-                  {selectedSymptom.details.whatYouFeel.map((item, idx) => (
-                    <li key={idx}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* 2. O que pode estar relacionado */}
-              <div className="p-3 sm:p-3.5 rounded-2xl bg-white/65 border border-white/80">
-                <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#163f49] mb-1 flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#53b7ae]"></span>
-                  2. O que pode estar relacionado
-                </h4>
-                <p className="text-xs text-[#5f7477] leading-relaxed">
-                  {selectedSymptom.details.whatIsRelated}
-                </p>
-              </div>
-
-              {/* 3. Como investigamos */}
-              <div className="p-3 sm:p-3.5 rounded-2xl bg-white/65 border border-white/80">
-                <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#163f49] mb-1 flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#28616a]"></span>
-                  3. Como investigamos
-                </h4>
-                <p className="text-xs text-[#5f7477] leading-relaxed">
-                  {selectedSymptom.details.howWeInvestigate}
-                </p>
-              </div>
-
-              {/* 4. Como podemos cuidar */}
-              <div className="p-3 sm:p-3.5 rounded-2xl bg-white/65 border border-white/80">
-                <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#163f49] mb-1 flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#163f49]"></span>
-                  4. Como podemos cuidar
-                </h4>
-                <p className="text-xs text-[#5f7477] leading-relaxed">
-                  {selectedSymptom.details.howWeCare}
-                </p>
-              </div>
-            </div>
-
-            {/* Rodapé Fixo do Modal */}
-            <div className="px-5 py-3 sm:px-6 sm:py-3.5 border-t border-[#163f49]/10 flex flex-col sm:flex-row items-center justify-between gap-2.5 shrink-0 bg-[#fbf7ed]/95">
-              <p className="text-[10.5px] text-[#5f7477] italic text-center sm:text-left">
-                Conteúdo educativo; não substitui a avaliação individual.
-              </p>
-              <div className="flex items-center gap-2.5 w-full sm:w-auto justify-center">
-                <button
-                  type="button"
-                  onClick={closeSymptomModal}
-                  className="px-3.5 py-2 rounded-full text-xs font-semibold text-[#5f7477] hover:text-[#163f49] cursor-pointer"
-                >
-                  Fechar
-                </button>
-                <a
-                  href={`https://wa.me/5527998644435?text=${encodeURIComponent(
-                    `Olá, gostaria de agendar uma consulta com Dr. Antônio Carlos (tema: ${selectedSymptom.title}).`
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-5 py-2 rounded-full bg-[#163f49] text-[#fbf7ed] hover:bg-[#28616a] transition-colors text-[11px] font-bold uppercase tracking-wider shadow-md"
-                >
-                  Agendar Consulta
-                </a>
-              </div>
-            </div>
-          </div>
-        )}
-      </dialog>
-    </section>
-  );
-};
+            <h3 className="text-heading text-base sm:text-lg md:text-[19px] font-semibold text-[#163f49]">{item.title}</h3>
+            <p className="mt-2 text-[14px] text-[#244f59] leading-relaxed">{item.subtitle}</p>
+          </a>
+        ))}
+      </div>
+      <div className="clinical-note mt-5 w-full py-3 px-4 rounded-2xl text-center border border-[#d7b36c]/45 bg-[#fbf7ed]/80">
+        <p className="text-xs text-[#163f49] leading-relaxed"><strong className="uppercase tracking-wider text-[10px] text-[#28616a]">Distinção Clínica Essencial</strong>{' '}Nem todo sintoma tem origem emocional ou espiritual. Compreendê-lo não substitui o diagnóstico nem o tratamento clínico.</p>
+      </div>
+    </div>
+  </section>
+);

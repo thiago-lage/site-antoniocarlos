@@ -1,0 +1,39 @@
+import { useEffect } from 'react';
+import type { SymptomItem } from './SymptomsSection';
+
+export const SymptomPage = ({ symptom }: { symptom: SymptomItem }) => {
+  useEffect(() => {
+    document.title = `${symptom.title} | Dr. Antônio Carlos Lage`;
+  }, [symptom.title]);
+
+  return (
+    <main className="min-h-screen bg-[#f5f4ec] px-5 py-8 sm:py-12 text-[#173847]">
+      <div className="max-w-3xl mx-auto">
+        <a href="/#scene-sintomas" className="text-sm text-[#28616a] underline underline-offset-4">← Voltar aos sintomas</a>
+        <article className="glass-card mt-6 p-6 sm:p-9">
+          <span className="text-label">Compreensão e cuidado</span>
+          <h1 className="text-display text-3xl sm:text-4xl mt-3">{symptom.title}</h1>
+          <p className="text-heading text-lg text-[#28616a] mt-4">{symptom.subtitle}</p>
+          <p className="editorial-body mt-3">{symptom.summary}</p>
+          <section className="glass-card-inner p-5 mt-6" aria-labelledby="feel-title">
+            <h2 id="feel-title" className="text-heading text-xl">1. O que você pode sentir</h2>
+            <ul className="editorial-body list-disc pl-5 mt-3 space-y-2">{symptom.details.whatYouFeel.map(item => <li key={item}>{item}</li>)}</ul>
+          </section>
+          {[
+            ['2. O que pode estar relacionado', symptom.details.whatIsRelated],
+            ['3. Como investigamos', symptom.details.howWeInvestigate],
+            ['4. Como podemos cuidar', symptom.details.howWeCare],
+          ].map(([title, body]) => (
+            <section key={title} className="glass-card-inner p-5 mt-4" aria-label={title}>
+              <h2 className="text-heading text-xl">{title}</h2>
+              <p className="editorial-body mt-3">{body}</p>
+            </section>
+          ))}
+          <p className="editorial-body mt-6">Conteúdo educativo; não substitui o diagnóstico nem a avaliação individual. O cuidado respeita suas crenças e sua visão de mundo.</p>
+          <a className="booking-link mt-5" href={`https://wa.me/5527998644435?text=${encodeURIComponent(`Olá, gostaria de agendar uma consulta com Dr. Antônio Carlos Lage (tema: ${symptom.title}).`)}`} target="_blank" rel="noopener noreferrer">Agendar consulta →</a>
+        </article>
+        <p className="text-center text-xs text-[#49666c] mt-6">Dr. Antônio Carlos Lage<br />Médico CRM-3916 • Homeopatia RQE - 3783</p>
+      </div>
+    </main>
+  );
+};

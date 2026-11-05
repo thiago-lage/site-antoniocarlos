@@ -1,7 +1,6 @@
 import React from 'react';
 import { HeroSection } from './HeroSection';
 import { SymptomsSection } from './SymptomsSection';
-import { TrajectorySection } from './TrajectorySection';
 
 const METHOD_STEPS = [
   { title: 'Acolher e escutar', description: 'Compreender o sofrimento, a história de vida e as expectativas da pessoa.' },
@@ -28,7 +27,6 @@ const APPROACHES = [
 const sectionClass = 'scene content-scene centered-scene w-full flex flex-col items-center px-5 pr-10 sm:px-10 md:px-14 lg:px-20 bg-cover bg-center bg-no-repeat';
 const cardClass = 'glass-card editorial-card pointer-events-auto w-full max-w-4xl p-6 md:p-8 text-center';
 const background = { backgroundImage: 'url(/background2.png)' };
-const bookingUrl = 'https://wa.me/5527998644435?text=' + encodeURIComponent('Olá, gostaria de agendar uma consulta com Dr. Antônio Carlos Lage.');
 
 export const ScrollOverlay: React.FC = () => (
   <div className="relative w-full text-gray-800 font-sans pointer-events-none">
@@ -101,7 +99,6 @@ export const ScrollOverlay: React.FC = () => (
       </div>
     </section>
 
-    <TrajectorySection />
 
     <section id="scene-5" className={sectionClass} style={{ background: 'linear-gradient(170deg, #f3e7d1 0%, #f8f4ec 50%, #eef6f5 100%)' }} aria-labelledby="approaches-title">
       <div className={cardClass}>
@@ -122,9 +119,10 @@ export const ScrollOverlay: React.FC = () => (
     <section id="scene-5b" className={sectionClass} style={background} aria-labelledby="about-title">
       <div className={cardClass}>
         <span className="text-label">Sobre o médico</span>
-        <img src="/avatar.png" alt="Dr. Antônio Carlos de Lacerda Lage" loading="lazy" width="96" height="96" className="w-24 h-24 rounded-full object-cover mx-auto mt-4 border-2 border-[#d7b36c]/50" />
+        <img src="/avatar.png" alt="Dr. Antônio Carlos de Lacerda Lage" loading="lazy" width="96" height="96" className="w-24 h-24 rounded-full object-cover object-top mx-auto mt-4 border-2 border-[#d7b36c]/50" />
         <h2 id="about-title" className="text-display editorial-title mt-4">Dr. Antônio Carlos de Lacerda Lage</h2>
         <p className="text-heading text-base text-[#28616a] mt-2">Médico integrativo e psicoterapeuta</p>
+        <p className="text-xs text-[#49666c] mt-2">Médico CRM-3916 • Homeopatia RQE - 3783</p>
         <div className="editorial-body mt-5 space-y-3 max-w-2xl mx-auto">
           <p>Com quatro décadas de experiência médica e uma trajetória dedicada ao estudo do ser humano, desenvolveu uma abordagem que articula investigação clínica, psicoterapia, consciência corporal e compreensão existencial.</p>
           <p>Sua formação reúne experiências em Homeopatia, Medicina Tradicional Chinesa, Medicina Antroposófica, Ayurveda, Medicina Funcional Integrativa e diferentes abordagens psicoterapêuticas.</p>
@@ -133,28 +131,5 @@ export const ScrollOverlay: React.FC = () => (
       </div>
     </section>
 
-    <section id="scene-acompanhamento" className={sectionClass} style={background} aria-labelledby="care-title">
-      <div className={`${cardClass} max-w-3xl`}>
-        <span className="text-label">Atendimento e acompanhamento</span>
-        <h2 id="care-title" className="text-display editorial-title mt-2">Um cuidado construído com você</h2>
-        <p className="editorial-body mt-4">A primeira consulta é um espaço de escuta, investigação e compreensão da história pessoal e clínica. A partir dessa avaliação, é construído um plano individualizado, considerando necessidades, objetivos e possibilidades de acompanhamento.</p>
-        <p className="editorial-body mt-3">O processo pode envolver consultas médicas, encontros psicoterapêuticos e recursos de consciência corporal, sempre conforme a indicação e a escolha compartilhada.</p>
-        <div className="glass-card-inner mt-5 p-5">
-          <h3 className="text-heading text-xl text-[#163f49]">O primeiro passo é uma conversa.</h3>
-          <p className="editorial-body mt-2">Um encontro para compreender o que você sente, o que está vivendo e quais caminhos de cuidado podem ser construídos.</p>
-          <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="booking-link mt-4">Agende sua consulta <span aria-hidden="true">→</span></a>
-        </div>
-      </div>
-    </section>
-
-    <section id="scene-encerramento" className={sectionClass} style={{ background: 'linear-gradient(170deg, #eef6f5 0%, #f8f4ec 50%, #f3e7d1 100%)' }} aria-labelledby="closing-title">
-      <div className={`${cardClass} max-w-3xl`}>
-        <span className="text-label">Consciência, sentido e transcendência</span>
-        <h2 id="closing-title" className="text-display editorial-title mt-3">Cuidar do corpo. Compreender a alma. Despertar a consciência.</h2>
-        <p className="editorial-body mt-5">A saúde não se resume à ausência de sintomas. Ela envolve também a capacidade de viver com consciência, cultivar vínculos, reconhecer valores e encontrar sentido na própria existência.</p>
-        <blockquote className="text-quote text-base sm:text-lg mt-5">“O sintoma pede cuidado. A história pede compreensão. O ser, em sua profundidade, busca sentido e transcendência.”</blockquote>
-        <p className="editorial-body mt-5">O cuidado respeita suas crenças e sua visão de mundo. O adoecimento não significa falta de fé, propósito, consciência ou capacidade de amar.</p>
-      </div>
-    </section>
   </div>
 );
