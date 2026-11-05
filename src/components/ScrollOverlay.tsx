@@ -47,7 +47,7 @@ export const ScrollOverlay: React.FC = () => {
 
       {/* SCENE 3 (CAMINHO): Como o método integra essas experiências — Do sintoma à consciência */}
       <section
-        className="scene min-h-screen w-full flex flex-col justify-center items-center py-8 md:py-10 pl-5 pr-10 sm:px-10 md:px-14 lg:px-20 bg-cover bg-center bg-no-repeat"
+        className="scene content-scene min-h-screen w-full flex flex-col justify-center items-center py-8 md:py-10 pl-5 pr-10 sm:px-10 md:px-14 lg:px-20 bg-cover bg-center bg-no-repeat"
         id="scene-caminho"
         style={{ backgroundImage: 'url(/background2.png)' }}
       >
@@ -61,12 +61,9 @@ export const ScrollOverlay: React.FC = () => {
           >
             Do sintoma à consciência
           </h2>
-          <p className="text-body text-xs md:text-[13px] mt-1 text-center max-w-xl text-[#5f7477] leading-snug">
-            Uma travessia cuidadosa que respeita o ritmo de cada pessoa, unindo o rigor clínico à escuta profunda da vida.
-          </p>
 
           {/* Lista compacta com linha conectora que cabe 100% em telas de notebook, tablet e celular */}
-          <div className="mt-4 md:mt-5 w-full max-w-2xl space-y-2 sm:space-y-2.5">
+          <div className="mt-7 md:mt-8 w-full max-w-2xl space-y-4 sm:space-y-5">
             {METHOD_STEPS.map((step, idx) => (
               <div key={step.number} className="relative flex items-stretch gap-3 sm:gap-4 text-left">
                 {/* Coluna do número + linha vertical */}
@@ -91,7 +88,7 @@ export const ScrollOverlay: React.FC = () => {
 
                 {/* Conteúdo compacto do passo */}
                 <div
-                  className="flex-1 py-2.5 px-3.5 sm:py-3 sm:px-4 rounded-xl border transition-transform duration-300 hover:translate-x-1"
+                  className="flex-1 py-3.5 px-4 sm:py-4 sm:px-5 rounded-xl border transition-transform duration-300 hover:translate-x-1"
                   style={{
                     background: 'rgba(251, 247, 237, 0.75)',
                     borderColor: 'rgba(255, 255, 255, 0.78)',
@@ -100,7 +97,7 @@ export const ScrollOverlay: React.FC = () => {
                   <h3 className="text-heading text-sm sm:text-base font-semibold text-[#163f49] leading-tight">
                     {step.title}
                   </h3>
-                  <p className="text-body text-[11.5px] sm:text-xs md:text-[13px] mt-0.5 text-[#5f7477] leading-snug">
+                  <p className="text-body text-[11.5px] sm:text-xs md:text-[13px] mt-1.5 text-[#5f7477] leading-relaxed">
                     {step.description}
                   </p>
                 </div>
@@ -112,7 +109,7 @@ export const ScrollOverlay: React.FC = () => {
 
       {/* SCENE 4: Promessa */}
       <section
-        className="scene min-h-screen w-full flex flex-col justify-center items-center py-10 pl-5 pr-10 sm:px-12 md:px-16 lg:px-24 bg-cover bg-center bg-no-repeat"
+        className="scene content-scene min-h-screen w-full flex flex-col justify-center items-center py-10 pl-5 pr-10 sm:px-12 md:px-16 lg:px-24 bg-cover bg-center bg-no-repeat"
         id="scene-2"
         style={{ backgroundImage: 'url(/background2.png)' }}
       >
@@ -129,7 +126,7 @@ export const ScrollOverlay: React.FC = () => {
 
       {/* SCENE 5 (MÉTODO): O Corpo como Caminho para a Consciência */}
       <section
-        className="scene min-h-screen w-full flex flex-col justify-center items-center py-10 pl-5 pr-10 sm:px-12 md:px-16 lg:px-24 bg-cover bg-center bg-no-repeat"
+        className="scene content-scene min-h-screen w-full flex flex-col justify-center items-center py-10 pl-5 pr-10 sm:px-12 md:px-16 lg:px-24 bg-cover bg-center bg-no-repeat"
         id="scene-3"
         style={{ backgroundImage: 'url(/background2.png)' }}
       >
@@ -158,7 +155,7 @@ export const ScrollOverlay: React.FC = () => {
 
       {/* SCENE 7: Síntese */}
       <section
-        className="scene min-h-screen w-full hidden md:flex flex-col justify-center items-center py-10 pl-6 pr-12 sm:px-12 md:px-16 lg:px-24"
+        className="scene content-scene min-h-screen w-full hidden md:flex flex-col justify-center items-center py-10 pl-6 pr-12 sm:px-12 md:px-16 lg:px-24"
         id="scene-5"
         style={{ background: 'linear-gradient(170deg, #f3e7d1 0%, #f8f4ec 50%, #eef6f5 100%)' }}
       >
@@ -210,7 +207,7 @@ export const ScrollOverlay: React.FC = () => {
 
       {/* SCENE 8: O Princípio */}
       <section
-        className="scene min-h-screen w-full flex flex-col justify-center items-center py-10 pl-5 pr-10 sm:px-12 md:px-16 lg:px-24"
+        className="scene content-scene min-h-screen w-full flex flex-col justify-center items-center py-10 pl-5 pr-10 sm:px-12 md:px-16 lg:px-24"
         id="scene-5b"
         style={{ background: 'linear-gradient(170deg, #eef6f5 0%, #f8f4ec 50%, #f3e7d1 100%)' }}
       >
@@ -237,7 +234,7 @@ export const ScrollOverlay: React.FC = () => {
 
       {/* SCENE 9 (ACOMPANHAMENTO): Um cuidado construído com você */}
       <section
-        className="scene min-h-screen w-full flex flex-col justify-center items-center py-10 pl-5 pr-10 sm:px-12 md:px-16 lg:px-24 bg-cover bg-center bg-no-repeat"
+        className="scene content-scene min-h-screen w-full flex flex-col justify-center items-center py-10 pl-5 pr-10 sm:px-12 md:px-16 lg:px-24 bg-cover bg-center bg-no-repeat"
         id="scene-acompanhamento"
         style={{ backgroundImage: 'url(/background2.png)' }}
       >

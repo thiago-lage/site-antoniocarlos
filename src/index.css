@@ -272,3 +272,16 @@ dialog::backdrop {
 }
 
 
+
+/* Keep content near the top and let longer sections grow naturally. */
+.content-scene {
+  min-height: 100svh;
+  justify-content: flex-start;
+  padding-top: clamp(2rem, 6svh, 4rem);
+  padding-bottom: clamp(4rem, 9svh, 6rem);
+  scroll-margin-top: 1rem;
+}
+
+#scene-caminho > .glass-card {
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+}

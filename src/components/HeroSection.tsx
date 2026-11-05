@@ -125,7 +125,7 @@ export const HeroSection: React.FC = () => {
     <section
       id="scene-1"
       className="scene hero-root"
-      aria-label="Apresentação do Dr. Antônio Carlos"
+      aria-label="Apresentação do Dr. Antônio Carlos Lage"
     >
       {/* ── Camada 1: Background (fundo) ── */}
       <div ref={bgRef} className="h-layer h-bg" aria-hidden="true" style={{ willChange: 'transform' }}>
@@ -202,7 +202,7 @@ export const HeroSection: React.FC = () => {
       {/* ── Conteúdo ── */}
       <div className="h-content">
         <p className="h-credentials animate-up text-[#EED7A0] tracking-wider text-[10px] md:text-[11px] uppercase font-bold">
-          DR. ANTÔNIO CARLOS<br />
+          DR. ANTÔNIO CARLOS LAGE<br />
           <span className="font-medium text-white/80 normal-case tracking-normal">
             Médico CRM-3916 • Homeopatia RQE - 3783<br />Saúde Mental, Corpo e Sistema
           </span>
@@ -419,7 +419,7 @@ export const HeroSection: React.FC = () => {
           margin: 0 auto;
           width: 100%;
           max-width: 580px;
-          padding: 1rem 2.5rem 1rem 1.5rem;
+          padding: 2rem 2.5rem 4rem 1.5rem;
           pointer-events: auto;
         }
 
@@ -428,14 +428,14 @@ export const HeroSection: React.FC = () => {
           font-size: 10.5px;
           letter-spacing: 0.06em;
           color: rgba(244,241,232,0.75);
-          margin: 0 0 0.75rem;
+          margin: 0 0 1rem;
           line-height: 1.55;
         }
         .h-divider {
           width: 2.5rem;
           height: 1px;
           background: rgba(238,215,160,0.6);
-          margin-bottom: 0.75rem;
+          margin-bottom: 1rem;
         }
         .h-title {
           font-family: 'Playfair Display', Georgia, serif;
@@ -511,8 +511,8 @@ export const HeroSection: React.FC = () => {
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding-top: 1.25rem;
-            padding-bottom: 1.5rem;
+            padding-top: 1.5rem;
+            padding-bottom: 3rem;
           }
           .hero-root::before { display: none; }
 
@@ -525,7 +525,7 @@ export const HeroSection: React.FC = () => {
             width: 112px !important;
             height: 112px !important;
             margin-top: 0.5rem;
-            margin-bottom: 0.75rem;
+            margin-bottom: 1rem;
             border-radius: 50%;
             overflow: hidden;
             border: 2.5px solid rgba(238,215,160,0.55);
@@ -572,7 +572,7 @@ export const HeroSection: React.FC = () => {
           .h-credentials { font-size: 10px; margin-bottom: 0.5rem; }
           .h-divider { margin-left: auto; margin-right: auto; margin-bottom: 0.5rem; }
           .h-title { font-size: clamp(1.45rem, 6.5vw, 1.95rem); margin-bottom: 0.35rem; }
-          .h-body  { font-size: 0.78rem; margin-bottom: 1rem; max-width: 38ch; line-height: 1.5; }
+          .h-body  { font-size: 0.78rem; margin-bottom: 1rem; max-width: 38ch; line-height: 1.65; }
 
           .h-cta-row {
             flex-direction: column;

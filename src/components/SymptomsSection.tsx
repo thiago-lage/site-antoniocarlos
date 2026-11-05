@@ -247,7 +247,7 @@ export const SymptomsSection: React.FC = () => {
 
   return (
     <section
-      className="scene min-h-screen w-full flex flex-col justify-center items-center py-10 md:py-12 pl-5 pr-10 sm:px-10 md:px-14 lg:px-20"
+      className="scene content-scene min-h-screen w-full flex flex-col justify-center items-center py-10 md:py-12 pl-5 pr-10 sm:px-10 md:px-14 lg:px-20"
       id="scene-sintomas"
       style={{ background: 'linear-gradient(170deg, #f8f4ec 0%, #eef6f5 50%, #f3e7d1 100%)' }}
     >
@@ -260,13 +260,10 @@ export const SymptomsSection: React.FC = () => {
           <h2 className="text-display text-2xl sm:text-3xl md:text-4xl leading-tight" style={{ color: '#163f49' }}>
             O que seu corpo e suas emoções estão expressando?
           </h2>
-          <p className="text-body text-xs sm:text-sm mt-2 text-[#5f7477]">
-            Toque em cada tema para compreender como investigamos e cuidamos de cada experiência.
-          </p>
         </div>
 
         {/* Grade Leve e Limpa com os 6 Cartões de Sintomas */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 md:gap-4 w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 w-full">
           {SYMPTOMS.map((item) => (
             <article
               key={item.id}
@@ -314,7 +311,7 @@ export const SymptomsSection: React.FC = () => {
 
         {/* Nota de Distinção Clínica Essencial Bem Enquadrada */}
         <div
-          className="mt-6 md:mt-7 w-full max-w-3xl py-3.5 px-5 md:py-4 md:px-8 rounded-2xl text-center border"
+          className="mt-8 md:mt-9 w-full max-w-3xl py-3.5 px-5 md:py-4 md:px-8 rounded-2xl text-center border"
           style={{
             background: 'rgba(251, 247, 237, 0.82)',
             borderColor: 'rgba(215, 179, 108, 0.45)',
