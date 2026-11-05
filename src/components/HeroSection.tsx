@@ -217,7 +217,7 @@ export const HeroSection: React.FC = () => {
           Nós acolhemos a pessoa inteira.
         </p>
         <p className="h-body animate-up delay-2">
-          Ansiedade, tristeza, crises de pânico, insônia, cansaço e dores persistentes podem comprometer o bem-estar, os relacionamentos e a qualidade de vida. Cada sintoma merece ser investigado com atenção, considerando tanto suas possíveis causas clínicas quanto a história singular de quem o vivencia.
+          Cada sintoma merece ser investigado com atenção, considerando tanto suas possíveis causas clínicas quanto a história singular de quem o vivencia.
           <strong className="block mt-2 text-[#EED7A0] font-medium">
             Cuidar é aliviar o sofrimento, compreender a pessoa e ampliar suas possibilidades de viver.
           </strong>
