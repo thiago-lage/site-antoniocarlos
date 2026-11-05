@@ -6,31 +6,31 @@ import { TrajectorySection } from './TrajectorySection';
 const METHOD_STEPS = [
   {
     number: '1',
-    title: 'Escutar',
+    title: 'Sintoma',
     description:
-      'Acolher a queixa e conhecer a história de vida, os sintomas, os exames e as experiências significativas.',
+      'Acolher o sintoma e escutar como ele afeta o corpo, as emoções e a vida de cada pessoa.',
   },
   {
     number: '2',
-    title: 'Investigar',
+    title: 'Investigação',
     description:
       'Identificar fatores físicos, emocionais, comportamentais e relacionais que possam contribuir para o sofrimento.',
   },
   {
     number: '3',
-    title: 'Perceber',
+    title: 'Compreensão',
     description:
-      'Ampliar a consciência das sensações, emoções, respostas corporais e padrões habituais.',
+      'Compreender os sintomas à luz da avaliação clínica, da história de vida e dos padrões de resposta do corpo.',
   },
   {
     number: '4',
-    title: 'Integrar',
+    title: 'Cuidado',
     description:
       'Utilizar recursos médicos, psicoterapêuticos e corporais conforme as necessidades e indicações individuais.',
   },
   {
     number: '5',
-    title: 'Transformar',
+    title: 'Transformação',
     description:
       'Favorecer escolhas mais conscientes, autonomia, capacidade de autorregulação e qualidade de vida.',
   },
