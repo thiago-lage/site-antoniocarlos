@@ -11,10 +11,12 @@ import { ScrollToTop } from './components/ScrollToTop';
 import { SymptomPage } from './components/SymptomPage';
 import { SYMPTOMS } from './components/SymptomsSection';
 import { SCENES } from './scrollUtils';
+import { useViewportFit } from './useViewportFit';
 
 gsap.registerPlugin(ScrollTrigger);
 
 function HomePage() {
+  useViewportFit();
   const containerRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });

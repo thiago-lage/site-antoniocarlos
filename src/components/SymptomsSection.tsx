@@ -189,12 +189,12 @@ export const SYMPTOMS: SymptomItem[] = [
 
 export const SymptomsSection: React.FC = () => (
   <section id="scene-sintomas" className="scene content-scene centered-scene w-full flex flex-col items-center pl-5 pr-10 sm:px-10 md:px-14 lg:px-20" style={{ background: 'linear-gradient(170deg, #f8f4ec 0%, #eef6f5 50%, #f3e7d1 100%)' }} aria-labelledby="symptoms-title">
-    <div className="pointer-events-auto w-full max-w-6xl flex flex-col items-center">
+    <div className="fit-content pointer-events-auto w-full max-w-6xl flex flex-col items-center">
       <div className="text-center max-w-2xl mb-6 md:mb-8 px-2">
         <span className="text-label text-[10px] block mb-1.5">Escuta Clínica e Integrativa</span>
         <h2 id="symptoms-title" className="text-display text-2xl sm:text-3xl md:text-4xl text-[#163f49]">O que você está vivendo hoje?</h2>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 w-full">
+      <div className="symptoms-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 w-full">
         {SYMPTOMS.map(item => (
           <a key={item.id} href={`/sintomas/${item.id}`} aria-label={`Ver detalhes sobre ${item.title}`} className="glass-card p-5 md:p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-lg group focus-visible:outline-2 focus-visible:outline-[#28616a]" style={{ borderRadius: '1.35rem' }}>
             <div className="flex items-center justify-between gap-2 mb-3">

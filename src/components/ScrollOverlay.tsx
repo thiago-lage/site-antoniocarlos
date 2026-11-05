@@ -25,7 +25,7 @@ const APPROACHES = [
 ];
 
 const sectionClass = 'scene content-scene centered-scene w-full flex flex-col items-center px-5 pr-10 sm:px-10 md:px-14 lg:px-20 bg-cover bg-center bg-no-repeat';
-const cardClass = 'glass-card editorial-card pointer-events-auto w-full max-w-4xl p-6 md:p-8 text-center';
+const cardClass = 'fit-content glass-card editorial-card pointer-events-auto w-full max-w-4xl p-6 md:p-8 text-center';
 const background = { backgroundImage: 'url(/background2.png)' };
 
 export const ScrollOverlay: React.FC = () => (
@@ -123,10 +123,12 @@ export const ScrollOverlay: React.FC = () => (
         <h2 id="about-title" className="text-display editorial-title mt-4">Dr. Antônio Carlos de Lacerda Lage</h2>
         <p className="text-heading text-base text-[#28616a] mt-2">Médico integrativo e psicoterapeuta</p>
         <p className="text-xs text-[#49666c] mt-2">Médico CRM-3916 • Homeopatia RQE - 3783</p>
-        <div className="editorial-body mt-5 space-y-3 max-w-2xl mx-auto">
-          <p>Com quatro décadas de experiência médica e uma trajetória dedicada ao estudo do ser humano, desenvolveu uma abordagem que articula investigação clínica, psicoterapia, consciência corporal e compreensão existencial.</p>
-          <p>Sua formação reúne experiências em Homeopatia, Medicina Tradicional Chinesa, Medicina Antroposófica, Ayurveda, Medicina Funcional Integrativa e diferentes abordagens psicoterapêuticas.</p>
-          <p>Seu trabalho é orientado pelo respeito à singularidade humana e pela convicção de que o cuidado deve contemplar tanto o sofrimento quanto as possibilidades de desenvolvimento da pessoa.</p>
+        <div className="about-cards grid sm:grid-cols-3 gap-3 mt-5 text-left">
+          {[
+            ['Trajetória', 'Com quatro décadas de experiência médica e uma trajetória dedicada ao estudo do ser humano, desenvolveu uma abordagem que articula investigação clínica, psicoterapia, consciência corporal e compreensão existencial.'],
+            ['Formação', 'Sua formação reúne experiências em Homeopatia, Medicina Tradicional Chinesa, Medicina Antroposófica, Ayurveda, Medicina Funcional Integrativa e diferentes abordagens psicoterapêuticas.'],
+            ['Filosofia de cuidado', 'Seu trabalho é orientado pelo respeito à singularidade humana e pela convicção de que o cuidado deve contemplar tanto o sofrimento quanto as possibilidades de desenvolvimento da pessoa.'],
+          ].map(([title, text]) => <div key={title} className="glass-card-inner p-4"><h3 className="text-heading text-lg text-[#163f49]">{title}</h3><p className="editorial-body mt-2">{text}</p></div>)}
         </div>
       </div>
     </section>
