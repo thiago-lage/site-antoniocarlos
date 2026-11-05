@@ -213,7 +213,8 @@ export const HeroSection: React.FC = () => {
           <em>dos sintomas</em>
         </h1>
         <p className="animate-up delay-1 text-[#F4F1E8] font-medium text-xs sm:text-sm md:text-[15px] mb-2 tracking-wide">
-          Você chega com um sintoma. Nós acolhemos a pessoa inteira.
+          Você chega com um sintoma.<br />
+          Nós acolhemos a pessoa inteira.
         </p>
         <p className="h-body animate-up delay-2">
           Ansiedade, tristeza, crises de pânico, insônia, cansaço e dores persistentes podem comprometer o bem-estar, os relacionamentos e a qualidade de vida. Cada sintoma merece ser investigado com atenção, considerando tanto suas possíveis causas clínicas quanto a história singular de quem o vivencia.
