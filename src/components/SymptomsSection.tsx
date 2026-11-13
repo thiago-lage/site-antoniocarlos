@@ -196,12 +196,14 @@ export const SymptomsSection: React.FC = () => (
       </div>
       <div className="symptoms-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 w-full">
         {SYMPTOMS.map(item => (
-          <a key={item.id} href={`/sintomas/${item.id}`} aria-label={`Ver detalhes sobre ${item.title}`} className="glass-card p-5 md:p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-lg group focus-visible:outline-2 focus-visible:outline-[#28616a]" style={{ borderRadius: '1.35rem' }}>
-            <div className="flex items-center justify-between gap-2 mb-3">
+          <a key={item.id} href={`/sintomas/${item.id}`} aria-label={`Ver detalhes sobre ${item.title}`} className="glass-card relative overflow-hidden p-5 md:p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-lg group focus-visible:outline-2 focus-visible:outline-[#28616a]" style={{ borderRadius: '1.35rem' }}>
+            {/* Soft background photo: drop /public/symptoms/<id>.webp to enable; hidden if missing. */}
+            <img src={`/symptoms/${item.id}.webp`} alt="" aria-hidden="true" loading="lazy" decoding="async" className="symptom-card-bg" onError={e => { e.currentTarget.style.display = 'none'; }} />
+            <div className="relative flex items-center justify-between gap-2 mb-3">
               <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border border-white/70" style={{ background: item.gradient, color: item.accentColor }}>{item.icon}</div>
             </div>
-            <h3 className="text-heading text-base sm:text-lg md:text-[19px] font-semibold text-[#163f49]">{item.title}</h3>
-            <p className="mt-2 text-[14px] text-[#244f59] leading-relaxed">{item.subtitle}</p>
+            <h3 className="relative text-heading text-base sm:text-lg md:text-[19px] font-semibold text-[#163f49]">{item.title}</h3>
+            <p className="relative mt-2 text-[14px] text-[#244f59] leading-relaxed">{item.subtitle}</p>
           </a>
         ))}
       </div>

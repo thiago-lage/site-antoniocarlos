@@ -27,13 +27,14 @@ const APPROACHES = [
 const sectionClass = 'scene content-scene centered-scene w-full flex flex-col items-center px-5 pr-10 sm:px-10 md:px-14 lg:px-20 bg-cover bg-center bg-no-repeat';
 const cardClass = 'fit-content glass-card editorial-card pointer-events-auto w-full max-w-4xl p-6 md:p-8 text-center';
 const background = { backgroundImage: 'url(/background2.webp)' };
+const lightBackground = { background: 'linear-gradient(170deg, #f8f4ec 0%, #eef6f5 50%, #f3e7d1 100%)' };
 
 export const ScrollOverlay: React.FC = () => (
   <div className="relative w-full text-gray-800 font-sans pointer-events-none">
     <HeroSection />
     <SymptomsSection />
 
-    <section id="scene-2" className={sectionClass} style={background} aria-labelledby="dimensions-title">
+    <section id="scene-2" className={sectionClass} style={lightBackground} aria-labelledby="dimensions-title">
       <div className={`${cardClass} max-w-5xl`}>
         <span className="text-label">O ser humano para além dos sintomas</span>
         <h2 id="dimensions-title" className="text-display editorial-title mt-2">Corpo, psique, relações e transcendência</h2>
@@ -57,7 +58,7 @@ export const ScrollOverlay: React.FC = () => (
       </div>
     </section>
 
-    <section id="scene-3" className={sectionClass} style={background} aria-labelledby="method-title">
+    <section id="scene-3" className={sectionClass} style={lightBackground} aria-labelledby="method-title">
       <div className={cardClass}>
         <span className="text-label">O método</span>
         <h2 id="method-title" className="text-display editorial-title mt-2">O Corpo como Caminho para a Consciência</h2>
@@ -80,7 +81,7 @@ export const ScrollOverlay: React.FC = () => (
       </div>
     </section>
 
-    <section id="scene-caminho" className={sectionClass} style={background} aria-labelledby="journey-title">
+    <section id="scene-caminho" className={sectionClass} style={lightBackground} aria-labelledby="journey-title">
       <div className={`${cardClass} max-w-3xl`}>
         <span className="text-label">O percurso terapêutico</span>
         <h2 id="journey-title" className="text-display editorial-title mt-2">Da escuta à transformação</h2>
