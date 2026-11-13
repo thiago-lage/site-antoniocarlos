@@ -5,7 +5,9 @@ export const SCENES = [
 export const PRIMARY_NAV = [
   { label: 'Início', sceneId: 'scene-1' },
   { label: 'Sintomas', sceneId: 'scene-sintomas' },
-  { label: 'O Método', sceneId: 'scene-2' },
+  { label: 'Dimensões do ser', sceneId: 'scene-2' },
+  { label: 'O Método', sceneId: 'scene-3' },
+  { label: 'Percurso', sceneId: 'scene-caminho' },
   { label: 'Abordagens', sceneId: 'scene-5' },
   { label: 'Sobre Mim', sceneId: 'scene-5b' },
   { label: 'Contato', sceneId: 'scene-6' },
