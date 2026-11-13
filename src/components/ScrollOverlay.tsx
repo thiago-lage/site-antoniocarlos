@@ -127,7 +127,7 @@ export const ScrollOverlay: React.FC = () => (
     </div>
     </div>
 
-    <section id="scene-5b" className={sectionClass} style={{ backgroundImage: 'url(/background-sobre.webp)' }} aria-labelledby="about-title">
+    <section id="scene-5b" className={sectionClass} style={{ backgroundImage: 'url(/background-sobre-realista.webp)' }} aria-labelledby="about-title">
       <div className="fit-content glass-card editorial-card pointer-events-auto w-full max-w-5xl p-4 md:p-6">
         <div className="about-grid grid grid-cols-[minmax(0,1fr)] lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] gap-3 md:gap-4 text-left">
           <div className="about-left flex flex-col gap-3 md:gap-4 order-2 lg:order-1">
