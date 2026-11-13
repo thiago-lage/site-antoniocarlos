@@ -458,7 +458,7 @@ dialog::backdrop {
   -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 6%, #000 94%, transparent 100%);
   mask-image: linear-gradient(to bottom, transparent 0, #000 6%, #000 94%, transparent 100%);
 }
-.dna-canvas { position: sticky; top: 0; display: block; margin-inline: auto; }
+.dna-canvas { position: absolute; left: 50%; margin-left: -85px; display: block; }
 @media (max-width: 767px) { .dna-bg { opacity: 0.4; } }
 
 /* Back link on symptom pages: same pill language as the booking button, lighter. */
@@ -472,3 +472,6 @@ dialog::backdrop {
 }
 .back-link:hover { background: #163f49; color: #fbf7ed; border-color: #163f49; }
 .back-link:focus-visible { outline: 2px solid #28616a; outline-offset: 4px; }
+
+/* Journey steps: centered text inside each step card. */
+#scene-caminho .method-step { text-align: center; }
