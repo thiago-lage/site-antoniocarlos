@@ -1,6 +1,10 @@
 import React from 'react';
 import { HeroSection } from './HeroSection';
 import { SymptomsSection } from './SymptomsSection';
+import { SymptomsCarousel } from './SymptomsCarousel';
+
+/** Test layout for the symptoms scene. Set to false to go back to the card grid. */
+const SYMPTOMS_AS_CAROUSEL = true;
 import { DnaBackground } from './DnaBackground';
 import { MobileCarousel } from './MobileCarousel';
 
@@ -33,7 +37,7 @@ export const ScrollOverlay: React.FC = () => (
   <div className="relative w-full text-gray-800 font-sans pointer-events-none">
     <HeroSection />
     <div className="light-flow">
-    <SymptomsSection />
+    {SYMPTOMS_AS_CAROUSEL ? <SymptomsCarousel /> : <SymptomsSection />}
 
     <div className="dna-zone">
       <DnaBackground />
@@ -41,13 +45,13 @@ export const ScrollOverlay: React.FC = () => (
       <div className={`${cardClass} max-w-5xl`}>
         <span className="text-label">O ser humano para além dos sintomas</span>
         <h2 id="dimensions-title" className="text-display editorial-title mt-2">Corpo, psique, relações e transcendência</h2>
-        <div className="mt-5 grid md:grid-cols-2 gap-6 text-left items-center">
+        <div className="mt-5 grid grid-cols-[minmax(0,1fr)] md:grid-cols-2 gap-4 md:gap-6 text-left items-center">
           <div className="editorial-body space-y-3">
             <p className="dimensions-lead">O adoecimento é um processo complexo, que pode envolver fatores biológicos, psicológicos, comportamentais, sociais e existenciais.</p>
             <p>Minha abordagem considera também a dimensão transcendente do ser: sua busca por sentido, seus valores fundamentais, sua espiritualidade e sua relação com aquilo que ultrapassa a própria individualidade.</p>
             <p>Perdas, rupturas de sentido, conflitos de valores e crises existenciais podem participar da experiência de sofrimento e influenciar a saúde. Essa dimensão é acolhida sem presumir que toda doença tenha uma origem espiritual ou emocional.</p>
           </div>
-          <div className="grid sm:grid-cols-2 gap-3">
+          <MobileCarousel className="grid sm:grid-cols-2 gap-3" dotsClassName="text-[#28616a]" label="Dimensões do ser">
             {DIMENSIONS.map(item => (
               <div key={item.title} className="glass-card-inner p-4">
                 <span className="text-label text-[9px]">{item.dimension}</span>
@@ -55,7 +59,7 @@ export const ScrollOverlay: React.FC = () => (
                 <p className="editorial-body mt-2">{item.text}</p>
               </div>
             ))}
-          </div>
+          </MobileCarousel>
         </div>
         <p className="editorial-body mt-5 text-center"><strong>Integração das dimensões do ser</strong><br />Uma compreensão ampliada da saúde e do sofrimento</p>
       </div>
@@ -68,7 +72,7 @@ export const ScrollOverlay: React.FC = () => (
         <p className="text-heading text-base sm:text-lg text-[#28616a] mt-4">O corpo não é o destino final. É um dos lugares onde a consciência começa e se reencontra.</p>
         <p className="editorial-body mt-4">Por meio da percepção corporal, da escuta emocional e da reflexão sobre a própria história, busco reconhecer padrões, ampliar a liberdade interior e favorecer escolhas mais conscientes.</p>
         <p className="text-label mt-5">Três perguntas fundamentais</p>
-        <div className="grid md:grid-cols-3 gap-3 mt-3 text-left">
+        <MobileCarousel className="grid md:grid-cols-3 gap-3 mt-3 text-left" dotsClassName="text-[#28616a]" label="Três perguntas fundamentais">
           {[
             ['O que está acontecendo?', 'A identificação e investigação do sintoma.'],
             ['Como isso se relaciona com minha história?', 'A compreensão dos fatores que participam do sofrimento.'],
@@ -79,7 +83,7 @@ export const ScrollOverlay: React.FC = () => (
               <p className="editorial-body mt-2">{answer}</p>
             </div>
           ))}
-        </div>
+        </MobileCarousel>
         <p className="editorial-body mt-4">A dimensão transcendente amplia essa investigação, convidando a pessoa, quando fizer sentido para ela, a reconhecer seus valores essenciais, sua espiritualidade e aquilo que confere direção à existência.</p>
       </div>
     </section>
@@ -109,14 +113,14 @@ export const ScrollOverlay: React.FC = () => (
         <span className="text-label">Abordagens terapêuticas</span>
         <h2 id="approaches-title" className="text-display editorial-title mt-2">Diferentes saberes a serviço de uma pessoa única</h2>
         <p className="editorial-body mt-4">O atendimento integra conhecimentos da medicina, da psicoterapia e de práticas corporais, respeitando as indicações, os limites e o grau de evidência de cada recurso.</p>
-        <div className="grid md:grid-cols-2 gap-4 mt-5 text-left">
+        <MobileCarousel className="grid md:grid-cols-2 gap-4 mt-5 text-left" dotsClassName="text-[#28616a]" label="Abordagens terapêuticas">
           {APPROACHES.map(item => (
             <div className="glass-card-inner p-4" key={item.title}>
               <h3 className="text-heading text-lg text-[#163f49]">{item.title}</h3>
               <p className="editorial-body mt-2">{item.text}</p>
             </div>
           ))}
-        </div>
+        </MobileCarousel>
       </div>
     </section>
 

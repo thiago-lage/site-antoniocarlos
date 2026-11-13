@@ -59,7 +59,7 @@ export const HeroSection: React.FC = () => {
   const mouse     = useRef({ nx: 0, ny: 0 });
   const layersRef = useRef<Layer[]>([]);
 
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
 
   // Detecta mobile (apenas para renderização condicional do avatar)
   useEffect(() => {
@@ -170,21 +170,18 @@ export const HeroSection: React.FC = () => {
         aria-hidden="true"
         style={isMobile ? undefined : { willChange: 'transform' }}
       >
-        {isMobile ? (
-          <img
-            src="/dr-antonio-avatar.webp"
-            alt=""
-            className="h-person-media"
-            loading="eager"
-          />
-        ) : (
+        {/* The browser picks the right file by itself (no JS swap, so no empty circle while loading). */}
+        <picture>
+          <source media="(max-width: 767px)" srcSet="/dr-antonio-avatar.webp" />
           <img
             src="/dr-antonio-carlos.webp"
             alt=""
             className="h-person-media"
             loading="eager"
+            decoding="async"
+            fetchPriority="high"
           />
-        )}
+        </picture>
       </div>
 
       {/* ── Camada 3: Foliagens (frente) com balanço de vento elegante — apenas desktop ── */}
@@ -525,6 +522,13 @@ export const HeroSection: React.FC = () => {
             inset: auto !important;
             width: clamp(168px, 46vw, 200px) !important;
             height: clamp(168px, 46vw, 200px) !important;
+            align-self: center !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            left: auto !important;
+            right: auto !important;
+            translate: none !important;
+            transform: none !important;
             margin-top: 0.5rem;
             margin-bottom: 1.1rem;
             border-radius: 50%;
