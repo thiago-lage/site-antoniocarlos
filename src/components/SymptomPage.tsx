@@ -3,13 +3,18 @@ import type { SymptomItem } from './SymptomsSection';
 
 export const SymptomPage = ({ symptom }: { symptom: SymptomItem }) => {
   useEffect(() => {
+    const previous = document.title;
     document.title = `${symptom.title} | Dr. Antônio Carlos Lage`;
+    return () => { document.title = previous; };
   }, [symptom.title]);
 
   return (
     <main className="min-h-screen bg-[#f5f4ec] px-5 py-8 sm:py-12 text-[#173847]">
       <div className="max-w-3xl mx-auto">
-        <a href="/#scene-sintomas" className="text-sm text-[#28616a] underline underline-offset-4">← Voltar aos sintomas</a>
+        <a href="/#scene-sintomas" className="back-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden="true" width="14" height="14"><path strokeLinecap="round" strokeLinejoin="round" d="M19 12H5M12 19l-7-7 7-7" /></svg>
+          Voltar aos sintomas
+        </a>
         <article className="glass-card mt-6 p-6 sm:p-9">
           <img src={`/symptoms/${symptom.id}.webp`} alt="" width="1200" height="750" decoding="async" className="w-full h-44 sm:h-60 object-cover rounded-2xl mb-6" style={{ objectPosition: "center 30%" }} onError={e => { e.currentTarget.style.display = 'none'; }} />
           <span className="text-label">Compreensão e cuidado</span>

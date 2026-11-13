@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
@@ -67,18 +67,43 @@ function HomePage() {
       <Footer />
       <SideNavigation />
       <ScrollIndicator />
-      <AudioPlayer />
       <ScrollToTop />
     </div>
   );
 }
 
+/** In-app navigation: keeps the page (and the ambient music) alive between routes. */
+function useLocationPath() {
+  const [path, setPath] = useState(window.location.pathname);
+  useEffect(() => {
+    const onPop = () => setPath(window.location.pathname);
+    const onClick = (event: MouseEvent) => {
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      const anchor = (event.target as Element).closest<HTMLAnchorElement>('a[href]');
+      if (!anchor || anchor.target === '_blank' || anchor.origin !== window.location.origin || anchor.hasAttribute('download')) return;
+      const samePage = anchor.pathname === window.location.pathname;
+      if (samePage && anchor.pathname === '/') return; // in-page hash links keep native behavior
+      event.preventDefault();
+      history.pushState(null, '', anchor.pathname + anchor.search + anchor.hash);
+      setPath(anchor.pathname);
+      if (!anchor.hash) window.scrollTo(0, 0);
+    };
+    window.addEventListener('popstate', onPop);
+    document.addEventListener('click', onClick);
+    return () => { window.removeEventListener('popstate', onPop); document.removeEventListener('click', onClick); };
+  }, []);
+  return path;
+}
+
 export default function App() {
-  const match = window.location.pathname.match(/^\/sintomas\/([^/]+)\/?$/);
+  const path = useLocationPath();
+  const match = path.match(/^\/sintomas\/([^/]+)\/?$/);
+  let page;
   if (match) {
     const symptom = SYMPTOMS.find(item => item.id === match[1]);
-    if (symptom) return <SymptomPage symptom={symptom} />;
-    return <main className="min-h-screen flex flex-col items-center justify-center gap-5"><h1 className="text-display text-2xl">Página não encontrada</h1><a href="/#scene-sintomas" className="booking-link">Ver sintomas</a></main>;
-  }
-  return <HomePage />;
+    page = symptom
+      ? <SymptomPage symptom={symptom} />
+      : <main className="min-h-screen flex flex-col items-center justify-center gap-5"><h1 className="text-display text-2xl">Página não encontrada</h1><a href="/#scene-sintomas" className="booking-link">Ver sintomas</a></main>;
+  } else page = <HomePage />;
+  return <>{page}<AudioPlayer /></>;
 }
