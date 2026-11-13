@@ -1,4 +1,5 @@
 import React from 'react';
+import { MobileCarousel } from './MobileCarousel';
 
 export const Footer: React.FC = () => {
   return (
@@ -105,13 +106,13 @@ export const Footer: React.FC = () => {
         <div className="contact-copy mt-3 flex flex-col items-center gap-3 text-center pointer-events-auto w-full max-w-4xl mb-4 px-2">
           <span className="text-label text-[#d7b36c]">Atendimento e acompanhamento</span>
           <h2 className="text-display text-xl sm:text-2xl text-white">Um cuidado construído com você</h2>
-          <div className="care-cards grid sm:grid-cols-3 gap-3 w-full text-left">
+          <MobileCarousel className="care-cards grid sm:grid-cols-3 gap-3 w-full text-left" dotsClassName="text-[#d7b36c]" label="Atendimento e acompanhamento">
             {[
               ['01', 'Escuta e avaliação', 'A primeira consulta acolhe o que você sente e investiga sua história pessoal e clínica.'],
               ['02', 'Plano individualizado', 'Necessidades, objetivos e possibilidades orientam um plano construído em conjunto.'],
               ['03', 'Acompanhamento', 'Consultas médicas, psicoterapia e consciência corporal, conforme a indicação e a escolha compartilhada.'],
             ].map(([number, title, text]) => <div key={number} className="care-card rounded-2xl border border-white/20 bg-white/5 p-4"><span className="text-[10px] tracking-widest text-[#d7b36c]">{number}</span><h3 className="text-heading text-base text-white mt-1">{title}</h3><p className="text-xs text-white/85 leading-relaxed mt-2">{text}</p></div>)}
-          </div>
+          </MobileCarousel>
           <div className="care-booking flex flex-col items-center gap-2 rounded-2xl border border-[#d7b36c]/30 bg-white/5 px-5 py-3 w-full mt-1">
             <p className="text-heading text-lg text-white">O primeiro passo é uma conversa.</p>
             <p className="text-xs text-[#fbf7ed]/85">Presencial ou por telemedicina • Consulte a disponibilidade no agendamento.</p>

@@ -36,6 +36,13 @@ function HomePage() {
           scrollTrigger: { trigger: `#${id}`, start: 'top 85%', toggleActions: 'play none none none' },
         });
       });
+      // About the doctor: photo, heading and cards fade in one after another.
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        gsap.fromTo('#scene-5b .about-item', { opacity: 0, y: 24 }, {
+          opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', stagger: 0.22,
+          scrollTrigger: { trigger: '#scene-5b .about-grid', start: 'top 80%', toggleActions: 'play none none none' },
+        });
+      }
       // Therapeutic journey: reveal one step at a time.
       if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         gsap.fromTo('#scene-caminho .method-steps > li', { opacity: 0, y: 18 }, {

@@ -172,7 +172,7 @@ export const HeroSection: React.FC = () => {
       >
         {isMobile ? (
           <img
-            src="/dr-antonio-carlos.webp"
+            src="/dr-antonio-avatar.webp"
             alt=""
             className="h-person-media"
             loading="eager"
@@ -523,13 +523,13 @@ export const HeroSection: React.FC = () => {
           .h-person {
             position: relative !important;
             inset: auto !important;
-            width: clamp(210px, 60vw, 260px) !important;
-            height: clamp(210px, 60vw, 260px) !important;
+            width: clamp(168px, 46vw, 200px) !important;
+            height: clamp(168px, 46vw, 200px) !important;
             margin-top: 0.5rem;
             margin-bottom: 1.1rem;
             border-radius: 50%;
             overflow: hidden;
-            background: radial-gradient(circle at 50% 35%, #d6e5e1 0%, #9bbab5 100%);
+            background: #dcebee url(/soft-bg.webp) center / cover no-repeat;
             border: 3px solid rgba(238,215,160,0.6);
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             flex-shrink: 0;
@@ -545,10 +545,9 @@ export const HeroSection: React.FC = () => {
             height: 100% !important;
             max-width: none !important;
             object-fit: cover !important;
-            object-position: 0% 0% !important;
+            object-position: center !important;
             filter: none !important;
-            scale: 1.32 !important;
-            transform-origin: 56% 24% !important;
+            scale: 1 !important;
             transform: none !important;
           }
 

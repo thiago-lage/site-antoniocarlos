@@ -2,6 +2,7 @@ import React from 'react';
 import { HeroSection } from './HeroSection';
 import { SymptomsSection } from './SymptomsSection';
 import { DnaBackground } from './DnaBackground';
+import { MobileCarousel } from './MobileCarousel';
 
 const METHOD_STEPS = [
   { title: 'Acolher e escutar', description: 'Compreender o sofrimento, a história de vida e as expectativas da pessoa.' },
@@ -27,7 +28,6 @@ const APPROACHES = [
 
 const sectionClass = 'scene content-scene centered-scene w-full flex flex-col items-center px-5 pr-10 sm:px-10 md:px-14 lg:px-20 bg-cover bg-center bg-no-repeat';
 const cardClass = 'fit-content glass-card editorial-card pointer-events-auto w-full max-w-4xl p-6 md:p-8 text-center';
-const background = { backgroundImage: 'url(/background2.webp)' };
 
 export const ScrollOverlay: React.FC = () => (
   <div className="relative w-full text-gray-800 font-sans pointer-events-none">
@@ -123,19 +123,33 @@ export const ScrollOverlay: React.FC = () => (
     </div>
     </div>
 
-    <section id="scene-5b" className={sectionClass} style={background} aria-labelledby="about-title">
-      <div className={cardClass}>
-        <span className="text-label">Sobre o médico</span>
-        <img src="/avatar.webp" alt="Dr. Antônio Carlos de Lacerda Lage" loading="lazy" width="96" height="96" className="w-24 h-24 rounded-full object-cover object-top mx-auto mt-4 border-2 border-[#d7b36c]/50" />
-        <h2 id="about-title" className="text-display editorial-title mt-4">Dr. Antônio Carlos de Lacerda Lage</h2>
-        <p className="text-heading text-base text-[#28616a] mt-2">Médico integrativo e psicoterapeuta</p>
-        <p className="text-xs text-[#49666c] mt-2">Médico CRM-3916 • Homeopatia RQE - 3783</p>
-        <div className="about-cards grid sm:grid-cols-3 gap-3 mt-5 text-left">
-          {[
-            ['Trajetória', 'Com quatro décadas de experiência médica e uma trajetória dedicada ao estudo do ser humano, desenvolveu uma abordagem que articula investigação clínica, psicoterapia, consciência corporal e compreensão existencial.'],
-            ['Formação', 'Sua formação reúne experiências em Homeopatia, Medicina Tradicional Chinesa, Medicina Antroposófica, Ayurveda, Medicina Funcional Integrativa e diferentes abordagens psicoterapêuticas.'],
-            ['Filosofia de cuidado', 'Seu trabalho é orientado pelo respeito à singularidade humana e pela convicção de que o cuidado deve contemplar tanto o sofrimento quanto as possibilidades de desenvolvimento da pessoa.'],
-          ].map(([title, text]) => <div key={title} className="glass-card-inner p-4"><h3 className="text-heading text-lg text-[#163f49]">{title}</h3><p className="editorial-body mt-2">{text}</p></div>)}
+    <section id="scene-5b" className={sectionClass} style={{ backgroundImage: 'url(/background-sobre.webp)' }} aria-labelledby="about-title">
+      <div className="fit-content glass-card editorial-card pointer-events-auto w-full max-w-5xl p-4 md:p-6">
+        <div className="about-grid grid grid-cols-[minmax(0,1fr)] lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] gap-3 md:gap-4 text-left">
+          <div className="about-left flex flex-col gap-3 md:gap-4 order-2 lg:order-1">
+            <div className="about-item about-heading glass-card-inner p-5">
+              <span className="about-pill">Sobre o médico</span>
+              <h2 id="about-title" className="text-display editorial-title mt-3">Dr. Antônio Carlos de Lacerda Lage</h2>
+              <p className="text-heading text-base text-[#28616a] mt-1.5">Médico integrativo e psicoterapeuta</p>
+            </div>
+            <MobileCarousel className="about-cards" dotsClassName="text-[#28616a]" label="Sobre o médico">
+              {[
+                ['Trajetória', 'Com quatro décadas de experiência médica e uma trajetória dedicada ao estudo do ser humano, desenvolveu uma abordagem que articula investigação clínica, psicoterapia, consciência corporal e compreensão existencial.'],
+                ['Formação', 'Sua formação reúne experiências em Homeopatia, Medicina Tradicional Chinesa, Medicina Antroposófica, Ayurveda, Medicina Funcional Integrativa e diferentes abordagens psicoterapêuticas.'],
+                ['Filosofia de cuidado', 'Seu trabalho é orientado pelo respeito à singularidade humana e pela convicção de que o cuidado deve contemplar tanto o sofrimento quanto as possibilidades de desenvolvimento da pessoa.'],
+              ].map(([title, text]) => (
+                <div key={title} className="about-item about-card glass-card-inner p-4 md:p-5">
+                  <h3 className="text-heading text-lg text-[#163f49]">{title}</h3>
+                  <p className="editorial-body mt-1.5">{text}</p>
+                </div>
+              ))}
+            </MobileCarousel>
+          </div>
+          <figure className="about-item about-photo order-1 lg:order-2">
+            <span className="about-chip about-chip-top">Médico CRM-3916</span>
+            <img src="/dr-antonio-retrato.webp" alt="Dr. Antônio Carlos de Lacerda Lage" width="540" height="600" decoding="async" />
+            <span className="about-chip about-chip-bottom">Homeopatia RQE - 3783</span>
+          </figure>
         </div>
       </div>
     </section>
