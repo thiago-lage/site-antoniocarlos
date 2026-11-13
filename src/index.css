@@ -434,3 +434,17 @@ dialog::backdrop {
 .light-flow {
   background: linear-gradient(180deg, #f8f4ec 0%, #eef6f5 22%, #f6f1e6 45%, #eef6f5 70%, #f8f4ec 100%);
 }
+
+/* Soft transitions between the photo sections and the clear background. */
+.hero-root::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; z-index: 8;
+  height: clamp(64px, 14svh, 140px); pointer-events: none;
+  background: linear-gradient(to bottom, rgba(248, 244, 236, 0) 0%, rgba(248, 244, 236, 0.55) 55%, #f8f4ec 100%);
+}
+#scene-5b { position: relative; }
+#scene-5b::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; z-index: 0;
+  height: clamp(90px, 18svh, 180px); pointer-events: none;
+  background: linear-gradient(to bottom, rgba(251, 247, 237, 0) 0%, rgba(251, 247, 237, 0.6) 55%, #fbf7ed 100%);
+}
+#scene-5b > * { position: relative; z-index: 1; }
