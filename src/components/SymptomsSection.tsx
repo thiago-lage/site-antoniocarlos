@@ -40,7 +40,7 @@ export const SYMPTOMS: SymptomItem[] = [
       whatIsRelated:
         'A ansiedade envolve tanto a ativação fisiológica do sistema nervoso autônomo quanto a forma como aprendemos a lidar com exigências, incertezas, vínculos e ameaças ao longo da nossa história. Condições clínicas, alterações hormonais, uso de substâncias e privação de sono também podem intensificar esse estado de alerta.',
       howWeInvestigate:
-        'Realizamos uma escuta médica detalhada para mapear o início e o ritmo dos sintomas, avaliando exames laboratoriais, rotina de sono, estilo de vida e possíveis causas orgânicas, ao mesmo tempo em que observamos como o corpo reage às tensões cotidianas e relacionais.',
+        'Realizo uma escuta médica detalhada para mapear o início e o ritmo dos sintomas, avaliando exames laboratoriais, rotina de sono, estilo de vida e possíveis causas orgânicas, ao mesmo tempo em que observo como o corpo reage às tensões cotidianas e relacionais.',
       howWeCare:
         'O cuidado combina recursos médicos e clínicos (quando indicados) com práticas de regulação corporal e ampliação da consciência emocional, ajudando o organismo a sair do estado crônico de defesa e recuperar presença, segurança interna e autonomia.',
     },
@@ -68,7 +68,7 @@ export const SYMPTOMS: SymptomItem[] = [
       whatIsRelated:
         'Os quadros depressivos resultam de uma interação complexa entre fatores biológicos, neuroquímicos, hormonais e inflamatórios, somados a perdas, lutos não elaborados, sobrecarga prolongada, desenraizamento ou conflitos relacionais profundos.',
       howWeInvestigate:
-        'Avaliamos criteriosamente a intensidade, a duração e a gravidade dos sintomas, investigando também deficiências nutricionais, função tireoidiana, condições clínicas associadas e o contexto biográfico e relacional em que o recolhimento vital se instalou.',
+        'Avalio criteriosamente a intensidade, a duração e a gravidade dos sintomas, investigando também deficiências nutricionais, função tireoidiana, condições clínicas associadas e o contexto biográfico e relacional em que o recolhimento vital se instalou.',
       howWeCare:
         'Construímos um plano terapêutico seguro e individualizado — que pode incluir suporte medicamentoso, homeopático e psicoterapêutico — voltado não apenas à remissão dos sintomas, mas à retomada gradual do tônus vital, dos vínculos e do sentido de existir.',
     },
@@ -96,7 +96,7 @@ export const SYMPTOMS: SymptomItem[] = [
       whatIsRelated:
         'Na crise de pânico, o sistema de alarme do organismo é acionado de forma abrupta e desproporcional. Muitas vezes, instala-se o "medo de sentir medo": a hipervigilância sobre as próprias sensações corporais retroalimenta a descarga autonômica.',
       howWeInvestigate:
-        'O primeiro passo essencial é diferenciar as crises de pânico de condições clínicas cardiológicas, respiratórias, vestibulares ou endócrinas. Paralelamente, mapeamos o contexto de vida e as tensões silenciosas que antecederam o início das crises.',
+        'O primeiro passo essencial é diferenciar as crises de pânico de condições clínicas cardiológicas, respiratórias, vestibulares ou endócrinas. Paralelamente, mapeio o contexto de vida e as tensões silenciosas que antecederam o início das crises.',
       howWeCare:
         'Oferecemos tratamento clínico e estratégias fundamentadas de autorregulação corporal e compreensão do ciclo do medo. Ao perder o terror diante da sensação física e reconhecer o que o organismo expressa, o paciente recupera a confiança em seu próprio corpo.',
     },
@@ -124,9 +124,9 @@ export const SYMPTOMS: SymptomItem[] = [
       whatIsRelated:
         'A insônia pode estar ligada a desalinhamentos do ritmo circadiano, hiperalerta noturno, quadros ansiosos ou depressivos, apneia obstrutiva do sono, dores crônicas, efeitos de medicamentos ou ao hábito de manter o organismo em estado constante de produtividade e vigilância.',
       howWeInvestigate:
-        'Avaliamos detalhadamente a arquitetura e a rotina do sono, hábitos diurnos e noturnos, medicações em uso, sintomas respiratórios noturnos e os estados emocionais que dificultam a entrega ao repouso.',
+        'Avalio detalhadamente a arquitetura e a rotina do sono, hábitos diurnos e noturnos, medicações em uso, sintomas respiratórios noturnos e os estados emocionais que dificultam a entrega ao repouso.',
       howWeCare:
-        'Integramos o cuidado médico criterioso a mudanças estruturadas de rotina, desaceleração fisiológica e estratégias comportamentais — incluindo recursos da terapia cognitivo-comportamental para insônia (TCC-I) quando indicada — para restaurar um sono natural e reparador.',
+        'Integro o cuidado médico criterioso a mudanças estruturadas de rotina, desaceleração fisiológica e estratégias comportamentais — incluindo recursos da terapia cognitivo-comportamental para insônia (TCC-I) quando indicada — para restaurar um sono natural e reparador.',
     },
   },
   {
@@ -152,9 +152,9 @@ export const SYMPTOMS: SymptomItem[] = [
       whatIsRelated:
         'A fadiga persistente exige olhar amplo: pode decorrer de anemias, disfunções da tireoide, carências vitamínicas, distúrbios metabólicos, infecções prévias, sono não reparador, uso de fármacos, depressão ou sobrecarga crônica de responsabilidades e autoexigência.',
       howWeInvestigate:
-        'Não atribuímos automaticamente a exaustão ao estresse. Realizamos investigação clínica e laboratorial minuciosa para rastrear causas orgânicas e metabólicas tratáveis, junto à escuta de como a pessoa administra sua energia, seus limites e suas relações.',
+        'Não atribuo automaticamente a exaustão ao estresse. Realizo investigação clínica e laboratorial minuciosa para rastrear causas orgânicas e metabólicas tratáveis, junto à escuta de como a pessoa administra sua energia, seus limites e suas relações.',
       howWeCare:
-        'Tratamos as alterações clínicas identificadas e trabalhamos a reconstrução gradual da vitalidade, auxiliando o paciente a reconhecer seus limites reais, reorganizar prioridades e habitar o corpo de modo mais sustentável.',
+        'Trato as alterações clínicas identificadas e trabalho a reconstrução gradual da vitalidade, auxiliando o paciente a reconhecer seus limites reais, reorganizar prioridades e habitar o corpo de modo mais sustentável.',
     },
   },
   {
@@ -180,7 +180,7 @@ export const SYMPTOMS: SymptomItem[] = [
       whatIsRelated:
         'A dor e os sintomas persistentes envolvem tanto processos orgânicos e inflamatórios locais quanto mecanismos de sensibilização do sistema nervoso central, padrões crônicos de contração muscular, qualidade do sono e vivências emocionais que modulam a percepção da dor.',
       howWeInvestigate:
-        'Avaliamos exames complementares, histórico médico e tratamentos já realizados com rigor clínico, validando a realidade física do que o paciente sente e investigando as interações entre organismo, sistema nervoso e biografia.',
+        'Avalio exames complementares, histórico médico e tratamentos já realizados com rigor clínico, validando a realidade física do que o paciente sente e investigando as interações entre organismo, sistema nervoso e biografia.',
       howWeCare:
         'Oferecemos uma abordagem integrativa que une manejo médico, dessensibilização e escuta corporal. Quando o sintoma é acolhido com seriedade clínica e compreendido em seu contexto amplo, abrem-se novos caminhos de alívio e qualidade de vida.',
     },

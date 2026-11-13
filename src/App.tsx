@@ -19,12 +19,16 @@ function HomePage() {
   useViewportFit();
   const containerRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
-    (window as any).lenis = lenis;
-    const tick = (time: number) => lenis.raf(time * 1000);
-    lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add(tick);
-    gsap.ticker.lagSmoothing(0);
+    // Touch devices already scroll natively and smoothly; Lenis would only add per-frame JS.
+    const useSmooth = !window.matchMedia('(pointer: coarse)').matches;
+    const lenis = useSmooth ? new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) }) : null;
+    const tick = (time: number) => lenis?.raf(time * 1000);
+    if (lenis) {
+      (window as any).lenis = lenis;
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add(tick);
+      gsap.ticker.lagSmoothing(0);
+    }
     const ctx = gsap.context(() => {
       SCENES.filter(id => id !== 'scene-1').forEach(id => {
         gsap.fromTo(`#${id} .glass-card`, { opacity: 0, y: 30 }, {
@@ -38,14 +42,14 @@ function HomePage() {
       if (disposed) return;
       ScrollTrigger.refresh();
       const target = document.getElementById(window.location.hash.slice(1));
-      if (target) lenis.scrollTo(target, { immediate: true });
+      if (target) { if (lenis) lenis.scrollTo(target, { immediate: true }); else target.scrollIntoView(); }
     };
     void document.fonts.ready.then(alignInitialHash);
     return () => {
       disposed = true;
       ctx.revert();
-      gsap.ticker.remove(tick);
-      lenis.destroy();
+      if (lenis) gsap.ticker.remove(tick);
+      lenis?.destroy();
       delete (window as any).lenis;
     };
   }, []);

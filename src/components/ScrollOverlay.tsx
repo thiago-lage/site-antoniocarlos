@@ -26,7 +26,7 @@ const APPROACHES = [
 
 const sectionClass = 'scene content-scene centered-scene w-full flex flex-col items-center px-5 pr-10 sm:px-10 md:px-14 lg:px-20 bg-cover bg-center bg-no-repeat';
 const cardClass = 'fit-content glass-card editorial-card pointer-events-auto w-full max-w-4xl p-6 md:p-8 text-center';
-const background = { backgroundImage: 'url(/background2.png)' };
+const background = { backgroundImage: 'url(/background2.webp)' };
 
 export const ScrollOverlay: React.FC = () => (
   <div className="relative w-full text-gray-800 font-sans pointer-events-none">
@@ -40,7 +40,7 @@ export const ScrollOverlay: React.FC = () => (
         <div className="mt-5 grid md:grid-cols-2 gap-6 text-left items-center">
           <div className="editorial-body space-y-3">
             <p className="dimensions-lead">O adoecimento é um processo complexo, que pode envolver fatores biológicos, psicológicos, comportamentais, sociais e existenciais.</p>
-            <p>Nossa abordagem considera também a dimensão transcendente do ser: sua busca por sentido, seus valores fundamentais, sua espiritualidade e sua relação com aquilo que ultrapassa a própria individualidade.</p>
+            <p>Minha abordagem considera também a dimensão transcendente do ser: sua busca por sentido, seus valores fundamentais, sua espiritualidade e sua relação com aquilo que ultrapassa a própria individualidade.</p>
             <p>Perdas, rupturas de sentido, conflitos de valores e crises existenciais podem participar da experiência de sofrimento e influenciar a saúde. Essa dimensão é acolhida sem presumir que toda doença tenha uma origem espiritual ou emocional.</p>
           </div>
           <div className="grid sm:grid-cols-2 gap-3">
@@ -62,7 +62,7 @@ export const ScrollOverlay: React.FC = () => (
         <span className="text-label">O método</span>
         <h2 id="method-title" className="text-display editorial-title mt-2">O Corpo como Caminho para a Consciência</h2>
         <p className="text-heading text-base sm:text-lg text-[#28616a] mt-4">O corpo não é o destino final. É um dos lugares onde a consciência começa e se reencontra.</p>
-        <p className="editorial-body mt-4">Por meio da percepção corporal, da escuta emocional e da reflexão sobre a própria história, buscamos reconhecer padrões, ampliar a liberdade interior e favorecer escolhas mais conscientes.</p>
+        <p className="editorial-body mt-4">Por meio da percepção corporal, da escuta emocional e da reflexão sobre a própria história, busco reconhecer padrões, ampliar a liberdade interior e favorecer escolhas mais conscientes.</p>
         <p className="text-label mt-5">Três perguntas fundamentais</p>
         <div className="grid md:grid-cols-3 gap-3 mt-3 text-left">
           {[
@@ -119,7 +119,7 @@ export const ScrollOverlay: React.FC = () => (
     <section id="scene-5b" className={sectionClass} style={background} aria-labelledby="about-title">
       <div className={cardClass}>
         <span className="text-label">Sobre o médico</span>
-        <img src="/avatar.png" alt="Dr. Antônio Carlos de Lacerda Lage" loading="lazy" width="96" height="96" className="w-24 h-24 rounded-full object-cover object-top mx-auto mt-4 border-2 border-[#d7b36c]/50" />
+        <img src="/avatar.webp" alt="Dr. Antônio Carlos de Lacerda Lage" loading="lazy" width="96" height="96" className="w-24 h-24 rounded-full object-cover object-top mx-auto mt-4 border-2 border-[#d7b36c]/50" />
         <h2 id="about-title" className="text-display editorial-title mt-4">Dr. Antônio Carlos de Lacerda Lage</h2>
         <p className="text-heading text-base text-[#28616a] mt-2">Médico integrativo e psicoterapeuta</p>
         <p className="text-xs text-[#49666c] mt-2">Médico CRM-3916 • Homeopatia RQE - 3783</p>

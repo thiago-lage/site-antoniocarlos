@@ -7,10 +7,19 @@ export function useViewportFit() {
     const groups = Array.from(document.querySelectorAll<HTMLElement>('.scene .fit-content'));
     let frame = 0;
     let disposed = false;
+    let lastWidth = window.innerWidth;
     const fit = () => {
       frame = 0;
       let changed = false;
+      // Phones: let content flow naturally. Rescaling while scrolling (the browser
+      // toolbar resizes the viewport) forced layout and made scrolling stutter.
+      const compact = window.innerWidth < 768;
       for (const group of groups) {
+        if (compact) {
+          if (group.style.zoom) { group.style.zoom = ''; changed = true; }
+          if (group.style.width) { group.style.width = ''; changed = true; }
+          continue;
+        }
         const section = group.closest<HTMLElement>('.scene');
         if (!section) continue;
         const style = getComputedStyle(section);
@@ -36,11 +45,18 @@ export function useViewportFit() {
       if (changed) ScrollTrigger.refresh();
     };
     const schedule = () => { if (!disposed && !frame) frame = requestAnimationFrame(fit); };
+    const onResize = () => {
+      // Ignore height-only resizes on phones (browser toolbar showing/hiding while scrolling).
+      const widthChanged = window.innerWidth !== lastWidth;
+      lastWidth = window.innerWidth;
+      if (window.innerWidth < 768 && !widthChanged) return;
+      schedule();
+    };
     const observer = new ResizeObserver(schedule);
     groups.forEach(group => observer.observe(group));
-    window.addEventListener('resize', schedule);
+    window.addEventListener('resize', onResize);
     void document.fonts.ready.then(schedule);
     schedule();
-    return () => { disposed = true; observer.disconnect(); window.removeEventListener('resize', schedule); cancelAnimationFrame(frame); };
+    return () => { disposed = true; observer.disconnect(); window.removeEventListener('resize', onResize); cancelAnimationFrame(frame); };
   }, []);
 }

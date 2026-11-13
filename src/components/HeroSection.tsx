@@ -83,6 +83,7 @@ export const HeroSection: React.FC = () => {
 
     const onMove = (e: MouseEvent) => {
       if (window.innerWidth < 768) return;
+      if (!rafRef.current && !document.hidden) rafRef.current = requestAnimationFrame(tick);
       mouse.current = {
         nx: (e.clientX / window.innerWidth  - 0.5) * 2, // -1 … +1
         ny: (e.clientY / window.innerHeight - 0.5) * 2,
@@ -90,7 +91,8 @@ export const HeroSection: React.FC = () => {
     };
 
     const tick = () => {
-      if (window.innerWidth >= 768) {
+      if (window.innerWidth < 768) { rafRef.current = 0; return; } // no parallax on phones: stop the loop
+      {
         const { nx, ny } = mouse.current;
         for (const l of layersRef.current) {
           // Direção oposta ao mouse → efeito janela (parallax de profundidade)
@@ -130,7 +132,7 @@ export const HeroSection: React.FC = () => {
       {/* ── Camada 1: Background (fundo) ── */}
       <div ref={bgRef} className="h-layer h-bg" aria-hidden="true" style={{ willChange: 'transform' }}>
         <img
-          src="/background.png" alt=""
+          src="/background.webp" alt=""
           className="h-bg-img"
           loading="eager" decoding="async" aria-hidden="true"
         />
@@ -170,14 +172,14 @@ export const HeroSection: React.FC = () => {
       >
         {isMobile ? (
           <img
-            src="/avatar.png"
+            src="/avatar.webp"
             alt=""
             className="h-person-media"
             loading="eager"
           />
         ) : (
           <img
-            src="/dr-antonio-carlos.png"
+            src="/dr-antonio-carlos.webp"
             alt=""
             className="h-person-media"
             loading="eager"
@@ -189,7 +191,7 @@ export const HeroSection: React.FC = () => {
       {!isMobile && (
         <div className="h-layer h-fg" aria-hidden="true">
           <img
-            src="/folhagens.png"
+            src="/folhagens.webp"
             className="h-fg-img"
             alt="" loading="lazy" decoding="async" aria-hidden="true"
           />
@@ -218,7 +220,7 @@ export const HeroSection: React.FC = () => {
         <div className="h-body animate-up delay-2 space-y-3">
           <p>O corpo expressa nossa condição biológica e participa de nossa experiência emocional, relacional e existencial.</p>
           <p>Cada sintoma merece uma investigação cuidadosa. Cada pessoa traz uma história singular, com seus vínculos, conflitos, valores e possibilidades de transformação.</p>
-          <p className="text-[#EED7A0] font-medium">Mais do que tratar sintomas, buscamos compreender o ser humano em sua integralidade.</p>
+          <p className="text-[#EED7A0] font-medium">Mais do que tratar sintomas, busco compreender o ser humano em sua integralidade.</p>
         </div>
         <div className="h-cta-row animate-up delay-3">
           <a

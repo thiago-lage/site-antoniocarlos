@@ -21,8 +21,8 @@ export const SymptomPage = ({ symptom }: { symptom: SymptomItem }) => {
           </section>
           {[
             ['2. O que pode estar relacionado', symptom.details.whatIsRelated],
-            ['3. Como investigamos', symptom.details.howWeInvestigate],
-            ['4. Como podemos cuidar', symptom.details.howWeCare],
+            ['3. Como investigo', symptom.details.howWeInvestigate],
+            ['4. Como posso cuidar', symptom.details.howWeCare],
           ].map(([title, body]) => (
             <section key={title} className="glass-card-inner p-5 mt-4" aria-label={title}>
               <h2 className="text-heading text-xl">{title}</h2>
