@@ -473,5 +473,5 @@ dialog::backdrop {
 .back-link:hover { background: #163f49; color: #fbf7ed; border-color: #163f49; }
 .back-link:focus-visible { outline: 2px solid #28616a; outline-offset: 4px; }
 
-/* Journey steps: centered text inside each step card. */
-#scene-caminho .method-step { text-align: center; }
+/* Journey steps: text stays next to the numbers; the list is narrower and centered in the card. */
+#scene-caminho .method-steps { max-width: 41rem; margin-inline: auto; }
