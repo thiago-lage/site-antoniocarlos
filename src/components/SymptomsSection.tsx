@@ -188,7 +188,7 @@ export const SYMPTOMS: SymptomItem[] = [
 ];
 
 export const SymptomsSection: React.FC = () => (
-  <section id="scene-sintomas" className="scene content-scene centered-scene w-full flex flex-col items-center pl-5 pr-10 sm:px-10 md:px-14 lg:px-20" style={{ background: 'linear-gradient(170deg, #f8f4ec 0%, #eef6f5 50%, #f3e7d1 100%)' }} aria-labelledby="symptoms-title">
+  <section id="scene-sintomas" className="scene content-scene centered-scene w-full flex flex-col items-center pl-5 pr-10 sm:px-10 md:px-14 lg:px-20" aria-labelledby="symptoms-title">
     <div className="fit-content pointer-events-auto w-full max-w-6xl flex flex-col items-center">
       <div className="text-center max-w-2xl mb-6 md:mb-8 px-2">
         <span className="text-label text-[10px] block mb-1.5">Escuta Clínica e Integrativa</span>

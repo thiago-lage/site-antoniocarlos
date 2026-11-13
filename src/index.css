@@ -429,3 +429,8 @@ dialog::backdrop {
   pointer-events: none; transition: transform 0.6s ease, opacity 0.3s;
 }
 .symptoms-grid > a:hover .symptom-card-bg { transform: scale(1.04); opacity: 0.7; }
+
+/* One continuous light background across the clear sections: no seam between them. */
+.light-flow {
+  background: linear-gradient(180deg, #f8f4ec 0%, #eef6f5 22%, #f6f1e6 45%, #eef6f5 70%, #f8f4ec 100%);
+}
