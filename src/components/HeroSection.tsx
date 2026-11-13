@@ -647,6 +647,12 @@ export const HeroSection: React.FC = () => {
           }
         }
 
+        /* Telas grandes e ultrawide: aproxima o texto do médico */
+        @media (min-width: 1500px) {
+          .hero-root::before { flex: 0 0 min(calc(72vw - 290px), calc(85vh + 4vw)); }
+          .h-content { margin: 0 auto 0 0; }
+        }
+
       `}</style>
     </section>
   );

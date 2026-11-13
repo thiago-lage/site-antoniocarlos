@@ -62,7 +62,7 @@ function HomePage() {
   }, []);
 
   return (
-    <div ref={containerRef} className="relative w-full min-h-screen overflow-x-hidden bg-[#F8F7F3] text-gray-800 font-sans selection:bg-turquesa/30">
+    <div ref={containerRef} className="relative w-full min-h-screen overflow-x-clip bg-[#F8F7F3] text-gray-800 font-sans selection:bg-turquesa/30">
       <ScrollOverlay />
       <Footer />
       <SideNavigation />
