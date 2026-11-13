@@ -436,11 +436,6 @@ dialog::backdrop {
 }
 
 /* Soft transitions between the photo sections and the clear background. */
-.hero-root::after {
-  content: ""; position: absolute; left: 0; right: 0; bottom: 0; z-index: 8;
-  height: clamp(64px, 14svh, 140px); pointer-events: none;
-  background: linear-gradient(to bottom, rgba(248, 244, 236, 0) 0%, rgba(248, 244, 236, 0.55) 55%, #f8f4ec 100%);
-}
 #scene-5b { position: relative; }
 #scene-5b::after {
   content: ""; position: absolute; left: 0; right: 0; bottom: 0; z-index: 0;
@@ -448,3 +443,38 @@ dialog::backdrop {
   background: linear-gradient(to bottom, rgba(251, 247, 237, 0) 0%, rgba(251, 247, 237, 0.6) 55%, #fbf7ed 100%);
 }
 #scene-5b > * { position: relative; z-index: 1; }
+
+/* ─── Animated DNA: one helix centered behind sections "O ser humano" → "Abordagens" ─── */
+.dna-zone { position: relative; }
+.dna-zone > section { position: relative; z-index: 1; }
+.dna-zone .glass-card { background: rgba(251, 247, 237, 0.66); }
+.dna-bg {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: 0.6;
+  display: flex; justify-content: center; overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 6%, #000 94%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 6%, #000 94%, transparent 100%);
+}
+.dna-helix { display: block; flex: none; overflow: visible; }
+.dna-bar { stroke: #6eaaa5; stroke-width: 2; stroke-linecap: round; opacity: 0.55; }
+.dna-node-a { fill: #53b7ae; }
+.dna-node-b { fill: #d7b36c; }
+.dna-bg .dna-bar, .dna-bg .dna-node {
+  transform-box: fill-box; transform-origin: center;
+  animation-duration: 8s; animation-iteration-count: infinite; animation-play-state: paused;
+  animation-timing-function: ease-in-out;
+}
+.dna-bg.dna-running .dna-bar, .dna-bg.dna-running .dna-node { animation-play-state: running; }
+.dna-bar { animation-name: dna-bar; }
+.dna-node-a { animation-name: dna-node-a; }
+.dna-node-b { animation-name: dna-node-b; }
+@keyframes dna-bar { 0%, 100% { transform: scaleX(1); } 50% { transform: scaleX(-1); } }
+@keyframes dna-node-a { 0%, 100% { transform: translateX(44px); } 50% { transform: translateX(-44px); } }
+@keyframes dna-node-b { 0%, 100% { transform: translateX(-44px); } 50% { transform: translateX(44px); } }
+@media (max-width: 767px) {
+  .dna-bg { opacity: 0.45; }
+  .dna-rung:nth-child(even) { display: none; }
+  .dna-zone .glass-card { background: rgba(251, 247, 237, 0.74); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dna-bg .dna-bar, .dna-bg .dna-node { animation: none; }
+}

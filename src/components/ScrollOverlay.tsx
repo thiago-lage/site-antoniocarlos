@@ -1,6 +1,7 @@
 import React from 'react';
 import { HeroSection } from './HeroSection';
 import { SymptomsSection } from './SymptomsSection';
+import { DnaBackground } from './DnaBackground';
 
 const METHOD_STEPS = [
   { title: 'Acolher e escutar', description: 'Compreender o sofrimento, a história de vida e as expectativas da pessoa.' },
@@ -34,6 +35,8 @@ export const ScrollOverlay: React.FC = () => (
     <div className="light-flow">
     <SymptomsSection />
 
+    <div className="dna-zone">
+      <DnaBackground />
     <section id="scene-2" className={sectionClass} aria-labelledby="dimensions-title">
       <div className={`${cardClass} max-w-5xl`}>
         <span className="text-label">O ser humano para além dos sintomas</span>
@@ -117,6 +120,7 @@ export const ScrollOverlay: React.FC = () => (
       </div>
     </section>
 
+    </div>
     </div>
 
     <section id="scene-5b" className={sectionClass} style={background} aria-labelledby="about-title">

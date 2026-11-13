@@ -193,7 +193,7 @@ export const HeroSection: React.FC = () => {
           <img
             src="/folhagens.webp"
             className="h-fg-img"
-            alt="" loading="lazy" decoding="async" aria-hidden="true"
+            alt="" loading="eager" decoding="async" aria-hidden="true"
           />
         </div>
       )}
