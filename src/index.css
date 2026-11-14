@@ -639,3 +639,8 @@ dialog::backdrop {
   .approach-sync { font-size: 1rem; margin-top: 0.8rem; }
   #scene-5b .about-closing { font-size: 0.82rem; line-height: 1.4; }
 }
+
+/* Featured card in "Sobre mim" (Experiência): gold accent and slightly larger text. */
+.about-card.is-featured { border-left: 3px solid #d7b36c; background: rgba(251, 247, 237, 0.86); }
+.about-card.is-featured h3 { color: #28616a; }
+@media (min-width: 640px) { .about-card.is-featured .editorial-body { font-size: 13.5px; } }

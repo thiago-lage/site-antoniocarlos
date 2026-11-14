@@ -11,6 +11,10 @@ export const SideNavigation: React.FC = () => {
     return () => window.removeEventListener('scroll', update);
   }, []);
 
+  // Hero and contact scenes have a dark background: use light dots there so they stay visible.
+  const onDark = activeIdx === 0 || activeIdx === SCENES.length - 1;
+  const idleDot = onDark ? 'rgba(251, 247, 237, 0.5)' : 'rgba(95, 116, 119, 0.4)';
+
   const activeArea = PRIMARY_NAV.reduce((active, item, index) =>
     activeIdx >= SCENES.indexOf(item.sceneId) ? index : active, 0);
 
@@ -39,7 +43,7 @@ export const SideNavigation: React.FC = () => {
             style={{
               width: activeArea === i ? '10px' : '6px',
               height: activeArea === i ? '10px' : '6px',
-              backgroundColor: activeArea === i ? '#d7b36c' : 'rgba(95, 116, 119, 0.4)',
+              backgroundColor: activeArea === i ? '#d7b36c' : idleDot,
               boxShadow: activeArea === i ? '0 0 0 3px rgba(215, 179, 108, 0.25)' : 'none',
             }}
           />

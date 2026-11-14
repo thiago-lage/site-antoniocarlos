@@ -29,9 +29,10 @@ const ATTENDANCE = [
 ];
 
 const ABOUT = [
+  // Featured first: the client asked for his experience with groups and human development to stand out.
+  ['Experiência', 'Minha experiência inclui atendimento individual, grupos vivenciais e acompanhamento de processos de amadurecimento emocional, relacional e existencial.'],
   ['Trajetória', 'Sou médico, homeopata e psicoterapeuta, com trajetória em medicina integrativa, diferentes abordagens psicoterapêuticas e processos de desenvolvimento humano.'],
   ['Formação', 'Minha formação abrange Homeopatia, Medicina Tradicional Chinesa, Medicina Antroposófica, Ayurveda, Medicina Funcional Integrativa e Medicina do Esporte, além de estudos em Psicologia Junguiana, Psicodrama, Arteterapia, terapias corporais e outras abordagens de desenvolvimento humano.'],
-  ['Experiência', 'Minha experiência inclui atendimento individual, grupos vivenciais e acompanhamento de processos de amadurecimento emocional, relacional e existencial.'],
 ];
 
 const sectionClass = 'scene content-scene centered-scene w-full flex flex-col items-center px-5 pr-10 sm:px-10 md:px-14 lg:px-20 bg-cover bg-center bg-no-repeat';
@@ -73,7 +74,7 @@ export const ScrollOverlay: React.FC = () => (
             </div>
             <MobileCarousel className="about-cards" dotsClassName="text-[#28616a]" label="Sobre mim">
               {ABOUT.map(([title, text]) => (
-                <div key={title} className="about-item about-card glass-card-inner p-4 md:p-5">
+                <div key={title} className={`about-item about-card glass-card-inner p-4 md:p-5${title === 'Experiência' ? ' is-featured' : ''}`}>
                   <h3 className="text-heading text-lg text-[#163f49]">{title}</h3>
                   <p className="editorial-body mt-1.5">{text}</p>
                 </div>
