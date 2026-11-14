@@ -1,6 +1,15 @@
 import { useEffect } from 'react';
 import type { SymptomItem } from './SymptomsSection';
 
+/** Short symptom pages, built only from the client's new sentences. Set to false to bring back the long sections. */
+const CONCISE_SYMPTOM_PAGES = true;
+const CONCISE_PARAGRAPHS = [
+  'Corpo, emoções, vínculos, consciência e busca de sentido são dimensões importantes da experiência humana.',
+  'Considerá-las, quando pertinentes, amplia a compreensão das necessidades de cada pessoa, sem substituir a investigação e os tratamentos médicos necessários.',
+  'O objetivo é favorecer saúde, autonomia e qualidade de vida.',
+  'O primeiro passo é uma avaliação cuidadosa.',
+];
+
 export const SymptomPage = ({ symptom }: { symptom: SymptomItem }) => {
   useEffect(() => {
     const previous = document.title;
@@ -21,9 +30,9 @@ export const SymptomPage = ({ symptom }: { symptom: SymptomItem }) => {
           <h1 className="text-display text-3xl sm:text-4xl mt-3">{symptom.title}</h1>
           <p className="text-heading text-lg text-[#28616a] mt-4">{symptom.subtitle}</p>
           <p className="editorial-body mt-3">{symptom.summary}</p>
-          {symptom.provisional ? (
+          {symptom.provisional || CONCISE_SYMPTOM_PAGES ? (
             <section className="glass-card-inner p-5 mt-6 space-y-3">
-              {symptom.provisional.map(text => <p key={text} className="editorial-body">{text}</p>)}
+              {(symptom.provisional ?? CONCISE_PARAGRAPHS).map(text => <p key={text} className="editorial-body">{text}</p>)}
             </section>
           ) : (
             <>
