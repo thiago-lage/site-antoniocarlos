@@ -43,13 +43,6 @@ function HomePage() {
           scrollTrigger: { trigger: '#scene-5b .about-grid', start: 'top 80%', toggleActions: 'play none none none' },
         });
       }
-      // Therapeutic journey: reveal one step at a time.
-      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        gsap.fromTo('#scene-caminho .method-steps > li', { opacity: 0, y: 18 }, {
-          opacity: 1, y: 0, duration: 0.7, ease: 'power2.out', stagger: 0.55,
-          scrollTrigger: { trigger: '#scene-caminho .method-steps', start: 'top 80%', toggleActions: 'play none none none' },
-        });
-      }
     }, containerRef);
     let disposed = false;
     const alignInitialHash = () => {

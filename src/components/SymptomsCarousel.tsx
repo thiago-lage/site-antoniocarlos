@@ -80,8 +80,7 @@ export const SymptomsCarousel = () => {
     <section ref={sectionRef} id="scene-sintomas" className="scene content-scene centered-scene symptoms-carousel-scene w-full flex flex-col items-center pl-5 pr-10 sm:px-10 md:px-14 lg:px-20" aria-labelledby="symptoms-title">
       <div className="fit-content pointer-events-auto w-full max-w-6xl flex flex-col items-center">
         <div className="text-center max-w-2xl px-2">
-          <span className="text-label text-[10px] block mb-1.5">Escuta Clínica e Integrativa</span>
-          <h2 id="symptoms-title" className="text-display text-2xl sm:text-3xl md:text-4xl text-[#163f49]">O que você está vivendo hoje?</h2>
+          <h2 id="symptoms-title" className="text-display text-2xl sm:text-3xl md:text-4xl text-[#163f49]">Em que posso ajudar</h2>
           <div className="clinical-note sc-note mt-3 py-2.5 px-4 rounded-2xl text-center border border-[#d7b36c]/45 bg-[#fbf7ed]/80">
             <p className="text-xs text-[#163f49] leading-relaxed"><strong className="uppercase tracking-wider text-[10px] text-[#28616a]">Distinção Clínica Essencial</strong>{' '}Nem todo sintoma tem origem emocional ou espiritual. Compreendê-lo não substitui o diagnóstico nem o tratamento clínico.</p>
           </div>
@@ -132,7 +131,7 @@ export const SymptomsCarousel = () => {
                   transition: jumped[i] ? 'none' : undefined,
                 }}
               >
-                <img src={`/symptoms/${item.id}.webp`} alt="" decoding="async" draggable={false} />
+                <img src={item.image ?? `/symptoms/${item.id}.webp`} alt="" decoding="async" draggable={false} />
                 <span className="sc-shade" aria-hidden="true" />
                 <span className="sc-info">
                   <span className="sc-icon" style={{ background: item.gradient, color: item.accentColor }}>{item.icon}</span>

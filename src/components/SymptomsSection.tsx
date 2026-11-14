@@ -7,6 +7,10 @@ export interface SymptomItem {
   summary: string;
   gradient: string;
   accentColor: string;
+  /** Photo shown on the card and the page; defaults to /symptoms/<id>.webp */
+  image?: string;
+  /** Page built only from the client's own new sentences (no clinical detail sections yet). */
+  provisional?: string[];
   icon: React.ReactNode;
   details: {
     whatYouFeel: string[];
@@ -75,7 +79,7 @@ export const SYMPTOMS: SymptomItem[] = [
   },
   {
     id: 'panico',
-    title: 'Crises de pânico',
+    title: 'Pânico',
     subtitle: 'Quando o corpo dispara um alarme intenso.',
     summary:
       'Avaliação clínica, compreensão do ciclo do medo e recursos para recuperar segurança.',
@@ -131,7 +135,7 @@ export const SYMPTOMS: SymptomItem[] = [
   },
   {
     id: 'cansaco',
-    title: 'Cansaço persistente',
+    title: 'Cansaço',
     subtitle: 'Quando descansar parece não ser suficiente.',
     summary:
       'Busca das causas físicas e psicossociais, com atenção à vitalidade e ao propósito.',
@@ -158,32 +162,26 @@ export const SYMPTOMS: SymptomItem[] = [
     },
   },
   {
-    id: 'dores',
-    title: 'Dores e sintomas físicos',
-    subtitle: 'Quando o desconforto limita a liberdade de viver.',
+    id: 'conflitos',
+    title: 'Conflitos emocionais',
+    subtitle: 'Corpo, emoções, vínculos, consciência e busca de sentido.',
     summary:
-      'Investigação médica e compreensão integrada dos fatores que influenciam o sofrimento.',
+      'Corpo, emoções, vínculos, consciência e busca de sentido são dimensões importantes da experiência humana.',
+    image: '/symptoms/dores.webp',
     gradient: 'linear-gradient(135deg, rgba(215, 179, 108, 0.22) 0%, rgba(22, 63, 73, 0.16) 100%)',
     accentColor: '#163f49',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-5 h-5">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
       </svg>
     ),
-    details: {
-      whatYouFeel: [
-        'Cefaleias, dores musculares, articulares ou lombares que se repetem',
-        'Alterações gastrointestinais, tonturas, opressão torácica ou dermatites recorrentes',
-        'Frustração por conviver com sintomas reais que persistem apesar de diversos tratamentos',
-        'Limitação da espontaneidade, do trabalho e do prazer de viver pelo desconforto físico',
-      ],
-      whatIsRelated:
-        'A dor e os sintomas persistentes envolvem tanto processos orgânicos e inflamatórios locais quanto mecanismos de sensibilização do sistema nervoso central, padrões crônicos de contração muscular, qualidade do sono e vivências emocionais que modulam a percepção da dor.',
-      howWeInvestigate:
-        'Avalio exames complementares, histórico médico e tratamentos já realizados com rigor clínico, validando a realidade física do que o paciente sente e investigando as interações entre organismo, sistema nervoso e biografia.',
-      howWeCare:
-        'Oferecemos uma abordagem integrativa que une manejo médico, dessensibilização e escuta corporal. Quando o sintoma é acolhido com seriedade clínica e compreendido em seu contexto amplo, abrem-se novos caminhos de alívio e qualidade de vida.',
-    },
+    // Provisional page: only sentences written by the client in the new text. Replace when a full text arrives.
+    provisional: [
+      'Considerá-las, quando pertinentes, amplia a compreensão das necessidades de cada pessoa, sem substituir a investigação e os tratamentos médicos necessários.',
+      'O objetivo é favorecer saúde, autonomia e qualidade de vida.',
+      'O primeiro passo é uma avaliação cuidadosa.',
+    ],
+    details: { whatYouFeel: [], whatIsRelated: '', howWeInvestigate: '', howWeCare: '' },
   },
 ];
 
@@ -191,14 +189,13 @@ export const SymptomsSection: React.FC = () => (
   <section id="scene-sintomas" className="scene content-scene centered-scene w-full flex flex-col items-center pl-5 pr-10 sm:px-10 md:px-14 lg:px-20" aria-labelledby="symptoms-title">
     <div className="fit-content pointer-events-auto w-full max-w-6xl flex flex-col items-center">
       <div className="text-center max-w-2xl mb-6 md:mb-8 px-2">
-        <span className="text-label text-[10px] block mb-1.5">Escuta Clínica e Integrativa</span>
-        <h2 id="symptoms-title" className="text-display text-2xl sm:text-3xl md:text-4xl text-[#163f49]">O que você está vivendo hoje?</h2>
+                <h2 id="symptoms-title" className="text-display text-2xl sm:text-3xl md:text-4xl text-[#163f49]">Em que posso ajudar</h2>
       </div>
       <div className="symptoms-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 w-full">
         {SYMPTOMS.map(item => (
           <a key={item.id} href={`/sintomas/${item.id}`} aria-label={`Ver detalhes sobre ${item.title}`} className="glass-card relative overflow-hidden p-5 md:p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-lg group focus-visible:outline-2 focus-visible:outline-[#28616a]" style={{ borderRadius: '1.35rem' }}>
             {/* Soft background photo: drop /public/symptoms/<id>.webp to enable; hidden if missing. */}
-            <img src={`/symptoms/${item.id}.webp`} alt="" aria-hidden="true" loading="lazy" decoding="async" className="symptom-card-bg" onError={e => { e.currentTarget.style.display = 'none'; }} />
+            <img src={item.image ?? `/symptoms/${item.id}.webp`} alt="" aria-hidden="true" loading="lazy" decoding="async" className="symptom-card-bg" onError={e => { e.currentTarget.style.display = 'none'; }} />
             <div className="relative flex items-center justify-between gap-2 mb-3">
               <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border border-white/70" style={{ background: item.gradient, color: item.accentColor }}>{item.icon}</div>
             </div>

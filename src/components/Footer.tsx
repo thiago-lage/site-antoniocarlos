@@ -104,18 +104,17 @@ export const Footer: React.FC = () => {
         </div>
 
         <div className="contact-copy mt-3 flex flex-col items-center gap-3 text-center pointer-events-auto w-full max-w-4xl mb-4 px-2">
-          <span className="text-label text-[#d7b36c]">Atendimento e acompanhamento</span>
-          <h2 className="text-display text-xl sm:text-2xl text-white">Um cuidado construído com você</h2>
-          <MobileCarousel className="care-cards grid sm:grid-cols-3 gap-3 w-full text-left" dotsClassName="text-[#d7b36c]" label="Atendimento e acompanhamento">
+          <h2 className="text-display text-xl sm:text-2xl text-white">Um cuidado que reconhece a pessoa por inteiro.</h2>
+          <MobileCarousel className="care-cards grid sm:grid-cols-3 gap-3 w-full text-left" dotsClassName="text-[#d7b36c]" label="Um cuidado que reconhece a pessoa por inteiro">
             {[
-              ['01', 'Escuta e avaliação', 'A primeira consulta acolhe o que você sente e investiga sua história pessoal e clínica.'],
-              ['02', 'Plano individualizado', 'Necessidades, objetivos e possibilidades orientam um plano construído em conjunto.'],
-              ['03', 'Acompanhamento', 'Consultas médicas, psicoterapia e consciência corporal, conforme a indicação e a escolha compartilhada.'],
-            ].map(([number, title, text]) => <div key={number} className="care-card rounded-2xl border border-white/20 bg-white/5 p-4"><span className="text-[10px] tracking-widest text-[#d7b36c]">{number}</span><h3 className="text-heading text-base text-white mt-1">{title}</h3><p className="text-xs text-white/85 leading-relaxed mt-2">{text}</p></div>)}
+              'Corpo, emoções, vínculos, consciência e busca de sentido são dimensões importantes da experiência humana.',
+              'Considerá-las, quando pertinentes, amplia a compreensão das necessidades de cada pessoa, sem substituir a investigação e os tratamentos médicos necessários.',
+              'O objetivo é favorecer saúde, autonomia e qualidade de vida.',
+            ].map(text => <div key={text} className="care-card rounded-2xl border border-white/20 bg-white/5 p-4"><p className="text-xs leading-relaxed text-[#fbf7ed]/90">{text}</p></div>)}
           </MobileCarousel>
           <div className="care-booking flex flex-col items-center gap-2 rounded-2xl border border-[#d7b36c]/30 bg-white/5 px-5 py-3 w-full mt-1">
-            <p className="text-heading text-lg text-white">O primeiro passo é uma conversa.</p>
-            <p className="text-xs text-[#fbf7ed]/85">Presencial ou por telemedicina • Consulte a disponibilidade no agendamento.</p>
+            <p className="text-heading text-lg text-white">Sua história é única. Seu cuidado deve respeitar essa singularidade.</p>
+            <p className="text-xs text-[#fbf7ed]/85">O primeiro passo é uma avaliação cuidadosa.</p>
             <a
               href="https://wa.me/5527998644435?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta%20com%20Dr.%20Ant%C3%B4nio%20Carlos%20Lage."
               target="_blank"
@@ -125,14 +124,11 @@ export const Footer: React.FC = () => {
               <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
               </svg>
-              Agende uma consulta
+              Agende sua consulta
             </a>
           </div>
         </div>
       </div>
-
-      <h2 className="text-display text-xl sm:text-2xl text-center text-white max-w-3xl px-4 mt-3 mb-4">Cuidar do corpo. Compreender a alma. Despertar a consciência.</h2>
-      <p className="text-quote text-sm text-[#eed7a0] text-center px-4 mb-4">Da consciência governada pelo medo à consciência guiada pelo amor.</p>
 
       {/* Simple Footer Credit */}
       <div className="w-full flex flex-col items-center border-t border-[#6eaaa5]/20 pt-3 pb-2 relative z-10">

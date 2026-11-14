@@ -203,21 +203,20 @@ export const HeroSection: React.FC = () => {
         <p className="h-credentials animate-up text-[#EED7A0] tracking-wider text-[10px] md:text-[11px] uppercase font-bold">
           DR. ANTÔNIO CARLOS LAGE<br />
           <span className="font-medium text-white/80 normal-case tracking-normal">
-            Médico CRM-3916 • Homeopatia RQE - 3783<br />Medicina Integrativa • Psicoterapia • Consciência • Transcendência
+            Médico CRM-3916 • Homeopatia RQE - 3783<br />Medicina Integrativa e Psicoterapia
           </span>
         </p>
         <div className="h-divider animate-up delay-1" aria-hidden="true" />
         <h1 className="h-title animate-up delay-1">
-          O Corpo como Caminho<br />
-          <em>para a Consciência</em>
+          Você é muito mais<br />
+          <em>do que seus sintomas.</em>
         </h1>
         <p className="animate-up delay-1 text-[#F4F1E8] font-medium text-xs sm:text-sm md:text-[15px] mb-3 tracking-wide">
-          Um olhar integrativo sobre a saúde,<br />o sofrimento e o sentido de viver.
+          Uma medicina que considera sua saúde,<br />sua história e sua singularidade.
         </p>
         <div className="h-body animate-up delay-2 space-y-3">
-          <p>O corpo expressa nossa condição biológica e participa de nossa experiência emocional, relacional e existencial.</p>
-          <p>Cada sintoma merece uma investigação cuidadosa. Cada pessoa traz uma história singular, com seus vínculos, conflitos, valores e possibilidades de transformação.</p>
-          <p className="text-[#EED7A0] font-medium">Mais do que tratar sintomas, busco compreender o ser humano em sua integralidade.</p>
+          <p>Há 40 anos, integro experiência clínica, conhecimento médico e compreensão das dimensões físicas, emocionais, relacionais e existenciais do ser humano.</p>
+          <p className="text-[#EED7A0] font-medium">Cuidar da doença sem perder de vista a pessoa.</p>
         </div>
         <div className="h-cta-row animate-up delay-3">
           <a
@@ -226,7 +225,7 @@ export const HeroSection: React.FC = () => {
             rel="noopener noreferrer"
             className="h-cta"
           >
-            Agendar Consulta
+            Agende sua consulta
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden="true" width="14" height="14">
               <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7" />
             </svg>

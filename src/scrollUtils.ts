@@ -1,15 +1,12 @@
 export const SCENES = [
-  'scene-1', 'scene-sintomas', 'scene-2', 'scene-3', 'scene-caminho', 'scene-5', 'scene-5b', 'scene-6',
+  'scene-1', 'scene-intro', 'scene-sintomas', 'scene-5b', 'scene-abordagem', 'scene-atendimento', 'scene-6',
 ];
 
 export const PRIMARY_NAV = [
   { label: 'Início', sceneId: 'scene-1' },
-  { label: 'Sintomas', sceneId: 'scene-sintomas' },
-  { label: 'Dimensões do ser', sceneId: 'scene-2' },
-  { label: 'O Método', sceneId: 'scene-3' },
-  { label: 'Percurso', sceneId: 'scene-caminho' },
-  { label: 'Abordagens', sceneId: 'scene-5' },
-  { label: 'Sobre Mim', sceneId: 'scene-5b' },
+  { label: 'Sobre mim', sceneId: 'scene-5b' },
+  { label: 'Abordagem', sceneId: 'scene-abordagem' },
+  { label: 'Atendimento', sceneId: 'scene-atendimento' },
   { label: 'Contato', sceneId: 'scene-6' },
 ];
 

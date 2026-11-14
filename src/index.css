@@ -623,3 +623,19 @@ dialog::backdrop {
   #scene-5b .about-card h3 { font-size: 1rem; }
   #scene-5b .about-card .editorial-body { font-size: 12px; line-height: 1.5; margin-top: 0.25rem; }
 }
+
+/* ─── New concise copy ─── */
+.intro-lead { font-size: clamp(1.45rem, 3vw, 2.3rem); color: #163f49; line-height: 1.2; }
+.approach-sync { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(1.05rem, 1.8vw, 1.35rem); color: #28616a; line-height: 1.5; }
+.approach-sync span { display: inline-block; margin-inline: 0.35rem; }
+.about-closing { font-size: 0.95rem; line-height: 1.5; padding-inline: 0.25rem; }
+@media (max-width: 639px) {
+  :is(#scene-intro, #scene-abordagem, #scene-atendimento) .editorial-card { padding: 1rem; }
+  :is(#scene-intro, #scene-abordagem, #scene-atendimento) .editorial-title { font-size: 1.25rem; }
+  .intro-lead { font-size: 1.3rem; }
+  :is(#scene-intro, #scene-abordagem, #scene-atendimento) .editorial-body { font-size: 12.5px; line-height: 1.55; }
+  :is(#scene-intro, #scene-abordagem, #scene-atendimento) .glass-card-inner { padding: 0.75rem 0.9rem; }
+  :is(#scene-intro, #scene-abordagem, #scene-atendimento) .m-carousel { margin-top: 0.6rem; }
+  .approach-sync { font-size: 1rem; margin-top: 0.8rem; }
+  #scene-5b .about-closing { font-size: 0.82rem; line-height: 1.4; }
+}
