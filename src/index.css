@@ -523,15 +523,15 @@ dialog::backdrop {
   .m-carousel {
     display: flex !important; gap: 0.75rem;
     overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain;
-    scrollbar-width: none; -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; -webkit-overflow-scrolling: touch; touch-action: pan-x pan-y;
     margin-inline: 0; padding: 0; min-width: 0; max-width: 100%;
   }
   .m-carousel::-webkit-scrollbar { display: none; }
-  .m-carousel > * { flex: 0 0 100%; scroll-snap-align: center; margin: 0; }
+  .m-carousel > * { flex: 0 0 100%; scroll-snap-align: center; scroll-snap-stop: always; margin: 0; }
   .m-carousel-dots { display: flex; justify-content: center; gap: 0.5rem; margin-top: 0.15rem; }
   .m-carousel-dots button {
     width: 8px; height: 8px; padding: 0; border: 0; border-radius: 999px;
-    background: currentColor; opacity: 0.3; transition: opacity 0.2s, width 0.2s;
+    background: currentColor; opacity: 0.3; transition: opacity 0.15s;
   }
   .m-carousel-dots button[aria-current="true"] { opacity: 1; width: 22px; }
 }
@@ -603,3 +603,23 @@ dialog::backdrop {
 
 /* The one-line rule for the old grid layout must not apply inside the narrower carousel note. */
 .sc-note p { white-space: normal !important; font-size: 12px; }
+
+/* Phones: lighter arc carousel (no animated blur) and a compact "Sobre o médico" scene that fits the screen. */
+@media (max-width: 639px) {
+  .sc-card { transition: transform 0.5s cubic-bezier(0.22, 0.8, 0.3, 1), opacity 0.3s; }
+  #scene-5b .editorial-card { padding: 0.75rem; }
+  #scene-5b .about-grid { gap: 0.6rem; }
+  #scene-5b .about-left { gap: 0.6rem; }
+  #scene-5b .about-photo { aspect-ratio: auto; height: clamp(170px, 27svh, 240px); }
+  #scene-5b .about-photo img { object-position: 50% 6%; }
+  #scene-5b .about-chip { font-size: 10px; padding: 0.3rem 0.65rem; left: 0.6rem; }
+  #scene-5b .about-chip-top { top: 0.6rem; }
+  #scene-5b .about-chip-bottom { bottom: 0.6rem; }
+  #scene-5b .about-heading { padding: 0.7rem 0.9rem; }
+  #scene-5b .about-heading .editorial-title { font-size: 1.15rem; margin-top: 0.45rem; }
+  #scene-5b .about-heading .text-heading { font-size: 0.9rem; margin-top: 0.2rem; }
+  #scene-5b .about-pill { font-size: 9px; padding: 0.22rem 0.6rem; }
+  #scene-5b .about-card { padding: 0.75rem 0.9rem; }
+  #scene-5b .about-card h3 { font-size: 1rem; }
+  #scene-5b .about-card .editorial-body { font-size: 12px; line-height: 1.5; margin-top: 0.25rem; }
+}

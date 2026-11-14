@@ -16,17 +16,22 @@ export const MobileCarousel = ({ className = '', dotsClassName = '', label, chil
   const [active, setActive] = useState(0);
   const count = Children.count(children);
 
+  const frame = useRef(0);
   const onScroll = () => {
-    const scroller = ref.current;
-    if (!scroller) return;
-    const center = scroller.scrollLeft + scroller.clientWidth / 2;
-    let best = 0, bestDistance = Infinity;
-    Array.from(scroller.children).forEach((child, index) => {
-      const el = child as HTMLElement;
-      const distance = Math.abs(el.offsetLeft + el.offsetWidth / 2 - center);
-      if (distance < bestDistance) { best = index; bestDistance = distance; }
+    if (frame.current) return; // at most one measurement per frame while swiping
+    frame.current = requestAnimationFrame(() => {
+      frame.current = 0;
+      const scroller = ref.current;
+      if (!scroller) return;
+      const center = scroller.scrollLeft + scroller.clientWidth / 2;
+      let best = 0, bestDistance = Infinity;
+      Array.from(scroller.children).forEach((child, index) => {
+        const el = child as HTMLElement;
+        const distance = Math.abs(el.offsetLeft + el.offsetWidth / 2 - center);
+        if (distance < bestDistance) { best = index; bestDistance = distance; }
+      });
+      setActive(best);
     });
-    setActive(best);
   };
 
   const goTo = (index: number) => {

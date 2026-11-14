@@ -509,8 +509,11 @@ export const HeroSection: React.FC = () => {
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            /* lvh = height with the browser bars collapsed, so the first screen never leaves a strip below */
+            min-height: 100vh;
+            min-height: 100lvh;
             padding-top: 1.5rem;
-            padding-bottom: 3rem;
+            padding-bottom: 4.5rem;
           }
           .hero-root::before { display: none; }
 

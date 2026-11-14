@@ -6,7 +6,7 @@ const TILE = SPACING * RUNGS_PER_TURN;       // 390px: the helix pattern repeats
 const PERIOD = 9;                            // seconds per full rotation
 const WIDTH = 170;                           // tile width in CSS px
 const AMP = 46;                              // half-width of the helix
-const FRAME_MS = 1000 / 30;
+const FRAME_MS = typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches ? 1000 / 20 : 1000 / 30;
 
 /**
  * One continuous rotating double helix behind a group of sections.

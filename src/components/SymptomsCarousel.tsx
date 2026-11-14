@@ -73,6 +73,7 @@ export const SymptomsCarousel = () => {
     if (Math.abs(dx) > 45) { swipe.current.moved = true; go(dx < 0 ? 1 : -1); }
   };
 
+  const lite = layout === LAYOUTS.mobile; // phones: skip the animated blur to keep swiping smooth
   const stageHeight = layout.h + 110;
 
   return (
@@ -124,8 +125,8 @@ export const SymptomsCarousel = () => {
                   left: `calc(50% - ${layout.w / 2}px)`,
                   transformOrigin: `50% ${layout.h + layout.radius}px`,
                   transform: `rotate(${d * layout.angle}deg)`,
-                  opacity: hidden ? 0 : isActive ? 1 : Math.abs(d) === 1 ? 0.6 : 0.36,
-                  filter: isActive || hidden ? 'none' : `blur(${Math.abs(d) === 1 ? 2.2 : 3.6}px)`,
+                  opacity: hidden ? 0 : isActive ? 1 : Math.abs(d) === 1 ? (lite ? 0.5 : 0.6) : (lite ? 0.28 : 0.36),
+                  filter: isActive || hidden || lite ? 'none' : `blur(${Math.abs(d) === 1 ? 2.2 : 3.6}px)`,
                   zIndex: 10 - Math.abs(d) * 2,
                   pointerEvents: hidden ? 'none' : 'auto',
                   transition: jumped[i] ? 'none' : undefined,
