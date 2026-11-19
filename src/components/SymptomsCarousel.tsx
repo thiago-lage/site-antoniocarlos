@@ -3,7 +3,7 @@ import { SYMPTOMS } from './SymptomsSection';
 
 type Layout = { w: number; h: number; radius: number; angle: number };
 const LAYOUTS: Record<'desktop' | 'tablet' | 'mobile', Layout> = {
-  desktop: { w: 300, h: 350, radius: 820, angle: 17 },
+  desktop: { w: 340, h: 390, radius: 880, angle: 16 },
   tablet: { w: 270, h: 330, radius: 700, angle: 19 },
   mobile: { w: 232, h: 300, radius: 520, angle: 21 },
 };

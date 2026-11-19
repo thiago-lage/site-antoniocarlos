@@ -28,7 +28,8 @@ export function useViewportFit() {
         const nextWidth = `${Math.floor(width)}px`;
         if (group.style.width !== nextWidth) { group.style.width = nextWidth; changed = true; }
         // Keep text readable on phones; longer content can still scroll naturally.
-        const minimum = window.innerWidth < 480 ? 0.85 : 0.65;
+        // Desktop keeps regular text size: a taller section simply scrolls instead of shrinking.
+        const minimum = window.innerWidth < 480 ? 0.85 : window.innerWidth >= 1024 ? 0.92 : 0.65;
         const scale = Math.max(minimum, Math.min(1, height / Math.max(1, group.offsetHeight)));
         const zoom = Math.floor(scale * 1000) / 1000;
         if (Math.abs(parseFloat(group.style.zoom || '1') - zoom) > 0.001) { group.style.zoom = String(zoom); changed = true; }

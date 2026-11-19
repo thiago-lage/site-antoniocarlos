@@ -650,3 +650,44 @@ dialog::backdrop {
 .about-card.is-featured { border-left: 3px solid #d7b36c; background: rgba(251, 247, 237, 0.86); }
 .about-card.is-featured h3 { color: #28616a; }
 @media (min-width: 640px) { .about-card.is-featured .editorial-body { font-size: 13.5px; } }
+
+/* ─── Desktop (≥1024px): regular reading sizes. Tablet and phones keep the compact sizes above. ─── */
+@media (min-width: 1024px) {
+  .editorial-body { font-size: 16px; line-height: 1.65; }
+  .editorial-card { padding: 2rem 2.25rem; }
+  .editorial-card.max-w-4xl { max-width: 60rem; }
+  .editorial-card.max-w-5xl { max-width: 70rem; }
+  .editorial-title { font-size: clamp(1.9rem, 2.5vw, 2.4rem); }
+  .intro-lead { font-size: clamp(2rem, 3.3vw, 3rem); }
+  .approach-sync { font-size: clamp(1.3rem, 1.9vw, 1.7rem); }
+  .text-label { font-size: 0.78rem; }
+  .glass-card-inner { padding: 1.25rem 1.4rem; }
+  .glass-card-inner .text-label { font-size: 0.72rem; }
+  .editorial-card h3 { font-size: 1.35rem; }
+  .editorial-card > .text-heading { font-size: 1.25rem; }
+
+  /* Sobre mim */
+  .about-pill { font-size: 11.5px; }
+  .about-chip { font-size: 13px; padding: 0.45rem 1rem; }
+  #scene-5b .about-heading .text-heading { font-size: 1.2rem; }
+  .about-card .editorial-body { font-size: 15px; line-height: 1.6; }
+  .about-card.is-featured .editorial-body { font-size: 16px; }
+  .about-closing { font-size: 1.15rem; }
+
+  /* Em que posso ajudar */
+  .sc-note { max-width: 48rem; }
+  .sc-note p { font-size: 14px; }
+  .sc-note strong { font-size: 11.5px !important; }
+  .sc-title { font-size: 1.25rem; }
+  .sc-sub { font-size: 12.5px; -webkit-line-clamp: 3; }
+
+  /* Rodapé / contato */
+  .contact-footer .text-label { font-size: 12px; }
+  .footer-social .btn-outline { font-size: 12.5px; padding-block: 0.5rem; }
+  .footer-social .social-preview span { font-size: 14px; }
+  .contact-copy h2 { font-size: 2rem; }
+  .care-card p { font-size: 15px; line-height: 1.6; }
+  .care-booking .text-heading { font-size: 1.6rem; }
+  .care-booking p.text-xs { font-size: 15px; }
+  .consultation-cta { font-size: 13px; padding: 0.8rem 2rem; }
+}
