@@ -1,8 +1,7 @@
 import { useEffect } from 'react';
 import type { SymptomItem } from './SymptomsSection';
 
-/** Short symptom pages, built only from the client's new sentences. Set to false to bring back the long sections. */
-const CONCISE_SYMPTOM_PAGES = true;
+/** Shared paragraphs of the symptom pages (the client's concise text). */
 const CONCISE_PARAGRAPHS = [
   'Corpo, emoções, vínculos, consciência e busca de sentido são dimensões importantes da experiência humana.',
   'Considerá-las, quando pertinentes, amplia a compreensão das necessidades de cada pessoa, sem substituir a investigação e os tratamentos médicos necessários.',
@@ -30,28 +29,9 @@ export const SymptomPage = ({ symptom }: { symptom: SymptomItem }) => {
           <h1 className="text-display text-3xl sm:text-4xl mt-3">{symptom.title}</h1>
           <p className="text-heading text-lg text-[#28616a] mt-4">{symptom.subtitle}</p>
           <p className="editorial-body mt-3">{symptom.summary}</p>
-          {symptom.provisional || CONCISE_SYMPTOM_PAGES ? (
-            <section className="glass-card-inner p-5 mt-6 space-y-3">
-              {(symptom.provisional ?? CONCISE_PARAGRAPHS).map(text => <p key={text} className="editorial-body">{text}</p>)}
-            </section>
-          ) : (
-            <>
-              <section className="glass-card-inner p-5 mt-6" aria-labelledby="feel-title">
-                <h2 id="feel-title" className="text-heading text-xl">1. O que você pode sentir</h2>
-                <ul className="editorial-body list-disc pl-5 mt-3 space-y-2">{symptom.details.whatYouFeel.map(item => <li key={item}>{item}</li>)}</ul>
-              </section>
-              {[
-                ['2. O que pode estar relacionado', symptom.details.whatIsRelated],
-                ['3. Como investigo', symptom.details.howWeInvestigate],
-                ['4. Como posso cuidar', symptom.details.howWeCare],
-              ].map(([title, body]) => (
-                <section key={title} className="glass-card-inner p-5 mt-4" aria-label={title}>
-                  <h2 className="text-heading text-xl">{title}</h2>
-                  <p className="editorial-body mt-3">{body}</p>
-                </section>
-              ))}
-            </>
-          )}
+          <section className="glass-card-inner p-5 mt-6 space-y-3">
+            {(symptom.provisional ?? CONCISE_PARAGRAPHS).map(text => <p key={text} className="editorial-body">{text}</p>)}
+          </section>
           <p className="editorial-body mt-6">Conteúdo educativo; não substitui o diagnóstico nem a avaliação individual. O cuidado respeita suas crenças e sua visão de mundo.</p>
           <div className="flex justify-center mt-8"><a className="booking-link" href={`https://wa.me/5527998644435?text=${encodeURIComponent(`Olá, gostaria de agendar uma consulta com Dr. Antônio Carlos Lage (tema: ${symptom.title}).`)}`} target="_blank" rel="noopener noreferrer">Agende sua consulta →</a></div>
         </article>

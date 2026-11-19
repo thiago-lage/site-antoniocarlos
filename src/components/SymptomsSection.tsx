@@ -9,15 +9,9 @@ export interface SymptomItem {
   accentColor: string;
   /** Photo shown on the card and the page; defaults to /symptoms/<id>.webp */
   image?: string;
-  /** Page built only from the client's own new sentences (no clinical detail sections yet). */
+  /** Paragraphs of the symptom page; when absent the page uses the shared concise paragraphs. */
   provisional?: string[];
   icon: React.ReactNode;
-  details: {
-    whatYouFeel: string[];
-    whatIsRelated: string;
-    howWeInvestigate: string;
-    howWeCare: string;
-  };
 }
 
 export const SYMPTOMS: SymptomItem[] = [
@@ -34,20 +28,6 @@ export const SYMPTOMS: SymptomItem[] = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
       </svg>
     ),
-    details: {
-      whatYouFeel: [
-        'Mente acelerada, preocupações constantes e dificuldade de desacelerar',
-        'Tensão muscular frequente (pescoço, ombros, mandíbula ou peito)',
-        'Palpitações, respiração curta ou sensação de aperto no tórax',
-        'Desconfortos digestivos, inquietação física e estado de hipervigilância',
-      ],
-      whatIsRelated:
-        'A ansiedade envolve tanto a ativação fisiológica do sistema nervoso autônomo quanto a forma como aprendemos a lidar com exigências, incertezas, vínculos e ameaças ao longo da nossa história. Condições clínicas, alterações hormonais, uso de substâncias e privação de sono também podem intensificar esse estado de alerta.',
-      howWeInvestigate:
-        'Realizo uma escuta médica detalhada para mapear o início e o ritmo dos sintomas, avaliando exames laboratoriais, rotina de sono, estilo de vida e possíveis causas orgânicas, ao mesmo tempo em que observo como o corpo reage às tensões cotidianas e relacionais.',
-      howWeCare:
-        'O cuidado combina recursos médicos e clínicos (quando indicados) com práticas de regulação corporal e ampliação da consciência emocional, ajudando o organismo a sair do estado crônico de defesa e recuperar presença, segurança interna e autonomia.',
-    },
   },
   {
     id: 'depressao',
@@ -62,20 +42,6 @@ export const SYMPTOMS: SymptomItem[] = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
       </svg>
     ),
-    details: {
-      whatYouFeel: [
-        'Tristeza persistente, sensação de vazio ou embotamento afetivo',
-        'Perda de interesse ou prazer em atividades antes significativas (anedonia)',
-        'Queda importante da vitalidade, cansaço constante e lentidão física ou mental',
-        'Alterações no sono, no apetite, na concentração e na autoestima',
-      ],
-      whatIsRelated:
-        'Os quadros depressivos resultam de uma interação complexa entre fatores biológicos, neuroquímicos, hormonais e inflamatórios, somados a perdas, lutos não elaborados, sobrecarga prolongada, desenraizamento ou conflitos relacionais profundos.',
-      howWeInvestigate:
-        'Avalio criteriosamente a intensidade, a duração e a gravidade dos sintomas, investigando também deficiências nutricionais, função tireoidiana, condições clínicas associadas e o contexto biográfico e relacional em que o recolhimento vital se instalou.',
-      howWeCare:
-        'Construímos um plano terapêutico seguro e individualizado — que pode incluir suporte medicamentoso, homeopático e psicoterapêutico — voltado não apenas à remissão dos sintomas, mas à retomada gradual do tônus vital, dos vínculos e do sentido de existir.',
-    },
   },
   {
     id: 'panico',
@@ -90,20 +56,6 @@ export const SYMPTOMS: SymptomItem[] = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
       </svg>
     ),
-    details: {
-      whatYouFeel: [
-        'Disparo súbito de taquicardia, palpitações e sensação de falta de ar',
-        'Tontura, sudorese, tremores, formigamentos ou ondas de frio e calor',
-        'Sensação aguda de estranhamento da realidade ou de si mesmo',
-        'Medo intenso de morrer, desmaiar, enlouquecer ou perder o controle',
-      ],
-      whatIsRelated:
-        'Na crise de pânico, o sistema de alarme do organismo é acionado de forma abrupta e desproporcional. Muitas vezes, instala-se o "medo de sentir medo": a hipervigilância sobre as próprias sensações corporais retroalimenta a descarga autonômica.',
-      howWeInvestigate:
-        'O primeiro passo essencial é diferenciar as crises de pânico de condições clínicas cardiológicas, respiratórias, vestibulares ou endócrinas. Paralelamente, mapeio o contexto de vida e as tensões silenciosas que antecederam o início das crises.',
-      howWeCare:
-        'Oferecemos tratamento clínico e estratégias fundamentadas de autorregulação corporal e compreensão do ciclo do medo. Ao perder o terror diante da sensação física e reconhecer o que o organismo expressa, o paciente recupera a confiança em seu próprio corpo.',
-    },
   },
   {
     id: 'insonia',
@@ -118,20 +70,6 @@ export const SYMPTOMS: SymptomItem[] = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
       </svg>
     ),
-    details: {
-      whatYouFeel: [
-        'Dificuldade para iniciar o sono, mesmo sentindo exaustão física',
-        'Despertares noturnos frequentes com dificuldade para voltar a adormecer',
-        'Despertar precoce antes do horário desejado, com sensação de sono superficial',
-        'Sonolência diurna, irritabilidade e queda na memória e na atenção',
-      ],
-      whatIsRelated:
-        'A insônia pode estar ligada a desalinhamentos do ritmo circadiano, hiperalerta noturno, quadros ansiosos ou depressivos, apneia obstrutiva do sono, dores crônicas, efeitos de medicamentos ou ao hábito de manter o organismo em estado constante de produtividade e vigilância.',
-      howWeInvestigate:
-        'Avalio detalhadamente a arquitetura e a rotina do sono, hábitos diurnos e noturnos, medicações em uso, sintomas respiratórios noturnos e os estados emocionais que dificultam a entrega ao repouso.',
-      howWeCare:
-        'Integro o cuidado médico criterioso a mudanças estruturadas de rotina, desaceleração fisiológica e estratégias comportamentais — incluindo recursos da terapia cognitivo-comportamental para insônia (TCC-I) quando indicada — para restaurar um sono natural e reparador.',
-    },
   },
   {
     id: 'cansaco',
@@ -146,20 +84,6 @@ export const SYMPTOMS: SymptomItem[] = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
       </svg>
     ),
-    details: {
-      whatYouFeel: [
-        'Sensação contínua de esgotamento que não melhora após fins de semana ou férias',
-        'Corpo pesado, falta de disposição logo ao acordar e queda de rendimento',
-        'Necessidade de grande esforço para realizar tarefas cotidianas simples',
-        'Desgaste emocional associado à sensação de carregar peso excessivo',
-      ],
-      whatIsRelated:
-        'A fadiga persistente exige olhar amplo: pode decorrer de anemias, disfunções da tireoide, carências vitamínicas, distúrbios metabólicos, infecções prévias, sono não reparador, uso de fármacos, depressão ou sobrecarga crônica de responsabilidades e autoexigência.',
-      howWeInvestigate:
-        'Não atribuo automaticamente a exaustão ao estresse. Realizo investigação clínica e laboratorial minuciosa para rastrear causas orgânicas e metabólicas tratáveis, junto à escuta de como a pessoa administra sua energia, seus limites e suas relações.',
-      howWeCare:
-        'Trato as alterações clínicas identificadas e trabalho a reconstrução gradual da vitalidade, auxiliando o paciente a reconhecer seus limites reais, reorganizar prioridades e habitar o corpo de modo mais sustentável.',
-    },
   },
   {
     id: 'conflitos',
@@ -175,13 +99,12 @@ export const SYMPTOMS: SymptomItem[] = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
       </svg>
     ),
-    // Provisional page: only sentences written by the client in the new text. Replace when a full text arrives.
+    // Page paragraphs: this one drops the first shared sentence, because the summary above already says it.
     provisional: [
       'Considerá-las, quando pertinentes, amplia a compreensão das necessidades de cada pessoa, sem substituir a investigação e os tratamentos médicos necessários.',
       'O objetivo é favorecer saúde, autonomia e qualidade de vida.',
       'O primeiro passo é uma avaliação cuidadosa.',
     ],
-    details: { whatYouFeel: [], whatIsRelated: '', howWeInvestigate: '', howWeCare: '' },
   },
 ];
 
