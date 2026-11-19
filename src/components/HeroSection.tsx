@@ -211,7 +211,7 @@ export const HeroSection: React.FC = () => {
           Você é muito mais<br />
           <em>do que seus sintomas.</em>
         </h1>
-        <p className="animate-up delay-1 text-[#F4F1E8] font-medium text-xs sm:text-sm md:text-[15px] mb-3 tracking-wide">
+        <p className="h-lead animate-up delay-1 text-[#F4F1E8] font-medium text-xs sm:text-sm md:text-[15px] mb-3 tracking-wide">
           Uma medicina que considera sua saúde,<br />sua história e sua singularidade.
         </p>
         <div className="h-body animate-up delay-2 space-y-3">
@@ -633,8 +633,8 @@ export const HeroSection: React.FC = () => {
           }
         }
 
-        /* Telas de notebook com altura reduzida (≤ 760px) */
-        @media (min-width: 768px) and (max-height: 760px) {
+        /* Telas de notebook com altura reduzida (≤ 760px), só nas larguras de tablet */
+        @media (min-width: 768px) and (max-width: 1150px) and (max-height: 760px) {
           .h-credentials { margin-bottom: 0.4rem !important; font-size: 10px !important; }
           .h-divider { margin-bottom: 0.5rem !important; }
           .h-title { font-size: clamp(1.55rem, 2.7vw, 2.15rem) !important; margin-bottom: 0.4rem !important; }
@@ -652,6 +652,22 @@ export const HeroSection: React.FC = () => {
             margin-left: 36vw !important;
             max-width: 58vw !important;
           }
+        }
+
+        /* Notebooks (1151px – 1499px): médico afastado da borda e coluna de texto maior.
+           Os tamanhos acompanham também a altura da tela, para caber em janelas baixas. */
+        @media (min-width: 1151px) and (max-width: 1499px) {
+          .hero-root::before { flex: 0 0 45vw; }
+          .h-person-media { left: 3vw; height: 106%; bottom: -4%; }
+          .h-content { margin: 0 auto 0 0; max-width: 680px; padding: 2rem 4rem 3.5rem 1.5rem; }
+          .h-credentials { font-size: 12px; margin-bottom: 0.9rem; }
+          .h-divider { width: 3rem; margin-bottom: 0.9rem; }
+          .h-title { font-size: clamp(1.9rem, min(3.4vw, 6.4vh), 3rem); margin-bottom: 0.7rem; }
+          .hero-root .h-lead { font-size: clamp(0.95rem, min(1.3vw, 2.7vh), 1.15rem); margin-bottom: 0.8rem; }
+          .h-body { font-size: clamp(0.88rem, min(1.2vw, 2.4vh), 1.05rem); line-height: 1.6; max-width: 54ch; margin-bottom: 1.2rem; }
+          .h-body > * + * { margin-top: 0.6rem; }
+          .h-cta { min-height: 46px; padding: 0.7rem 1.9rem; font-size: 12px; }
+          .h-social-link { width: 34px; height: 34px; }
         }
 
         /* Telas grandes e ultrawide: aproxima o texto do médico */
