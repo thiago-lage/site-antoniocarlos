@@ -35,7 +35,9 @@ export const DnaBackground = () => {
     const zone = wrap?.parentElement;
     if (!wrap || !zone || tiles === 0) return;
     const canvases = Array.from(wrap.querySelectorAll('canvas'));
+    // Reduced-motion users (the Windows "show animations" switch counts) still get the helix, just rotating slowly.
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const period = reduced ? PERIOD * 3 : PERIOD;
     const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
     const contexts = canvases.map(canvas => {
       canvas.width = Math.round(WIDTH * dpr);
@@ -65,7 +67,7 @@ export const DnaBackground = () => {
     };
 
     const drawVisible = (now: number, all = false) => {
-      const t = (now / 1000) * ((Math.PI * 2) / PERIOD);
+      const t = (now / 1000) * ((Math.PI * 2) / period);
       const vh = window.innerHeight;
       canvases.forEach((canvas, i) => {
         const ctx = contexts[i];
@@ -81,9 +83,9 @@ export const DnaBackground = () => {
       if (now - last >= FRAME_MS) { last = now; drawVisible(now); }
       raf = requestAnimationFrame(loop);
     };
-    const start = () => { if (!raf && visible && !reduced && !document.hidden) raf = requestAnimationFrame(loop); };
+    const start = () => { if (!raf && visible && !document.hidden) raf = requestAnimationFrame(loop); };
 
-    drawVisible(performance.now(), true); // first frame (also the static frame for reduced motion)
+    drawVisible(performance.now(), true); // first frame
     const observer = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; if (visible) start(); }, { rootMargin: '100px' });
     observer.observe(zone);
     const onVis = () => { if (!document.hidden) start(); };
