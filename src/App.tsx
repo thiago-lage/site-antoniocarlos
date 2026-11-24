@@ -38,9 +38,16 @@ function HomePage() {
       });
       // About the doctor: photo, heading and cards fade in one after another.
       if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        gsap.fromTo('#scene-5b .about-item', { opacity: 0, y: 24 }, {
+        // The doctor's photo appears first, then the heading and the cards one after another.
+        gsap.timeline({ scrollTrigger: { trigger: '#scene-5b .about-grid', start: 'top 80%', toggleActions: 'play none none none' } })
+          .fromTo('#scene-5b .about-photo', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' })
+          .fromTo('#scene-5b .about-left .about-item', { opacity: 0, y: 24 }, {
+            opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', stagger: 0.22,
+          }, '-=0.35');
+        // "Como funciona o cuidado" (01, 02, 03): same staggered fade-in as Sobre mim.
+        gsap.fromTo('#scene-intro .m-carousel > *', { opacity: 0, y: 24 }, {
           opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', stagger: 0.22,
-          scrollTrigger: { trigger: '#scene-5b .about-grid', start: 'top 80%', toggleActions: 'play none none none' },
+          scrollTrigger: { trigger: '#scene-intro .m-carousel', start: 'top 85%', toggleActions: 'play none none none' },
         });
       }
     }, containerRef);
