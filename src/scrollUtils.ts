@@ -1,13 +1,13 @@
 export const SCENES = [
-  'scene-1', 'scene-intro', 'scene-sintomas', 'scene-5b', 'scene-abordagem', 'scene-duvidas', 'scene-6',
+  'scene-1', 'scene-intro', 'scene-abordagem', 'scene-sintomas', 'scene-5b', 'scene-duvidas', 'scene-6',
 ];
 
 export const PRIMARY_NAV = [
   { label: 'Início', sceneId: 'scene-1' },
   { label: 'Cuidado', sceneId: 'scene-intro' },
+  { label: 'Abordagem', sceneId: 'scene-abordagem' },
   { label: 'Sintomas', sceneId: 'scene-sintomas' },
   { label: 'Sobre mim', sceneId: 'scene-5b' },
-  { label: 'Abordagem', sceneId: 'scene-abordagem' },
   { label: 'Dúvidas', sceneId: 'scene-duvidas' },
   { label: 'Contato', sceneId: 'scene-6' },
 ];

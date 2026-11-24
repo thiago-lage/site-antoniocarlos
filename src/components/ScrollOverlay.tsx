@@ -58,6 +58,17 @@ export const ScrollOverlay: React.FC = () => (
         </div>
       </section>
 
+      <section id="scene-abordagem" className="scene encounters pointer-events-auto" aria-labelledby="approach-title">
+        <figure className="encounters-photo">
+          <img src="/dr-antonio-encontros.webp" alt="Dr. Antônio Carlos de Lacerda Lage em seu consultório" width="900" height="940" loading="lazy" decoding="async" />
+        </figure>
+        <div className="encounters-text">
+          <h2 id="approach-title">Como são os encontros comigo?</h2>
+          {ENCOUNTER_PARAGRAPHS.map(text => <p key={text}>{text}</p>)}
+          <p className="encounters-closing">{ENCOUNTER_CLOSING}</p>
+        </div>
+      </section>
+
       {SYMPTOMS_AS_CAROUSEL ? <SymptomsCarousel /> : <SymptomsSection />}
     </div>
 
@@ -89,16 +100,6 @@ export const ScrollOverlay: React.FC = () => (
       </div>
     </section>
 
-    <section id="scene-abordagem" className="scene encounters pointer-events-auto" aria-labelledby="approach-title">
-      <figure className="encounters-photo">
-        <img src="/dr-antonio-encontros.webp" alt="Dr. Antônio Carlos de Lacerda Lage em seu consultório" width="900" height="940" loading="lazy" decoding="async" />
-      </figure>
-      <div className="encounters-text">
-        <h2 id="approach-title">Como são os encontros comigo?</h2>
-        {ENCOUNTER_PARAGRAPHS.map(text => <p key={text}>{text}</p>)}
-        <p className="encounters-closing">{ENCOUNTER_CLOSING}</p>
-      </div>
-    </section>
 
     <FaqSection />
   </div>

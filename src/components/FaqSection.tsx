@@ -17,20 +17,16 @@ const FAQ: Faq[] = [
     answer: 'Se você tiver exames recentes, leve-os à primeira consulta. Eles ajudam na avaliação, mas não são obrigatórios: quando necessário, novos exames são solicitados.',
   },
   {
-    question: 'O atendimento é presencial, online ou os dois? Em qual cidade?',
-    answer: 'Os atendimentos são presenciais, em Vila Velha – ES, e online, por telemedicina. Consulte a disponibilidade de cada modalidade no agendamento.',
+    question: 'O atendimento é presencial ou online?',
+    answer: 'Os dois. O atendimento pode ser presencial ou online, conforme a sua preferência.',
   },
   {
-    question: 'Quanto tempo dura a consulta e qual a frequência dos retornos?',
-    answer: 'A primeira consulta é mais longa, para uma avaliação completa. A frequência dos retornos é definida em conjunto, de acordo com a evolução de cada pessoa.',
+    question: 'Quanto tempo dura a consulta?',
+    answer: 'A consulta dura cerca de 50 minutos.',
   },
   {
     question: 'Quanto tempo dura o acompanhamento?',
     answer: 'A duração e a frequência do acompanhamento respeitam as necessidades de cada pessoa. Quando necessário, encontros periódicos para avaliar a evolução e ajustar as condutas.',
-  },
-  {
-    question: 'A homeopatia substitui o tratamento convencional?',
-    answer: 'Não necessariamente. A homeopatia e os demais recursos integrativos podem ser utilizados de forma complementar, sem substituir a investigação e os tratamentos médicos necessários. Medicamentos em uso não devem ser suspensos sem orientação médica.',
   },
   {
     question: 'Atende por convênio? Emite recibo para reembolso?',
@@ -39,10 +35,6 @@ const FAQ: Faq[] = [
   {
     question: 'Quais são os valores e as formas de pagamento?',
     answer: 'Os valores e as formas de pagamento são informados no agendamento, pelo WhatsApp.',
-  },
-  {
-    question: 'Posso usar este site em uma urgência?',
-    answer: 'Não. Este site e o agendamento não são canais de atendimento de urgência. Em caso de urgência ou emergência, procure o pronto-socorro mais próximo ou ligue 192 (SAMU).',
   },
 ];
 

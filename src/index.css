@@ -763,3 +763,49 @@ dialog::backdrop {
   .faq-intro { position: sticky; top: clamp(2.5rem, 18svh, 9rem); }
   .faq-item button { padding-block: 1.1rem; }
 }
+
+/* ─── Contato: one short invitation instead of long closing texts ─── */
+.contact-invite {
+  margin-top: 0.5rem; padding: clamp(1.75rem, 5svh, 3rem) clamp(1.25rem, 4vw, 3.5rem);
+  border-radius: 2rem; border: 1px solid rgba(251, 247, 237, 0.16);
+  background: rgba(251, 247, 237, 0.05); max-width: 48rem; /* same width as the Instagram/Spotify cards above */
+}
+.contact-invite-title {
+  font-family: 'Playfair Display', Georgia, serif; font-weight: 500; color: #fbf7ed;
+  font-size: clamp(1.7rem, 3.6vw, 2.7rem); line-height: 1.15; text-wrap: balance;
+}
+.contact-invite-title em { font-style: italic; font-weight: 400; color: #eed7a0; }
+.contact-invite-sub { margin-top: 0.9rem; font-size: clamp(14px, 1.2vw, 16px); line-height: 1.6; color: rgba(251, 247, 237, 0.82); }
+
+/* Credit line: more breathing room above it. */
+.footer-credit { margin-top: clamp(1.5rem, 5svh, 3rem); padding-top: 1.25rem; padding-bottom: 1rem; }
+
+/* Static Spotify player card (same look as the old compact embed). */
+.spotify-card {
+  position: relative; display: flex; align-items: center; gap: 0.7rem; width: 100%; height: 80px;
+  padding: 8px 10px; border-radius: 12px; background: #282828; color: #fff; text-align: left;
+}
+.spotify-card img { width: 64px; height: 64px; border-radius: 6px; object-fit: cover; flex: none; background: #3e3e3e; }
+.spotify-card-text { display: flex; flex-direction: column; min-width: 0; line-height: 1.25; }
+.spotify-card-text strong { font-size: 14px; font-weight: 700; }
+.spotify-card-text span { font-size: 11px; color: rgba(255, 255, 255, 0.7); }
+.spotify-card-text em { margin-top: 4px; align-self: flex-start; font-style: normal; font-size: 9px; font-weight: 700; padding: 1px 4px; border-radius: 3px; background: rgba(255, 255, 255, 0.85); color: #121212; }
+.spotify-card-logo { position: absolute; top: 9px; right: 10px; width: 16px; height: 16px; }
+.spotify-card-play { position: absolute; right: 10px; bottom: 9px; width: 30px; height: 30px; border-radius: 999px; background: #fff; color: #121212; display: flex; align-items: center; justify-content: center; transition: transform 0.15s; }
+.spotify-card-play svg { width: 16px; height: 16px; margin-left: 2px; }
+.spotify-card:hover .spotify-card-play { transform: scale(1.08); }
+.spotify-card:focus-visible { outline: 2px solid #28616a; outline-offset: 3px; }
+
+/* ─── Side breathing room (the section dots sit on the right edge) ─── */
+.faq-scene { padding-right: clamp(3rem, 7vw, 6.5rem); }
+@media (max-width: 767px) {
+  .faq-scene { padding-left: 1.25rem; padding-right: 2.75rem; }
+  /* "Como são os encontros comigo?" fits one phone screen: shorter photo, compact text. */
+  .encounters-photo { height: 30svh; min-height: 200px; }
+  .encounters-photo img { object-position: 50% 22%; }
+  .encounters-text { padding: 1.1rem 2.6rem 1.4rem 1.1rem; font-size: 13px; line-height: 1.5; }
+  .encounters-text h2 { font-size: 1.45rem; margin-bottom: 0.55em; }
+  .encounters-text p + p { margin-top: 0.55em; }
+  /* Less empty space after the symptoms carousel. */
+  #scene-sintomas { min-height: 0; padding-block: 2.5rem 1.5rem; }
+}
