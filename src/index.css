@@ -691,3 +691,75 @@ dialog::backdrop {
   .care-booking p.text-xs { font-size: 15px; }
   .consultation-cta { font-size: 13px; padding: 0.8rem 2rem; }
 }
+
+/* ─── Abordagem: "Como são os encontros comigo?" — full photo beside the doctor's own text ─── */
+.encounters {
+  position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  min-height: 100svh; background: #163f49; color: #f4f1e8;
+}
+.encounters-photo { position: relative; margin: 0; overflow: hidden; min-height: 100%; }
+.encounters-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 55% 30%; }
+.encounters-text {
+  display: flex; flex-direction: column; justify-content: center; text-align: center;
+  padding: clamp(1.5rem, 4svh, 3.5rem) clamp(1.5rem, 5vw, 5rem);
+  font-size: clamp(13px, 2.05svh, 16px); line-height: 1.6;
+}
+.encounters-text h2 {
+  font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-weight: 500;
+  font-size: clamp(1.7rem, 5.6svh, 3rem); line-height: 1.12; color: #fbf7ed; margin-bottom: 0.9em;
+}
+.encounters-text p { color: rgba(244, 241, 232, 0.88); max-width: 36rem; margin-inline: auto; }
+.encounters-text p + p { margin-top: 0.85em; }
+.encounters-closing { font-weight: 600; color: #eed7a0 !important; }
+@media (max-width: 767px) {
+  .encounters { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  .encounters-photo { height: 46svh; min-height: 280px; }
+  .encounters-photo img { object-position: 50% 25%; }
+  .encounters-text { padding: 1.75rem 2.5rem 2.5rem 1.25rem; font-size: 14px; }
+  .encounters-text h2 { font-size: 1.75rem; }
+}
+
+/* ─── Dúvidas: FAQ accordion (reference: two columns, title left, questions right) ─── */
+.faq-scene { display: flex; align-items: center; min-height: 100svh; background: #f5f0e6; color: #163f49; padding: clamp(2.5rem, 7svh, 5rem) clamp(1.25rem, 5vw, 5rem); }
+.faq-layout { width: 100%; max-width: 72rem; margin-inline: auto; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; }
+.faq-kicker { font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #a07a3c; }
+.faq-title { margin-top: 0.8rem; font-family: 'Playfair Display', Georgia, serif; font-weight: 600; font-size: clamp(2.2rem, 4.6vw, 3.6rem); line-height: 1.02; color: #163f49; }
+.faq-title em { display: block; font-style: italic; font-weight: 400; color: #a07a3c; }
+.faq-lead { margin-top: 1rem; max-width: 24rem; font-size: 15px; line-height: 1.7; color: #49666c; }
+.faq-button {
+  display: inline-flex; margin-top: 1.6rem; padding: 0.95rem 1.9rem; border-radius: 999px;
+  border: 1px solid #163f49; color: #163f49; font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+  transition: background 0.2s, color 0.2s;
+}
+.faq-button:hover { background: #163f49; color: #fbf7ed; }
+.faq-button:focus-visible { outline: 2px solid #28616a; outline-offset: 4px; }
+.faq-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid rgba(22, 63, 73, 0.16); }
+.faq-item { border-bottom: 1px solid rgba(22, 63, 73, 0.16); }
+.faq-item button {
+  width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1.25rem;
+  padding: 1.35rem 0.25rem; background: none; border: 0; cursor: pointer; text-align: left;
+  font-family: 'Playfair Display', Georgia, serif; font-size: clamp(1.05rem, 1.6vw, 1.3rem); color: #163f49;
+}
+.faq-item button:focus-visible { outline: 2px solid #28616a; outline-offset: 2px; border-radius: 6px; }
+.faq-icon { position: relative; width: 14px; height: 14px; flex: none; color: #a07a3c; transition: transform 0.3s; }
+.faq-icon::before, .faq-icon::after { content: ""; position: absolute; left: 0; top: 50%; width: 14px; height: 1.5px; margin-top: -0.75px; background: currentColor; }
+.faq-icon::after { transform: rotate(90deg); }
+.faq-item.is-open .faq-icon { transform: rotate(45deg); }
+.faq-answer { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.35s ease; }
+.faq-answer > div { overflow: hidden; }
+.faq-item.is-open .faq-answer { grid-template-rows: 1fr; }
+.faq-answer p { padding: 0 2.5rem 1.4rem 0.25rem; font-size: 15px; line-height: 1.7; color: #49666c; }
+@media (prefers-reduced-motion: reduce) { .faq-answer, .faq-icon { transition: none; } }
+@media (max-width: 767px) {
+  .faq-scene { padding: 3rem 2.5rem 3rem 1.25rem; min-height: 0; }
+  .faq-layout { grid-template-columns: minmax(0, 1fr); gap: 1.75rem; }
+  .faq-title { font-size: 2.3rem; }
+  .faq-item button { padding: 1.1rem 0.1rem; font-size: 1.05rem; }
+  .faq-answer p { padding-right: 0.5rem; font-size: 14px; }
+}
+@media (min-width: 768px) {
+  /* With many questions the list is taller than the screen: keep the title in view while reading. */
+  .faq-layout { align-items: start; }
+  .faq-intro { position: sticky; top: clamp(2.5rem, 18svh, 9rem); }
+  .faq-item button { padding-block: 1.1rem; }
+}

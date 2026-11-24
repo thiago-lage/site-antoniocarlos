@@ -1,5 +1,5 @@
 export const SCENES = [
-  'scene-1', 'scene-intro', 'scene-sintomas', 'scene-5b', 'scene-abordagem', 'scene-atendimento', 'scene-6',
+  'scene-1', 'scene-intro', 'scene-sintomas', 'scene-5b', 'scene-abordagem', 'scene-duvidas', 'scene-6',
 ];
 
 export const PRIMARY_NAV = [
@@ -8,7 +8,7 @@ export const PRIMARY_NAV = [
   { label: 'Sintomas', sceneId: 'scene-sintomas' },
   { label: 'Sobre mim', sceneId: 'scene-5b' },
   { label: 'Abordagem', sceneId: 'scene-abordagem' },
-  { label: 'Atendimento', sceneId: 'scene-atendimento' },
+  { label: 'Dúvidas', sceneId: 'scene-duvidas' },
   { label: 'Contato', sceneId: 'scene-6' },
 ];
 

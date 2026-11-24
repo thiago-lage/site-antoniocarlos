@@ -2,7 +2,7 @@ import React from 'react';
 import { HeroSection } from './HeroSection';
 import { SymptomsSection } from './SymptomsSection';
 import { SymptomsCarousel } from './SymptomsCarousel';
-import { DnaBackground } from './DnaBackground';
+import { FaqSection } from './FaqSection';
 import { MobileCarousel } from './MobileCarousel';
 
 /** Test layout for the symptoms scene. Set to false to go back to the card grid. */
@@ -15,18 +15,16 @@ const CARE_STEPS = [
   ['Acompanhar e ajustar', 'avaliar a evolução e rever condutas quando necessário.'],
 ];
 
-const APPROACH_PARAGRAPHS = [
-  'O ser humano não se resume ao funcionamento de seus órgãos nem aos sintomas que apresenta.',
-  'Sua saúde envolve fatores biológicos, emocionais, comportamentais, relacionais e existenciais que podem interagir de maneiras diferentes.',
-  'Minha abordagem considera essas dimensões sem perder o rigor da avaliação médica.',
-  'O tratamento é construído a partir das necessidades identificadas, com recursos adequados, objetivos claros e acompanhamento quando necessário.',
+// "Como são os encontros comigo?" — written by Dr. Antônio Carlos himself (more personal tone).
+const ENCOUNTER_PARAGRAPHS = [
+  'Cada encontro começa com uma boa conversa. Quero conhecer você, ouvir o que está vivendo, o que está sentindo e o que o trouxe até aqui.',
+  'Não olho apenas para a doença ou para os sintomas. Olho para você como um todo. Seu corpo, suas emoções, sua história, seus relacionamentos, suas crenças e o sentido que dá à própria vida.',
+  'Ao longo do nosso trabalho, utilizo diferentes recursos da medicina integrativa e da psicoterapia, de acordo com o que você precisa. Às vezes, precisamos cuidar do corpo. Outras vezes, olhar para antigas feridas, compreender conflitos ou descobrir novas maneiras de lidar com a vida.',
+  'Não tenho respostas prontas para você. Meu papel é ajudar a encontrar suas próprias respostas, reconhecer suas forças e recuperar a confiança em si mesmo.',
+  'É um caminho que construímos juntos, respeitando seu tempo, sua história e sua maneira única de ser.',
 ];
+const ENCOUNTER_CLOSING = 'Mais do que aliviar sintomas, meu propósito é ajudar você a viver com mais saúde, consciência, liberdade e sentido.';
 
-const ATTENDANCE = [
-  ['Primeira consulta', 'Avaliação clínica e compreensão dos sintomas, da história pessoal e dos fatores relevantes para sua saúde.'],
-  ['Plano terapêutico', 'Definição compartilhada das prioridades, dos recursos indicados e dos objetivos do tratamento.'],
-  ['Acompanhamento', 'Quando necessário, encontros periódicos para avaliar a evolução e ajustar as condutas.'],
-];
 
 const ABOUT = [
   // Featured first: the client asked for his experience with groups and human development to stand out.
@@ -91,41 +89,17 @@ export const ScrollOverlay: React.FC = () => (
       </div>
     </section>
 
-    <div className="dna-zone">
-      <DnaBackground />
-      <section id="scene-abordagem" className={sectionClass} aria-labelledby="approach-title">
-        <div className={`${cardClass} max-w-5xl`}>
-          <span className="text-label">Abordagem</span>
-          <h2 id="approach-title" className="text-display editorial-title mt-2">Medicina integrativa: compreender para cuidar.</h2>
-          <MobileCarousel className="grid md:grid-cols-2 gap-3 mt-5 text-left" dotsClassName="text-[#28616a]" label="Abordagem">
-            {APPROACH_PARAGRAPHS.map(text => (
-              <div key={text} className="glass-card-inner p-4">
-                <p className="editorial-body">{text}</p>
-              </div>
-            ))}
-          </MobileCarousel>
-          <p className="approach-sync mt-6">
-            <span>Escutar com profundidade.</span> <span>Investigar com critério.</span> <span>Cuidar com direção.</span>
-          </p>
-        </div>
-      </section>
+    <section id="scene-abordagem" className="scene encounters pointer-events-auto" aria-labelledby="approach-title">
+      <figure className="encounters-photo">
+        <img src="/dr-antonio-encontros.webp" alt="Dr. Antônio Carlos de Lacerda Lage em seu consultório" width="900" height="940" loading="lazy" decoding="async" />
+      </figure>
+      <div className="encounters-text">
+        <h2 id="approach-title">Como são os encontros comigo?</h2>
+        {ENCOUNTER_PARAGRAPHS.map(text => <p key={text}>{text}</p>)}
+        <p className="encounters-closing">{ENCOUNTER_CLOSING}</p>
+      </div>
+    </section>
 
-      <section id="scene-atendimento" className={sectionClass} aria-labelledby="attendance-title">
-        <div className={cardClass}>
-          <span className="text-label">Atendimento</span>
-          <h2 id="attendance-title" className="text-display editorial-title mt-2">Um cuidado construído a partir de você.</h2>
-          <MobileCarousel className="grid md:grid-cols-3 gap-3 mt-5 text-left" dotsClassName="text-[#28616a]" label="Atendimento">
-            {ATTENDANCE.map(([title, text]) => (
-              <div key={title} className="glass-card-inner p-4">
-                <h3 className="text-heading text-lg text-[#163f49]">{title}</h3>
-                <p className="editorial-body mt-1.5">{text}</p>
-              </div>
-            ))}
-          </MobileCarousel>
-          <p className="editorial-body mt-5">A duração e a frequência do acompanhamento respeitam as necessidades de cada pessoa.</p>
-          <p className="text-heading text-base sm:text-lg text-[#28616a] mt-3">Mais do que repetir consultas, acompanhar é oferecer continuidade e direção ao cuidado.</p>
-        </div>
-      </section>
-    </div>
+    <FaqSection />
   </div>
 );
